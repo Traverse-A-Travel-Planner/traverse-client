@@ -1,0 +1,48 @@
+.sidebar .menu .dashboard,
+.profile-menu-card .about {
+    background-color: aliceblue;
+}
+
+.content .profile-content .change-about-section .input-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.content .profile-content .change-about-section .input-group input {
+    font-size: 16px;
+    font-weight: 500;
+    width: 100%;
+    height: 45px;
+    border: 1px solid #cccc;
+    outline: none;
+    text-indent: 15px;
+    margin-bottom: 10px;
+}
+
+.content .profile-content .change-about-section .input-group input::placeholder {
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.content .profile-content .change-about-section .input-group p:not(:first-child),
+.content .profile-content .change-about-section .input-group .inner-input-group p {
+    margin: 10px 0 5px 0;
+}
+
+
+/* -------- */
+
+.content .profile-content .change-about-section .input-group .inner-input-group {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content .profile-content .change-about-section .input-group .inner-input-group .item {
+    width: 47.5%;
+}

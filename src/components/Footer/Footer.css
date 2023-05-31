@@ -1,0 +1,209 @@
+footer * {
+    font-family: sans-serif;
+}
+
+.tooltip>.tooltip-inner {
+    background: rgba(0, 0, 0, 0.5);
+    color: white !important;
+    font-size: 13px;
+}
+
+footer hr {
+    background-color: transparent !important;
+    border: 0 !important;
+    height: 0 !important;
+    border-top: 1px solid rgba(0, 0, 0, 0.1) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.footer-distributed {
+    /* background-color: rgb(245 248 250); */
+    background-color: white;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+    box-sizing: border-box;
+    width: 100%;
+    text-align: left;
+    font: bold 16px sans-serif;
+}
+
+.footer-distributed .footer-inside {
+    padding: 50px 250px 25px 250px;
+}
+
+.footer-distributed .footer-center,
+.footer-distributed .footer-right {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.footer-distributed .footer-center {
+    width: 60%;
+}
+
+.footer-distributed h3 {
+    color: black;
+    font-weight: 600;
+    font-family: cursive;
+    margin: 0;
+}
+
+.footer-distributed h3 span {
+    color: #5383d3;
+}
+
+.footer-distributed .footer-company-name {
+    color: rgba(0, 0, 0, 0.7);
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0;
+}
+
+.footer-distributed .footer-center .footer-center-wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.footer-distributed .footer-center .footer-center-wrapper div {
+    flex: 1;
+    min-width: 120px;
+    margin-bottom: 20px;
+}
+
+.footer-distributed .footer-center ul {
+    list-style-type: none;
+    color: black;
+    padding-left: 0px !important;
+}
+
+.footer-distributed .footer-center ul li {
+    color: rgba(0, 0, 0, 0.7);
+    font-weight: 400;
+    font-size: 13px;
+    margin-bottom: 10px !important;
+}
+
+.footer-distributed .footer-center ul li:hover {
+    color: black;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.footer-distributed .footer-right {
+    width: 39%;
+}
+
+.footer-distributed .footer-company-about span,
+.footer-distributed .footer-center span {
+    display: block;
+    color: black;
+    font-size: 14px;
+    margin-bottom: 20px;
+    font-weight: 400;
+}
+
+.footer-distributed .footer-bottom {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 20px 120px;
+}
+
+.footer-distributed .footer-bottom div {
+    margin: 0 50px 15px 0;
+}
+
+.footer-distributed .footer-bottom button {
+    background-color: #33383b;
+    color: black;
+    font-size: 17px;
+    width: 35px;
+    height: 35px;
+    border: none;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.footer-distributed .footer-bottom p {
+    display: inline-block;
+    color: black;
+    vertical-align: middle;
+    margin: 0;
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.footer-distributed .footer-bottom p span {
+    display: block;
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 2;
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.footer-distributed .footer-bottom p a {
+    font-size: 13px;
+    color: black;
+    text-decoration: none;
+}
+
+.footer-distributed .footer-bottom i {
+    color: white;
+}
+
+.footer-distributed .footer-company-about {
+    line-height: 20px;
+    color: rgba(0, 0, 0, 0.7) !important;
+    font-size: 13px;
+    font-weight: normal;
+    margin: 0;
+}
+
+.footer-distributed .footer-icons {
+    margin-top: 25px;
+}
+
+.footer-distributed .footer-icons a {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    background-color: #33383b;
+    border-radius: 2px;
+    font-size: 20px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 35px;
+    margin-right: 3px;
+    margin-bottom: 5px;
+}
+
+.footer-distributed .footer-icons a:hover {
+    background-color: #B14100;
+}
+
+@media (max-width: 880px) {
+    .footer-distributed {
+        font: bold 14px sans-serif;
+    }
+    .footer-distributed .footer-inside {
+        padding: 50px 50px 25px 50px;
+    }
+    .footer-distributed .footer-center,
+    .footer-distributed .footer-right {
+        display: block;
+        width: 100%;
+        margin-bottom: 40px;
+        text-align: center;
+    }
+    .footer-distributed .footer-center i {
+        margin-left: 0;
+    }
+    .footer-distributed .footer-bottom div.payment-method {
+        display: none;
+    }
+}

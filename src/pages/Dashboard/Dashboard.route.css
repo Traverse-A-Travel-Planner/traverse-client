@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.main-body {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.main-body .content {
+    width: calc(100% - 300px);
+    background-color: #f4f6f8;
+}
+
+.main-body .content {
+    padding: 20px 10px 10px 40px;
+}
+
+.main-body .content .url-path {
+    margin: 0 0 40px 0;
+    color: blueviolet !important;
+}
+
+.content .profile-section {
+    width: 100%;
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.content .profile-section .profile-menu-card {
+    margin-right: 50px;
+    width: calc(20% + 20px);
+    height: max-content;
+    border: 1px solid #dddd;
+    background-color: white;
+}
+
+.content .profile-section .profile-menu-card ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.content .profile-section .profile-menu-card ul li {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    font-weight: 500;
+    text-indent: 20px;
+    line-height: 40px;
+    border-bottom: 1px solid #dddd;
+    cursor: pointer;
+}
+
+.content .profile-section .profile-menu-card ul li:last-child {
+    border-bottom: none;
+}
+/* ------------------------ */
+
+.content .profile-content {
+    width: 70%;
+}

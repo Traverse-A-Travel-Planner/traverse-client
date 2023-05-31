@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: calc(100vh - 60px);
+  padding: 0;
+}
+
+.sidebar .profile {
+  width: 100%;
+  height: max-content;
+  padding: 20px 0 10px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar .profile .avatar {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar .profile .avatar img {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+}
+
+.sidebar .profile .role {
+  margin-top: -15px;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 0px 15px;
+  border: 2px solid rgba(183, 211, 243, 0.867);
+  border-radius: 25px;
+  background-color: white;
+}
+
+.sidebar .profile .name {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.sidebar .profile .email {
+  font-size: 14px;
+}
+
+/* ----------- */
+
+.sidebar .menu-header {
+  font-size: 18px;
+  font-weight: 500;
+  margin-left: 15px;
+}
+.sidebar .menu {
+  width: 100%;
+  height: max-content;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.sidebar .menu ul {
+  width: 100%;
+  margin: 5px 0 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  list-style-type: none;
+}
+.sidebar .menu ul li {
+  width: 100%;
+  padding: 10px;
+  margin: 2.5px 0;
+  font-size: 17px;
+  text-indent: 15px;
+  cursor: pointer;
+  color: rgb(27, 27, 27);
+  font-weight: 500;
+}
+
+.sidebar .menu ul li:hover {
+  background-color: aliceblue;
+}
+
+.sidebar .menu ul li i {
+  margin-right: 5px;
+}

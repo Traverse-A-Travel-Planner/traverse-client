@@ -1,0 +1,25 @@
+#geocoder {
+  z-index: 1;
+  margin: 20px;
+}
+.mapboxgl-ctrl-geocoder {
+  min-width: 100%;
+}
+
+.mapboxgl-ctrl-geocoder--icon,
+.mapboxgl-ctrl-geocoder--icon-search {
+  display: none;
+}
+
+
+#geocoder {
+    width: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999999;
+}
+
+.mapboxgl-ctrl-geocoder--suggestion {
+    z-index: 1000000;
+}
