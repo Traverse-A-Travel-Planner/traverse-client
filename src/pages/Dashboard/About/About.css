@@ -1,10 +1,11 @@
 .sidebar .menu .dashboard,
 .profile-menu-card .about {
-    background-color: aliceblue;
+    background-color: #f5f6f7de;
 }
 
 .content .profile-content .change-about-section .input-group {
     width: 100%;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -30,6 +31,7 @@
 .content .profile-content .change-about-section .input-group p:not(:first-child),
 .content .profile-content .change-about-section .input-group .inner-input-group p {
     margin: 10px 0 5px 0;
+    text-align: left;
 }
 
 

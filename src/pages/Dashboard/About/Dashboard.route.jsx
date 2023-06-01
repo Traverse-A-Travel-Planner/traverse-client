@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import About from "./About";
 import "./Dashboard.route.css";
 import { backendUrl } from "../../../utils/config";
+import Header from "../../../components/Header/Header";
 
 const Dashboard = () => {
   const [user_details, setUserDetails] = useState({
@@ -30,6 +31,7 @@ const Dashboard = () => {
 
   return (
     <div className="main-body">
+      <Header />
       <About data={user_details} />
     </div>
   );

@@ -25,7 +25,7 @@ const queryClient = new QueryClient({
 });
 
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   
   // useEffect(() => {
   //   const token = localStorage.getItem("cookieFallback");
