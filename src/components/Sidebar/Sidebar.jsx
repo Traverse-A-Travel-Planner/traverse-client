@@ -1,7 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
 import "./Sidebar.css";
 
 const Sidebar = ({ data }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="sidebar">
       <div className="profile">

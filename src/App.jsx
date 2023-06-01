@@ -6,6 +6,7 @@ import IdleTimer from './pages/Login/idleTimer.js';
 
 // importing stles
 import "./App.css"
+import "@arco-design/web-react/dist/css/arco.css"
 
 // importing components
 import Home from "./pages/Home/Home.route.jsx";
@@ -26,7 +27,7 @@ const queryClient = new QueryClient({
 })
 
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   
   // useEffect(() => {
   //   const token = localStorage.getItem("token");

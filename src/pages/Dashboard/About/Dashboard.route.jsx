@@ -17,18 +17,15 @@ const Dashboard = () => {
   });
 
   useEffect(() => {
-    async function a() {
+    (async() => {
       const res = await fetch(backendUrl + "/profile/details", {
         headers: {
           "content-type": "application/json",
           authorization: "Bearer " + localStorage.getItem("token"),
         },
       });
-      const data = await res.json();
-
-      setUserDetails(data.data);
-    }
-    a();
+      
+    })()
   }, []);
 
   return (

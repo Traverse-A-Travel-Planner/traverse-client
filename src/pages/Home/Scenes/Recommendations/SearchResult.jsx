@@ -1,6 +1,9 @@
 import React from "react";
 // import { backendUrl } from "../../../../utils/config";
 
+//importing styles
+import "./searchResults.css"
+
 const SearchResult = ({ title, searchResultData }) => {
   const handleAddFavourites = async (obj) => {
     console.log(obj);
@@ -32,9 +35,9 @@ const SearchResult = ({ title, searchResultData }) => {
                   </div>
                   <div className="title">Patan Durbar Square</div>
                   <div className="description text-muted">
-                    Location: Lalitpur, Nepal
+                  Lalitpur, Nepal
                   </div>
-                  <div className="price">NPR 250</div>
+                  <div className="keyword">Tourist</div>
                   <div
                     className="favourites"
                     onClick={() =>
@@ -47,7 +50,7 @@ const SearchResult = ({ title, searchResultData }) => {
                       })
                     }
                   >
-                    <i className="bi bi-heart"></i>
+                    <i className="bi bi-bookmark"></i>
                   </div>
                 </div>
               );
