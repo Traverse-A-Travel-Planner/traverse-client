@@ -1,6 +1,6 @@
 module.exports = {
   handleLogout() {
-    localStorage.removeItem("token");
+    localStorage.removeItem("cookieFallback");
     window.location.assign("/login");
   },
   redirectIfNotLoggedIn() {

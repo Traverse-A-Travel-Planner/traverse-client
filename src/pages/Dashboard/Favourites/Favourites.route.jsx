@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import "./Favourites.route.css";
+import "../css/dashboardGeneric.css"
 import Header from "../../../components/Header/Header";
 
 const Favourites = () => {

@@ -1,5 +1,6 @@
 import React from "react";
 import "./Changepassword.css"
+import "../../css/dashboardGeneric.css"
 import Sidebar from "../../../../components/Sidebar/Sidebar";
 import Header from "../../../../components/Header/Header";
 

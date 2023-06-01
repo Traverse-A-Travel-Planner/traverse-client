@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 
 // importing stles
 import "./App.css"
+import "@arco-design/web-react/dist/css/arco.css"
 
 // importing components
 import Home from "./pages/Home/Home.route.jsx";
@@ -25,16 +26,16 @@ const queryClient = new QueryClient({
 });
 
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   
-  // useEffect(() => {
-  //   const token = localStorage.getItem("cookieFallback");
-  //   if (!token) {
-  //     setLoggedIn(false);
-  //   } else {
-  //     setLoggedIn(true);
-  //   }
-  // }, [loggedIn]);
+  useEffect(() => {
+    const token = localStorage.getItem("cookieFallback");
+    if (!token) {
+      setLoggedIn(false);
+    } else {
+      setLoggedIn(true);
+    }
+  }, [loggedIn]);
 
   console.log(loggedIn);
 
@@ -59,7 +60,6 @@ const App = () => {
                   <Route
                     path="*"
                     element={<PageNotFound />}
-                    logStatus={{ loggedIn }}
                   />
                 </Routes>
               </div>

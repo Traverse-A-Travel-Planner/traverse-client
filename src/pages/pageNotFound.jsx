@@ -5,7 +5,7 @@ const PageNotFound = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (window.localStorage.getItem("token")){
+        if (window.localStorage.getItem("cookieFallback")){
             navigate("/")
         } else {
             navigate("/login")

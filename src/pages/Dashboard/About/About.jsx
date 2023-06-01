@@ -1,5 +1,6 @@
 import React from "react";
 import "./About.css";
+import { Link } from "react-router-dom";
 
 import Sidebar from "../../../components/Sidebar/Sidebar";
 
@@ -14,9 +15,21 @@ const About = ({ data }) => {
         <div className="profile-section">
           <div className="profile-menu-card">
             <ul>
-              <li className="items about"><a href="/dashboard">About me</a></li>
-              <li className="items"><a href="/changePassword">Change Password</a></li>
-              <li className="items"><a href="/changeAvatar">Change Avatar</a></li>
+              <li className="items about">
+                <Link style={{ textDecoration: "none", color: "black" }} to="/dashboard">
+                  About me
+                </Link>
+                </li>
+              <li className="items">
+                <Link style={{ textDecoration: "none", color: "black" }} to="/changePassword">
+                  Change Password
+                </Link>
+              </li>
+              <li className="items">
+                <Link style={{ textDecoration: "none", color: "black" }} to="/dashboard">
+                Change Avatar
+                </Link>
+              </li>
             </ul>
           </div>
           <div className="profile-content">
