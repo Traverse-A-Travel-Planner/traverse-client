@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import {BrowserRouter, Routes, Route, Outlet} from "react-router-dom"
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import { QueryClient, QueryClientProvider } from 'react-query';
-import IdleTimer from './pages/Login/idleTimer.js';
+import { QueryClient, QueryClientProvider } from "react-query";
 
 // importing stles
-import "./App.css"
+import "./App.css";
+import "@arco-design/web-react/dist/css/arco.css";
 
 // importing components
 import Home from "./pages/Home/Home.route.jsx";
@@ -23,77 +23,64 @@ const queryClient = new QueryClient({
       staleTime: Infinity,
     },
   },
-})
+});
 
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState(false);
-  
+  const [loggedIn, setLoggedIn] = useState(true);
+
   // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-  //   if(!token){
-  //     setLoggedIn(false)
+  //   const token = localStorage.getItem("cookieFallback");
+  //   if (!token) {
+  //     setLoggedIn(false);
   //   } else {
   //     setLoggedIn(true);
   //   }
   // }, [loggedIn]);
 
-  useEffect(() => {
-    const timer = new IdleTimer({
-      timeout: 600, //expire after 5 minutes
-      onTimeout: () => {
-        if (window.localStorage.getItem('token')){
-            window.localStorage.removeItem("token")
-            setLoggedIn(false)
-            window.location.reload()
-        }
-      },
-      onExpired: () => {
-        if (window.localStorage.getItem('token')){
-            window.localStorage.removeItem("token")
-            setLoggedIn(false)
-            window.location.reload()
-        }
-      }
-    });
-
-    return () => {
-      timer.cleanUp();
-    };
-  }, []);
+  console.log(loggedIn);
 
   return (
     <div className="App">
-        <div className='app-wrapper'>
-          {
-            loggedIn === true ? 
-            <BrowserRouter>
+      <div className="app-wrapper">
+        {loggedIn === true ? (
+          <BrowserRouter>
             <Outlet />
             <QueryClientProvider client={queryClient}>
-            <div className='main'>
-                  <Routes>
-                    <Route path='/' element={<Home />} />
-                    <Route path="/dashboard" element={<Dashboard />}></Route>
-                    <Route path="/favourites" element={<Favourites />}></Route>
-                    <Route path="/changePassword" element={<Changepassword />}></Route>
+              <div className="main">
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/dashboard" element={<Dashboard />}></Route>
+                  <Route path="/favourites" element={<Favourites />}></Route>
+                  <Route
+                    path="/changePassword"
+                    element={<Changepassword />}
+                  ></Route>
 
-                    {/* 👇️ only match this when no other routes match */}
-                    <Route path="*" element={<PageNotFound />} logStatus={{loggedIn}} />
-                  </Routes>
-            </div>
+                  {/* 👇️ only match this when no other routes match */}
+                  <Route
+                    path="*"
+                    element={<PageNotFound />}
+                    logStatus={{ loggedIn }}
+                  />
+                </Routes>
+              </div>
             </QueryClientProvider>
-            </BrowserRouter>
-            : 
-            <BrowserRouter>
-              <Routes>
-                <Route path='/login' element={<Login logStatus={{loggedIn, setLoggedIn}}/>} />
-                <Route path='/signup' element={<Signup />} />
+          </BrowserRouter>
+        ) : (
+          <BrowserRouter>
+            <Routes>
+              <Route
+                path="/login"
+                element={<Login logStatus={{ loggedIn, setLoggedIn }} />}
+              />
+              <Route path="/signup" element={<Signup />} />
 
-                {/* 👇️ only match this when no other routes match */}
-                <Route path="/*" element={<PageNotFound />} />
-              </Routes>
-            </BrowserRouter>
-          }
-        </div>
+              {/* 👇️ only match this when no other routes match */}
+              <Route path="/*" element={<PageNotFound />} />
+            </Routes>
+          </BrowserRouter>
+        )}
+      </div>
     </div>
   );
 };
