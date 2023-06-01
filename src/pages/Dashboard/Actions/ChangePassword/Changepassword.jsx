@@ -1,8 +1,11 @@
 import React from "react";
 import "./Changepassword.css"
+import Sidebar from "../../../../components/Sidebar/Sidebar";
 
-const Changepassword = () => {
+const Changepassword = ({data}) => {
   return (
+    <div className="dashboard-content">
+    <Sidebar data={data} />
     <div class="content">
       <div class="url-path">Home / Dashboard / Password</div>
       <div class="profile-section">
@@ -47,6 +50,7 @@ const Changepassword = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

@@ -6,7 +6,9 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 5px 10px #dddd;
+    background-color: white;
+    box-shadow: 0 5px 10px #cccc !important;
+    z-index: 9999;
 }
 
 .header .logo {
@@ -26,18 +28,25 @@
     display: flex;
     flex-direction: row;
     margin: 0;
+    gap: 0 0.7em;
 }
 
 .header .center ul li {
     position: relative;
     margin: 0 10px;
-    font-size: 14px;
+    font-size: 15px;
     cursor: pointer;
     /* border-bottom: 1px solid transparent; */
 }
 
+.header .center ul li a{
+    text-decoration: none;
+    color: black;
+}
+
+.header .center ul li > a:hover,
 .header .center ul li:hover {
-    color: blueviolet;
+    color: rgb(54, 85, 189) !important;
 }
 
 .header .profile {

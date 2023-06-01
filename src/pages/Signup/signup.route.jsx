@@ -6,6 +6,8 @@ import "./signup.route.css"
 import { Notification, Spin } from "@arco-design/web-react";
 
 import { backendUrl } from "../../utils/config";
+import Footer from "../../components/Footer/Footer";
+import Header from ".././../components/Header/Header";
 
 const Signup = () => {
     const navigate = useNavigate();
@@ -88,13 +90,14 @@ const Signup = () => {
 
     return (
         <>
+        <Header />
         <div className="login-form-main-wrapper">
         <div className="img-container">
             <img src={LoginArt} alt="login art" />
         </div>
         <div className="login-form-container">
             <div className="login-form">
-                <h3 className="org-name">Discord bot</h3>
+                <h3 className="org-name">Traverse</h3>
                 <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} className="input-email" placeholder="Phone number, user or email" />
                 <input type="password"value={password} onChange={(e) => setPassword(e.target.value)} className="input-password" placeholder="Password" />
             
@@ -113,6 +116,7 @@ const Signup = () => {
             </div>
             </div>
         </div>
+        <Footer />
         </>
     )
 }

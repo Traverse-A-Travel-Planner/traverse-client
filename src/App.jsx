@@ -4,13 +4,17 @@ import {BrowserRouter, Routes, Route, Outlet} from "react-router-dom"
 import { QueryClient, QueryClientProvider } from 'react-query';
 import IdleTimer from './pages/Login/idleTimer.js';
 
+// importing stles
+import "./App.css"
+
 // importing components
 import Home from "./pages/Home/Home.route.jsx";
 import Login from "./pages/Login/login.route.jsx";
 import Signup from "./pages/Signup/signup.route.jsx";
-import Dashboard from "./pages/Dashboard/Dashboard.route.jsx";
-import Favourites from "./pages/Dashboard/Favourites/Favourites.route.js";
+import Dashboard from "./pages/Dashboard/About/Dashboard.route.jsx";
+import Favourites from "./pages/Dashboard/Favourites/Favourites.route.jsx";
 import PageNotFound from "./pages/pageNotFound.jsx";
+import Changepassword from "./pages/Dashboard/Actions/ChangePassword/Changepassword.jsx";
 
 // Create a client
 const queryClient = new QueryClient({
@@ -22,7 +26,7 @@ const queryClient = new QueryClient({
 })
 
 const App = () => {
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   
   // useEffect(() => {
   //   const token = localStorage.getItem("token");
@@ -70,6 +74,7 @@ const App = () => {
                     <Route path='/' element={<Home />} />
                     <Route path="/dashboard" element={<Dashboard />}></Route>
                     <Route path="/favourites" element={<Favourites />}></Route>
+                    <Route path="/changePassword" element={<Changepassword />}></Route>
 
                     {/* 👇️ only match this when no other routes match */}
                     <Route path="*" element={<PageNotFound />} logStatus={{loggedIn}} />

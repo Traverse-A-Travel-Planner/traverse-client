@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import About from "./About/About.route";
-import Sidebar from "../../components/Sidebar/Sidebar";
+import About from "./About";
 import "./Dashboard.route.css";
-import { backendUrl } from "../../utils/config";
+import { backendUrl } from "../../../utils/config";
 
 const Dashboard = () => {
   const [user_details, setUserDetails] = useState({
@@ -34,7 +33,6 @@ const Dashboard = () => {
 
   return (
     <div className="main-body">
-      <Sidebar data={user_details} />
       <About data={user_details} />
     </div>
   );

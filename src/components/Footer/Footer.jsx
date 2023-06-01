@@ -6,7 +6,7 @@ const url = "";
 
 const Footer = () => {
   return (
-    <footer className="footer-distributed">
+    <footer className="footer-distributed" id="traverse-footer">
       <div className="footer-inside">
         <div className="footer-center">
           <div className="footer-center-wrapper">
@@ -58,6 +58,7 @@ const Footer = () => {
         </div>
 
         <div className="footer-right">
+          <span>About us</span>
           <p className="footer-company-about">
             Traverse is a platform where you can plan for your next tour with
             ease. We provide a platform where you can select places for your

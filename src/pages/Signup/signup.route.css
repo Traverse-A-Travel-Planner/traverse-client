@@ -15,7 +15,7 @@ div.login-form-main-wrapper {
     flex-direction: row;
     flex-wrap: wrap;
     width: 100%;
-    height: 100%;
+    height: calc(95vh - 70px);
     background-color: rgb(245, 245, 245);
 }
 

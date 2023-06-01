@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import "./Favourites.route.css";
 import { backendUrl } from "../../../utils/config";
@@ -16,20 +16,20 @@ const Favourites = () => {
     gender: "Loading...",
   });
 
-  useEffect(() => {
-    async function a() {
-      const res = await fetch(backendUrl + "/profile/details", {
-        headers: {
-          "content-type": "application/json",
-          authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      });
-      const data = await res.json();
+  // useEffect(() => {
+  //   async function a() {
+  //     const res = await fetch(backendUrl + "/profile/details", {
+  //       headers: {
+  //         "content-type": "application/json",
+  //         authorization: "Bearer " + localStorage.getItem("token"),
+  //       },
+  //     });
+  //     const data = await res.json();
 
-      setUserDetails(data.data);
-    }
-    a();
-  }, []);
+  //     setUserDetails(data.data);
+  //   }
+  //   a();
+  // }, []);
 
   return (
     <div className="main-body">

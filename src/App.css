@@ -42,3 +42,13 @@
     transform: rotate(360deg);
   }
 }
+
+.dashboard-content{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.dashboard-content .content{
+  width: 100%;
+}

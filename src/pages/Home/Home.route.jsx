@@ -3,9 +3,10 @@ import MapBox from "./Scenes/MapBox/MapBox";
 import SearchBar from "./Scenes/Search Bar/SearchBar";
 import SearchResult from "./Scenes/Recommendations/SearchResult";
 import "./Home.route.css";
-import { pythonServer } from "../../utils/config";
-import Header from "./Scenes/Header/Header";
+// import { pythonServer } from "../../utils/config";
+import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import getPlaces from "./getPlaces";
 
 const Home = () => {
   const [searchResultData, setSearchResultData] = useState([]);
@@ -28,14 +29,14 @@ const Home = () => {
     }
   );
 
-  // useEffect(() => {
-  //   async function a() {
-  //     const res = await fetch(`${pythonServer}/${lat}/${long}`);
-  //     const data = await res.json();
-  //     setSearchResultData(data);
-  //   }
-  //   a();
-  // }, [lat, long]);
+  useEffect(() => {
+    (async () => {
+      const data = await getPlaces(lat, long)
+      if (!data) return
+
+      setSearchResultData(data);
+    })()
+  }, [lat, long]);
 
   return (
     <div className="wrapper">

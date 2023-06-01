@@ -12,6 +12,7 @@
   width: 300px;
   height: calc(100vh - 60px);
   padding: 0;
+  background-color: white;
 }
 
 .sidebar .profile {
@@ -43,7 +44,7 @@
   font-size: 14px;
   font-weight: 500;
   padding: 0px 15px;
-  border: 2px solid rgba(183, 211, 243, 0.867);
+  border: 2px solid #eceff2de;
   border-radius: 25px;
   background-color: white;
 }
@@ -83,6 +84,9 @@
   list-style-type: none;
 }
 .sidebar .menu ul li {
+  display: flex;
+  justify-content: flex-start;
+  align-content: center;
   width: 100%;
   padding: 10px;
   margin: 2.5px 0;
@@ -94,7 +98,7 @@
 }
 
 .sidebar .menu ul li:hover {
-  background-color: aliceblue;
+  background-color: #eceff2de;
 }
 
 .sidebar .menu ul li i {

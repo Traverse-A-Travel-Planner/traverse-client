@@ -12,8 +12,8 @@ const Sidebar = ({ data }) => {
           />
         </div>
         <div className="role shadow-sm text-muted">User</div>
-        <div className="name">{data.full_name}</div>
-        <div className="email text-muted">{data.email}</div>
+        <div className="name">{data?.full_name}</div>
+        <div className="email text-muted">{data?.email}</div>
       </div>
 
       <p className="my-2 menu-header">Explore</p>

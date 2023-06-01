@@ -1,6 +1,5 @@
 import React from "react";
-import { toast } from "react-toastify";
-import { backendUrl } from "../../../../utils/config";
+// import { backendUrl } from "../../../../utils/config";
 
 const SearchResult = ({ title, searchResultData }) => {
   const handleAddFavourites = async (obj) => {

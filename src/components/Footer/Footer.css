@@ -94,6 +94,8 @@ footer hr {
     width: 39%;
 }
 
+
+.footer-distributed .footer-right span,
 .footer-distributed .footer-company-about span,
 .footer-distributed .footer-center span {
     display: block;

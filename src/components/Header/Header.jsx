@@ -1,11 +1,11 @@
 import React from "react";
 import "./Header.css";
-import { handleLogout } from "../../../../utils/helper";
+import {handleLogout} from "../../utils/helper"
 import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div className="header shadow">
+    <div className="header">
       <div className="logo">Traverse</div>
       <div className="center">
         <ul>
@@ -14,11 +14,13 @@ const Header = () => {
               Home
             </Link>
           </li>
-          <li className="header-items"> <Link style={{ textDecoration: "none", color: "black" }} to="/trips">
-          Trips
-        </Link></li>
-          <li className="header-items">Guide</li>
-          <li className="header-items">Contact</li>
+          <li className="header-items"> 
+            <Link style={{ textDecoration: "none", color: "black" }} to="/favourites">
+              Favourites
+            </Link>
+          </li>
+          <li className="header-items">Featured</li>
+          <li className="header-items"><a href="#traverse-footer">Contact</a></li>
         </ul>
       </div>
 
