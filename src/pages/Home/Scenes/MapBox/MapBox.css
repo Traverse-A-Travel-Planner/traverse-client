@@ -24,11 +24,12 @@
     z-index: 1000000;
 }
 
-.mapboxgl-ctrl-top-left{
-  min-width: 60%;
-  width: 400px;
-}
 
 .mapboxgl-ctrl-geocoder input[type="text"]{
   font-size: 14px !important;
+}
+
+.mapbox-directions-origin .mapbox-form-label,
+.mapbox-form-label{
+  height: 100%;
 }

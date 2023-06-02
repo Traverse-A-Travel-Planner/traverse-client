@@ -37,11 +37,15 @@ div.recommended-places .places-list .place-item .image img {
     height: 100%;
     border-radius: 15px;
     cursor: pointer;
+    -webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
 }
 
-div.recommended-places .places-list .place-item .image img:hover {
+div.recommended-places .places-list .place-item .image:hover img {
+    -webkit-transform: scale(1.1);
     transform: scale(1.1);
-    transition: ease 0.4s;
 }
 
 div.recommended-places .places-list .place-item .keyword {
