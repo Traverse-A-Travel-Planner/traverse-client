@@ -1,7 +1,37 @@
 import React from "react";
-import "./Header.css";
-import {handleLogout} from "../../utils/helper"
+import { Dropdown, Menu, Button, Divider, Typography } from '@arco-design/web-react';
 import { Link } from "react-router-dom";
+
+import "./Header.css";
+
+import {handleLogout} from "../../utils/helper"
+
+const dropList = (
+  <Menu>
+    <Menu.Item key='1'>
+      <Link style={{ textDecoration: "none", color: "black" }} to="/">
+          Home
+      </Link>
+    </Menu.Item>
+    <Menu.Item key='2'>
+      <Link style={{ textDecoration: "none", color: "black" }} to="/dashboard">
+          Profile
+      </Link>
+    </Menu.Item>
+    <Menu.Item key='3'>
+      <Link style={{ textDecoration: "none", color: "black" }} to="/contributions">
+        Contributions
+      </Link>
+    </Menu.Item>
+    <Divider style={{ margin: '4px 0' }} />
+    <Menu.Item key='4' onClick={handleLogout}>
+      <Typography.Text type='error'>
+        <i className="bi bi-box-arrow-left me-2"></i>
+        Logout
+      </Typography.Text>
+    </Menu.Item>
+  </Menu>
+);
 
 const Header = () => {
   return (
@@ -20,45 +50,23 @@ const Header = () => {
             </Link>
           </li>
           <li className="header-items">Featured</li>
+          <li className="header-items"> 
+            <Link style={{ textDecoration: "none", color: "black" }} to="/addPlaces">
+              Contribute
+            </Link>
+          </li>
           <li className="header-items"><a href="#traverse-footer">Contact</a></li>
         </ul>
       </div>
 
       <div className="profile">
         <div className="btn-group">
-          <button
-            type="button"
-            className="btn btn-light dropdown-toggle"
-            data-bs-toggle="dropdown"
-          >
-            <i className="bi bi-list"></i>
-            <i className="bi bi-person-circle"></i>
-          </button>
-          <ul className="dropdown-menu">
-            <li>
-              <a className="dropdown-item" href="/dashboard">
-                Profile
-              </a>
-            </li>
-            <li>
-              <a className="dropdown-item" href="#">
-                Settings
-              </a>
-            </li>
-            <li>
-              <a className="dropdown-item" href="#">
-                Community
-              </a>
-            </li>
-            <li>
-              <hr className="dropdown-divider" />
-            </li>
-            <li onClick={handleLogout}>
-              <a className="dropdown-item text-danger" href="#">
-                <b>Logout</b>
-              </a>
-            </li>
-          </ul>
+          <Dropdown droplist={dropList} trigger='click' position='br'>
+            <Button type='text' className="header-dropwdown-btn">
+              <i className="bi bi-list"></i>
+              <i className="bi bi-person-circle"></i>
+            </Button>
+          </Dropdown>
         </div>
       </div>
     </div>

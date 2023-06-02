@@ -3,6 +3,7 @@ import { Select, Message } from '@arco-design/web-react';
 
 // importing styles
 import "./ListReviews.css"
+import "../css/dashboardGeneric.css";
 
 import Header from "../../../components/Header/Header"
 import Sidebar from "../../../components/Sidebar/Sidebar";
@@ -18,6 +19,12 @@ const ListReviews = ({data}) => {
             content: `You select ${value}.`,
             showIcon: true,
         })
+    }
+
+    const getInitials = (name) => {
+        const words = name.split(' ');
+        const initials = words.map(word => word.charAt(0));
+        return initials.join('');
     }
 
     return(
@@ -54,7 +61,7 @@ const ListReviews = ({data}) => {
                                 <div className="left">
                                     <div className="avatar">
                                         <Avatar>
-                                            A
+                                            {getInitials("Bibek Shah")}
                                         </Avatar>
                                     </div>
                                 </div>

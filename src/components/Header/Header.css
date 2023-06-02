@@ -16,6 +16,7 @@
     margin-left: 10px;
     font-size: 22px;
     font-weight: 600;
+    color: #892be1;
 }
 
 .header .center {
@@ -46,37 +47,32 @@
 
 .header .center ul li > a:hover,
 .header .center ul li:hover {
-    color: rgb(54, 85, 189) !important;
+    color: #892be1 !important;
 }
 
 .header .profile {
     margin-right: 15px;
 }
 
-.header .profile .dropdown-menu {
-    width: calc(100% + 100px);
-    border: 1px solid transparent !important;
-    border-radius: 10px;
-    box-shadow: 0 2.5px 5px #dddd !important;
-}
 
-.header .profile .dropdown-menu li {
-    font-size: 14px;
-    line-height: 30px;
-}
-
-.header .profile .dropdown-menu li:first-child {
-    margin-top: 10px;
-}
-
-.header .profile .dropdown-toggle::after {
-    display: none !important;
-}
-
-.header .profile .dropdown-toggle {
-    box-shadow: none !important;
-}
 
 .header .profile .dropdown-toggle i {
     font-size: 20px;
+}
+
+/* --------------------------- */
+/* .dropdown-menu css */
+
+.dropdown-demo > .arco-btn {
+    padding: 10px 10px;
+    font-weight: normal;
+}
+
+.header-dropwdown-btn > i{
+    font-size: 20px;
+    color: black;
+}
+
+.arco-trigger.arco-dropdown{
+    width: 135px;
 }

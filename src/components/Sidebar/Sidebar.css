@@ -65,8 +65,8 @@
 
 .sidebar .menu-header {
   font-size: 18px;
-  font-weight: 500;
-  margin-left: 15px;
+  font-weight: 600;
+  margin-left: 20px;
   text-align: left;
   text-indent: 5px;
 }
@@ -94,7 +94,7 @@
   width: 100%;
   padding: 10px;
   margin: 2.5px 0;
-  font-size: 17px;
+  font-size: 16px;
   text-indent: 15px;
   cursor: pointer;
   color: rgb(27, 27, 27);

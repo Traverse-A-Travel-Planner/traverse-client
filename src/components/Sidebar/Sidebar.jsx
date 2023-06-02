@@ -4,8 +4,7 @@ import { Link } from "react-router-dom";
 import { Avatar } from "@arco-design/web-react";
 
 const Sidebar = ({ data }) => {
-  const getInitials = (name="User") => {
-    if (name === "User") return name
+  const getInitials = (name) => {
     const words = name.split(' ');
     const initials = words.map(word => word.charAt(0));
     return initials.join('');

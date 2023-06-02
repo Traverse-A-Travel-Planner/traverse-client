@@ -19,6 +19,7 @@ import Favourites from "./pages/Dashboard/Favourites/Favourites.route.jsx";
 import PageNotFound from "./pages/pageNotFound.jsx";
 import Changepassword from "./pages/Dashboard/Actions/ChangePassword/Changepassword.jsx";
 import ListReviews from "./pages/Dashboard/Reviews/ListReviews";
+import AddPlaces from "./pages/Add Places/addPlaces";
 
 // Create a client
 const queryClient = new QueryClient({
@@ -74,9 +75,10 @@ const App = () => {
                   <Route path="/favourites" element={<Favourites data={user_details} />} />
                   <Route path="/reviews" element={<ListReviews data={user_details} />} />
                   <Route path="/changePassword" element={<Changepassword data={user_details} />} />
+                  <Route path="/addPlaces" element={<AddPlaces />} />
 
                   {/* 👇️ only match this when no other routes match */}
-                  <Route path="*" element={<PageNotFound />} logStatus={{ loggedIn }} />
+                  <Route path="*" element={<PageNotFound />} />
                 </Routes>
               </div>
             </QueryClientProvider>
