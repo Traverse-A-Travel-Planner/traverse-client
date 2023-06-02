@@ -1,37 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import "./Favourites.route.css";
 import "../css/dashboardGeneric.css";
 import Header from "../../../components/Header/Header";
 
-import { Account } from "appwrite";
-import appwriteClient from "../../../utils/appwriteClient";
-
-const Favourites = () => {
-  const [user_details, setUserDetails] = useState({
-    uid: "Loading...",
-    username: "Loading...",
-    full_name: "Loading...",
-    email: "Loading...",
-  });
-
-  const account = new Account(appwriteClient);
-
-  useEffect(() => {
-    (async () => {
-      let uid = localStorage.getItem("userId");
-      let userData = await account.get(uid);
-      let { $id, name, email } = userData;
-      setUserDetails({ uid, username: $id, full_name: name, email });
-    })();
-  }, []);
-
+const Favourites = ({data}) => {
   return (
     <div className="main-body">
       <Header />
 
       <div className="dashboard-content favourites">
-        <Sidebar data={user_details} />
+        <Sidebar data={data} />
         <div className="content">
           <div className="url-path">Dashboard / Favourites</div>
           <div className="favourites-section">

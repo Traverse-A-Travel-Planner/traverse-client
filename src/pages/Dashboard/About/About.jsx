@@ -13,6 +13,7 @@ const About = ({ data }) => {
         <div className="url-path">Home / Dashboard / About</div>
         <div className="profile-section">
           <ProfileMenuCard />
+          
           <div className="profile-content">
             <div className="change-about-section">
               <div className="input-group">

@@ -3,6 +3,9 @@ import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
 import { QueryClient, QueryClientProvider } from "react-query";
 
+import { Account } from "appwrite";
+import appwriteClient from "./utils/appwriteClient";
+
 // importing stles
 import "./App.css"
 import "@arco-design/web-react/dist/css/arco.css"
@@ -28,6 +31,23 @@ const queryClient = new QueryClient({
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [user_details, setUserDetails] = useState({
+    uid: "Loading...",
+    username: "Loading...",
+    full_name: "Loading...",
+    email: "Loading...",
+  });
+
+  const account = new Account(appwriteClient);
+
+  useEffect(() => {
+    (async () => {
+      let uid = localStorage.getItem("userId");
+      let userData = await account.get(uid);
+      let { $id, name, email } = userData;
+      setUserDetails({ uid, username: $id, full_name: name, email });
+    })();
+  }, []);
   
   useEffect(() => {
     const token = localStorage.getItem("cookieFallback");
@@ -50,10 +70,10 @@ const App = () => {
               <div className="main">
                 <Routes>
                   <Route path="/" element={<Home />} />
-                  <Route path="/dashboard" element={<Dashboard />} />
-                  <Route path="/favourites" element={<Favourites />} />
-                  <Route path="/reviews" element={<ListReviews />} />
-                  <Route path="/changePassword" element={<Changepassword />} />
+                  <Route path="/dashboard" element={<Dashboard data={user_details} />} />
+                  <Route path="/favourites" element={<Favourites data={user_details} />} />
+                  <Route path="/reviews" element={<ListReviews data={user_details} />} />
+                  <Route path="/changePassword" element={<Changepassword data={user_details} />} />
 
                   {/* 👇️ only match this when no other routes match */}
                   <Route path="*" element={<PageNotFound />} logStatus={{ loggedIn }} />

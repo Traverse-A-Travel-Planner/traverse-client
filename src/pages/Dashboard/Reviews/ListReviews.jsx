@@ -72,6 +72,10 @@ const ListReviews = ({data}) => {
                                             </Typography.Text>
                                         </div>
                                         <div className="description mt-2">
+                                            <Typography.Text>
+                                                <span className='text-muted'>Location: </span>
+                                                Patan, Lalitpur
+                                            </Typography.Text>
                                             <div className="text">
                                                 <Typography.Text >
                                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem veritatis iure molestiae animi sed placeat nam error. consectetur adipisicing elit.

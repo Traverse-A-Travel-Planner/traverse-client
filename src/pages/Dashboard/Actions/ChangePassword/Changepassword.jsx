@@ -8,7 +8,6 @@ import { Notification } from "@arco-design/web-react";
 
 import { Account } from "appwrite";
 import appwriteClient from "../../../../utils/appwriteClient";
-import { useNavigate } from "react-router-dom";
 
 const Changepassword = ({ data }) => {
   const [currentPassword, setCurrentPassword] = useState("");
@@ -16,7 +15,6 @@ const Changepassword = ({ data }) => {
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
 
   const account = new Account(appwriteClient);
-  const navigate = useNavigate();
 
   const handleChangePassword = async () => {
     try {
@@ -43,7 +41,6 @@ const Changepassword = ({ data }) => {
         content: "Password updated successfully.",
       });
 
-      navigate("/dashboard");
     } catch (error) {
       Notification.error({
         title: "Error",
