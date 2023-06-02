@@ -36,42 +36,7 @@
     align-items: flex-start;
 }
 
-.content .profile-section .profile-menu-card {
-    margin-right: 50px;
-    width: calc(20% + 20px);
-    height: -moz-max-content;
-    height: max-content;
-    border: 1px solid #dddd;
-    background-color: white;
-    min-width: 200px;
-    text-align: left;
-}
 
-.content .profile-section .profile-menu-card ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-}
-
-.content .profile-section .profile-menu-card ul li {
-    margin: 0;
-    padding: 0;
-    font-size: 16px;
-    font-weight: 500;
-    text-indent: 20px;
-    line-height: 40px;
-    border-bottom: 1px solid #dddd;
-    cursor: pointer;
-}
-
-.content .profile-section .profile-menu-card ul li a{
-    text-decoration: none;
-    color: black;
-}
-
-.content .profile-section .profile-menu-card ul li:last-child {
-    border-bottom: none;
-}
 /* ------------------------ */
 
 .content .profile-content {

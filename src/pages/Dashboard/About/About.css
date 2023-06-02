@@ -1,7 +1,11 @@
-.sidebar .menu .dashboard,
-.profile-menu-card .about {
-    background-color: #f5f6f7de;
+.about .menu ul li.dashboard{
+    background-color: #f0f2f5;
+    border-right: 2px solid #cccc;
 }
+
+/* .profile-menu-card .about-me-btn {
+    background-color: #f0f2f5 ;
+} */
 
 .content .profile-content .change-about-section .input-group {
     width: 100%;

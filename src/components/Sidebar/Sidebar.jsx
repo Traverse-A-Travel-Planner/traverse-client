@@ -1,5 +1,6 @@
 import React from "react";
 import "./Sidebar.css";
+import { Link } from "react-router-dom";
 
 const Sidebar = ({ data }) => {
   return (
@@ -20,29 +21,31 @@ const Sidebar = ({ data }) => {
 
       <div className="menu">
         <ul>
-          <li
-            className="items dashboard"
-            onClick={() => window.location.assign("/dashboard")}
-          >
-            <i className="bi bi-house-door"></i> Dashboard
+          <li className="items dashboard">
+            <Link style={{ textDecoration: "none", color: "black" }} to="/dashboard">
+              <i className="bi bi-house-door"></i> Dashboard
+            </Link>
           </li>
-          <li className="items settings">
-            <i className="bi bi-gear"></i> Settings
-          </li>
-          <li
-            className="items favourites"
-            onClick={() => window.location.assign("/favourites")}
-          >
-            <i className="bi bi-chat-left-heart"></i> Favourites
+
+          <li className="items favourites">
+            <Link style={{ textDecoration: "none", color: "black" }} to="/favourites">
+              <i className="bi bi-chat-left-heart"></i> Favourites
+            </Link>
           </li>
           <li className="items reviews">
-            <i className="bi bi-chat-square-text-fill"></i> Reviews
+            <Link style={{ textDecoration: "none", color: "black" }} to="/reviews">
+              <i className="bi bi-chat-square-text-fill"></i> Reviews
+            </Link>
           </li>
-          <li
-            className="items trips"
-            onClick={() => window.location.assign("/trips")}
-          >
-            <i className="bi bi-signpost"></i> Trips
+          <li className="items trips">
+            <Link style={{ textDecoration: "none", color: "black" }} to="/dashboard">
+              <i className="bi bi-signpost"></i> Trips
+            </Link>
+          </li>
+          <li className="items settings">
+            <Link style={{ textDecoration: "none", color: "black" }} to="/dashboard">
+              <i className="bi bi-gear"></i> Settings
+            </Link>
           </li>
         </ul>
       </div>

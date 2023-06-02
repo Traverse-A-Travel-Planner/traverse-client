@@ -3,23 +3,18 @@ import "./Changepassword.css"
 import "../../css/dashboardGeneric.css"
 import Sidebar from "../../../../components/Sidebar/Sidebar";
 import Header from "../../../../components/Header/Header";
+import ProfileMenuCard from "../../components/Profile Menu Card/ProfileMenuCard";
 
 const Changepassword = ({data}) => {
   return (
     <div className="main-body">
       <Header />
-      <div className="dashboard-content">
+      <div className="dashboard-content about">
         <Sidebar data={data} />
         <div class="content">
             <div class="url-path">Home / Dashboard / Password</div>
             <div class="profile-section">
-              <div class="profile-menu-card">
-                <ul>
-                  <li class="items">About me</li>
-                  <li class="items change-password">Change Password</li>
-                  <li class="items">Change Avatar</li>
-                </ul>
-              </div>
+              <ProfileMenuCard />
               <div class="profile-content">
                 <div class="change-password-section">
                   <div class="input-group">
@@ -46,9 +41,9 @@ const Changepassword = ({data}) => {
 
                     <button
                       type="submit"
-                      class="btn btn-dark submit shadow-none rounded mt-2"
-                    >
-                      Change Password
+                      class="dashboard-form-submit-btn mt-2"
+                      >
+                      <i className="bi bi-folder2-open me-1"></i> Change Password
                     </button>
                   </div>
                 </div>

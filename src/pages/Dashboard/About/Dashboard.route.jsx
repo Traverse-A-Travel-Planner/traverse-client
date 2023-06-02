@@ -17,17 +17,17 @@ const Dashboard = () => {
     gender: "Loading...",
   });
 
-  useEffect(() => {
-    (async() => {
-      const res = await fetch(backendUrl + "/profile/details", {
-        headers: {
-          "content-type": "application/json",
-          authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      });
+  // useEffect(() => {
+  //   (async() => {
+  //     const res = await fetch(backendUrl + "/profile/details", {
+  //       headers: {
+  //         "content-type": "application/json",
+  //         authorization: "Bearer " + localStorage.getItem("token"),
+  //       },
+  //     });
       
-    })()
-  }, []);
+  //   })()
+  // }, []);
 
   return (
     <div className="main-body">

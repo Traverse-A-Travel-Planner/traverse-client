@@ -15,6 +15,7 @@ import Dashboard from "./pages/Dashboard/About/Dashboard.route.jsx";
 import Favourites from "./pages/Dashboard/Favourites/Favourites.route.jsx";
 import PageNotFound from "./pages/pageNotFound.jsx";
 import Changepassword from "./pages/Dashboard/Actions/ChangePassword/Changepassword.jsx";
+import ListReviews from "./pages/Dashboard/Reviews/ListReviews";
 
 // Create a client
 const queryClient = new QueryClient({
@@ -49,18 +50,13 @@ const App = () => {
               <div className="main">
                 <Routes>
                   <Route path="/" element={<Home />} />
-                  <Route path="/dashboard" element={<Dashboard />}></Route>
-                  <Route path="/favourites" element={<Favourites />}></Route>
-                  <Route
-                    path="/changePassword"
-                    element={<Changepassword />}
-                  ></Route>
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/favourites" element={<Favourites />} />
+                  <Route path="/reviews" element={<ListReviews />} />
+                  <Route path="/changePassword" element={<Changepassword />} />
 
                   {/* 👇️ only match this when no other routes match */}
-                  <Route
-                    path="*"
-                    element={<PageNotFound />}
-                  />
+                  <Route path="*" element={<PageNotFound />} logStatus={{ loggedIn }} />
                 </Routes>
               </div>
             </QueryClientProvider>
@@ -68,10 +64,7 @@ const App = () => {
         ) : (
           <BrowserRouter>
             <Routes>
-              <Route
-                path="/login"
-                element={<Login logStatus={{ loggedIn, setLoggedIn }} />}
-              />
+              <Route path="/login" element={<Login logStatus={{ loggedIn, setLoggedIn }} />} />
               <Route path="/signup" element={<Signup />} />
 
               {/* 👇️ only match this when no other routes match */}

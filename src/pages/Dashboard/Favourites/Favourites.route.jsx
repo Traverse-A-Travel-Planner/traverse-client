@@ -36,10 +36,10 @@ const Favourites = () => {
     <div className="main-body">
       <Header />
 
-      <div className="dashboard-content">
+      <div className="dashboard-content favourites">
         <Sidebar data={user_details} />
         <div className="content">
-          <div className="url-path">Home / Favourites</div>
+          <div className="url-path">Dashboard / Favourites</div>
           <div className="favourites-section">
             <p className="favourites-header">My Favourites</p>
             <div className="favourites-content">

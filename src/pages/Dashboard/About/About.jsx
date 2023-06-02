@@ -1,37 +1,19 @@
 import React from "react";
 import "./About.css";
-import { Link } from "react-router-dom";
 
 import Sidebar from "../../../components/Sidebar/Sidebar";
+import ProfileMenuCard from "../components/Profile Menu Card/ProfileMenuCard";
 
 const About = ({ data }) => {
   console.log(data);
   return (
-    <div className="dashboard-content">
+    <div className="dashboard-content about">
       <Sidebar data={data} />
 
       <div className="content">
         <div className="url-path">Home / Dashboard / About</div>
         <div className="profile-section">
-          <div className="profile-menu-card">
-            <ul>
-              <li className="items about">
-                <Link style={{ textDecoration: "none", color: "black" }} to="/dashboard">
-                  About me
-                </Link>
-                </li>
-              <li className="items">
-                <Link style={{ textDecoration: "none", color: "black" }} to="/changePassword">
-                  Change Password
-                </Link>
-              </li>
-              <li className="items">
-                <Link style={{ textDecoration: "none", color: "black" }} to="/dashboard">
-                Change Avatar
-                </Link>
-              </li>
-            </ul>
-          </div>
+          <ProfileMenuCard />
           <div className="profile-content">
             <div className="change-about-section">
               <div className="input-group">
@@ -109,9 +91,9 @@ const About = ({ data }) => {
 
                 <button
                   type="submit"
-                  className="btn btn-dark submit shadow-none rounded mt-2"
-                >
-                  Change Details
+                  class="dashboard-form-submit-btn mt-2"
+                  >
+                  <i className="bi bi-folder2-open me-1"></i> Save details
                 </button>
               </div>
             </div>

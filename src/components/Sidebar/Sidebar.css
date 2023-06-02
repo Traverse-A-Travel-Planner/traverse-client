@@ -9,7 +9,8 @@
 .sidebar {
   display: flex;
   flex-direction: column;
-  width: 350px !important;
+  width: 270px !important;
+  min-width: 270px;
   height: calc(100vh - 60px);
   padding: 0;
   background-color: white;
@@ -101,7 +102,12 @@
 }
 
 .sidebar .menu ul li:hover {
-  background-color: #eceff2de;
+  background-color: #f0f2f5;
+}
+
+.sidebar .menu ul li a{
+  width: 100%;
+  text-align: left;
 }
 
 .sidebar .menu ul li i {

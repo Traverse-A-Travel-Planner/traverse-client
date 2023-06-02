@@ -1,12 +1,12 @@
 import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
-const PageNotFound = () => {
+const PageNotFound = ({loggedIn}) => {
     const navigate = useNavigate()
 
     useEffect(() => {
         if (window.localStorage.getItem("cookieFallback")){
-            navigate("/")
+            return
         } else {
             navigate("/login")
         }
