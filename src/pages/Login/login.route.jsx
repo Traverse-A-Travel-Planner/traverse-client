@@ -46,7 +46,7 @@ const Login = ({ logStatus }) => {
       });
 
       logStatus.setLoggedIn(true);
-      console.log(response);
+      localStorage.setItem("userId", response.$id);
 
       navigate("/");
     } catch (error) {

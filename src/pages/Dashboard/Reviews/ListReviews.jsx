@@ -33,7 +33,7 @@ const ListReviews = ({data}) => {
       <div className="dashboard-content reviews">
         <Sidebar data={data} />
         <div class="content">
-            <div class="url-path"> Dashboard / Reviews</div>
+            <div class="url-path">Dashboard / Reviews</div>
             <div className="reviews-wrapper">
                 <div className="review-list">
                     <div className="header-block">
@@ -91,7 +91,7 @@ const ListReviews = ({data}) => {
                                         </div>
                                     </div>
                                     <div className="image">
-                                        <Image width={70} src={url} alt='Patan' />
+                                        <Image width={120} src={url} alt='Patan' />
                                     </div>
                                 </div>
                             </div>

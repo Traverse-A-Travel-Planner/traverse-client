@@ -36,7 +36,11 @@ const dropList = (
 const Header = () => {
   return (
     <div className="header">
-      <div className="logo">Traverse</div>
+      <div className="logo">
+      <Link style={{ textDecoration: "none", color: "#892be1" }} to="/">
+        Traverse
+      </Link>
+      </div>
       <div className="center">
         <ul>
           <li className="header-items">
@@ -51,7 +55,7 @@ const Header = () => {
           </li>
           <li className="header-items">Featured</li>
           <li className="header-items"> 
-            <Link style={{ textDecoration: "none", color: "black" }} to="/addPlaces">
+            <Link style={{ textDecoration: "none", color: "black" }} to="/contribute">
               Contribute
             </Link>
           </li>

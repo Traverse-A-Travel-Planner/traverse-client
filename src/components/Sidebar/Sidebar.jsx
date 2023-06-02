@@ -43,9 +43,9 @@ const Sidebar = ({ data }) => {
               <i className="bi bi-chat-square-text-fill"></i> Reviews
             </Link>
           </li>
-          <li className="items trips">
-            <Link style={{ textDecoration: "none", color: "black" }} to="/dashboard">
-              <i className="bi bi-signpost"></i> Trips
+          <li className="items contributions">
+            <Link style={{ textDecoration: "none", color: "black" }} to="/contribute">
+              <i className="bi bi-signpost"></i> Contribute
             </Link>
           </li>
           <li className="items settings">

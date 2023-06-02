@@ -1,0 +1,26 @@
+.add-places-container{
+    padding: 0 2em;
+    padding-top: 2em;
+    height: 85vh;
+}
+
+.contributions .menu ul li.contributions{
+    background-color: #f0f2f5;
+    border-right: 2px solid #cccc;
+}
+
+.dashboard-content.contributions > .content .profile-content{
+    width: 100% !important;
+}
+
+.arco-tabs-header-title{
+    font-size: 16px;
+}
+.arco-tabs-header-title-active, 
+.arco-tabs-header-title-active:hover{
+    color: black;
+}
+
+.contributions .arco-tabs-header-ink{
+    background-color: black !important;
+}

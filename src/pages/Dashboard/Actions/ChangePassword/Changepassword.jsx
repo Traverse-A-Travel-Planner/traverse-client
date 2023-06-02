@@ -55,7 +55,7 @@ const Changepassword = ({ data }) => {
       <div className="dashboard-content about">
         <Sidebar data={data} />
         <div className="content">
-          <div className="url-path">Home / Dashboard / Password</div>
+          <div className="url-path">Dashboard / Password</div>
           <div className="profile-section">
             <ProfileMenuCard />
             <div className="profile-content">

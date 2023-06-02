@@ -38,6 +38,11 @@ const MapBox = () => {
         "top-left"
       );
 
+      // map.on('click', function (e) {
+      //   var coordinates = e.lngLat;
+      //   console.log('Clicked coordinates:', coordinates);
+      // });
+
       // Set marker options.
       // const marker = new mapboxgl.Marker({
       //   color: "red",

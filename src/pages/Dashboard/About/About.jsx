@@ -10,7 +10,7 @@ const About = ({ data }) => {
       <Sidebar data={data} />
 
       <div className="content">
-        <div className="url-path">Home / Dashboard / About</div>
+        <div className="url-path">Dashboard / About</div>
         <div className="profile-section">
           <ProfileMenuCard />
           

@@ -1,11 +1,12 @@
-.reviews .menu ul li.reviews{
+.contributed-places .menu ul li.contributed-places{
     background-color: #f0f2f5;
     border-right: 2px solid #cccc;
 }
 
-.reviews-wrapper{
+.contributed-places-wrapper{
+    margin-top: 0.5em;
+    width: 100%;
     position: relative;
-    margin-top: 25px;
     padding: 0 2em 0 0;
     display: flex;
     flex-direction: row;
@@ -16,15 +17,15 @@
 }
 /* -------------- */
 
-.reviews-wrapper .label-header{
+.contributed-places-wrapper .label-header{
     margin-left: -10px;
 }
-.reviews-wrapper .review-list{
+.contributed-places-wrapper .contributed-places-list{
     padding: 0 2em;
     flex: 2;
     min-width: 250px;
-    height: 80vh;
-    max-height: 80vh;
+    height: 72vh;
+    max-height: 72vh;
     overflow: auto;
     display: flex;
     flex-direction: column;
@@ -38,12 +39,12 @@
 }
 
 @media screen and (max-width: 900px) {
-    .reviews-wrapper .review-list{
+    .contributed-places-wrapper .contributed-places-list{
         width: 100% !important;
     }
 }
 
-.review-list > .review{
+.contributed-places-list > .contributed-place{
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -55,15 +56,15 @@
     border-bottom: 1px solid #e0e0e0cc;
 }
 
-.review-list > .review:last-child{
+.contributed-places-list > .contributed-place:last-child{
     border-bottom: 0px !important;
 }
 
-.review-list > .review .left{
+.contributed-places-list > .contributed-place .left{
     margin-right: 1em;
 }
 
-.review-list > .review .rating{
+.contributed-places-list > .contributed-place .rating{
     display: flex;
     flex-direction: column;
 }
@@ -92,7 +93,7 @@
 }
 
 /* ------------------------- */
-.review-list .header-block{
+.contributed-places-list .header-block{
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -101,23 +102,41 @@
     align-items: center;
 }
 
-.review-list .header-block .filter-buttons{
+.contributed-places-list .header-block .filter-buttons{
     margin-top: 10px;
 }
 
 /* ------------------------------ */
+/* button css */
 
-.reviews-wrapper .review-details{
-    flex: 1;
-    min-width: 300px;
-    max-width: 350px;
-    height: 500px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    background-color: white;
-    border: 1px solid #eeee;
-    border-radius: 10px;
-    box-shadow: 0 5px 10px #eeee;
+button.view-contributed-place-btn {
+    position: relative;
+    margin-top: 20px;
+    padding: 7px 20px;
+    width: max-content;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.4s ease-in-out;
+}
+
+button.view-contributed-place-btn::after {
+    position: relative;
+    content: " →";
+    position: absolute;
+    width: 20px;
+    height: 10px;
+    color: white;
+    opacity: 0;
+    transition: 0.4s ease-in-out;
+}
+
+button.view-contributed-place-btn:hover{
+    padding-right: 40px;
+
+}
+
+button.view-contributed-place-btn:hover::after {
+    opacity: 1;
+    margin-left: 10px;
 }
