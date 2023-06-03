@@ -8,15 +8,16 @@ import appwriteClient from "../../../utils/appwriteClient";
 import { databaseId } from "../../../utils/config";
 
 import { Databases, Query } from "appwrite";
-import { Notification } from "@arco-design/web-react";
+import { Notification, Spin, Typography } from "@arco-design/web-react";
 
 const Favourites = ({ data }) => {
-  const db = new Databases(appwriteClient);
-
   const [favourites, setFavourites] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     (async function () {
+      const db = new Databases(appwriteClient);
+
       try {
         const { documents: allFavItems } = await db.listDocuments(
           databaseId,
@@ -37,6 +38,7 @@ const Favourites = ({ data }) => {
           [Query.equal("$id", placeIdArray), Query.orderDesc("$createdAt")]
         );
 
+        setLoading(false)
         setFavourites(favPlaces);
       } catch (error) {
         Notification.error({
@@ -58,37 +60,46 @@ const Favourites = ({ data }) => {
           <div className="favourites-section">
             <p className="favourites-header">My Favourites</p>
             <div className="favourites-content">
-              {favourites.length === 0 ? (
-                <h1>No favourite place added yet.</h1>
-              ) : (
-                ""
-              )}
-              {favourites &&
-                favourites.map((item) => {
-                  return (
-                    <div className="favourites-item" key={item.$id}>
-                      <div className="image">
-                        <img src={item.image[0]} alt="travel place" />
-                      </div>
-                      <div className="text-container">
-                        <div className="title">{item.title}</div>
-                        <div className="description text-muted">
-                          {item.place_description.slice(0, 65)}...
+              {
+                loading === true ? (
+                  <Spin />
+                ) : (
+                  favourites.length === 0 ? 
+                    (
+                      <Typography.Title className="ms-4 pb-3" heading={6} bold>
+                        No favourite place added yet
+                      </Typography.Title>
+                    ) : (
+                      favourites.map((item) => {
+                      return (
+                        <div className="favourites-item" key={item.$id}>
+                          <div className="image">
+                            <img 
+                            src={item.image[0]}
+                            alt="travel place" />
+                          </div>
+                          <div className="text-container">
+                            <div className="title">{item.title}</div>
+                            <div className="description text-muted">
+                              {item.place_description.slice(0, 65)}...
+                            </div>
+                            <div className="keyword">{item.keyword}</div>
+    
+                            <div className="button-container">
+                              <button
+                                className="btn btn-dark shadow-sm"
+                                id="view-favourites-btn"
+                              >
+                                View Details
+                              </button>
+                            </div>
+                          </div>
                         </div>
-                        <div className="keyword">{item.keyword}</div>
-
-                        <div className="button-container">
-                          <button
-                            className="btn btn-dark shadow-sm"
-                            id="view-favourites-btn"
-                          >
-                            View Details
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
+                      );
+                      })
+                    )
+                )
+              }
             </div>
           </div>
         </div>

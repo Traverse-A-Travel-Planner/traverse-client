@@ -3,6 +3,10 @@
     border-right: 2px solid #cccc;
 }
 
+.reviews .menu ul li.reviews a{
+    color: #892be1 !important;
+}
+
 .reviews-wrapper{
     position: relative;
     margin-top: 25px;

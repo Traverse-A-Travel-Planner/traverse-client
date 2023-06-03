@@ -9,8 +9,9 @@
     justify-content: flex-start;
     align-items: flex-start;
     background-color: white;
-    border: 1px solid #dddd;
+    border: 1px solid #efefefde;
     box-shadow: 0 5px 10px #dddd;
+    border-radius: 10px;
 }
 
 .add-place-section form{

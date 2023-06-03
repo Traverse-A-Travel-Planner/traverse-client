@@ -23,7 +23,7 @@ const Contributions = ({data}) => {
             <div className="profile-section">
               <div className="profile-content">
                 <div className="contributed-places-wrapper">
-                    <Tabs defaultActiveTab='contributed_places'>
+                    <Tabs defaultActiveTab='contributed_places' style={{width: '100%'}}>
                         <TabPane key='contributed_places' title='Places Contributed'>
                             <ListPlaces />
                         </TabPane>

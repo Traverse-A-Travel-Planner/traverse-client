@@ -3,6 +3,10 @@
     border-right: 2px solid #cccc;
 }
 
+.favourites .menu ul li.favourites a{
+    color: #892be1 !important;
+}
+
 p.favourites-header {
     font-size: 25px;
     font-weight: 500;
@@ -23,8 +27,8 @@ p.favourites-header {
 
 .favourites-content .favourites-item {
     position: relative;
-    width: 250px;
-    height: 350px;
+    width: 225px;
+    height: max-content;
     margin: 0 30px 30px 0;
     padding-bottom: 10px;
     background-color: white;
@@ -44,7 +48,7 @@ p.favourites-header {
 
 .favourites-content .favourites-item .image img {
     width: 100%;
-    height: 100%;
+    height: 165px;
     border-radius: 10px;
     border-bottom-left-radius: 0px;
     border-bottom-right-radius: 0px;
@@ -57,7 +61,7 @@ p.favourites-header {
 .favourites-content .favourites-item .keyword{
     position: absolute;
     width: auto;
-    top: 155px;
+    top: 127.5px;
     left: 10px;
     padding: 3px 12px;
     font-size: 14px;
@@ -130,55 +134,4 @@ p.favourites-header {
     margin: 0 0 10px 0;
     color: blueviolet !important;
     text-align: left;
-}
-
-.content .profile-section {
-    width: 100%;
-    height: max-content;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
-}
-
-.content .profile-section .profile-menu-card {
-    margin-right: 50px;
-    width: calc(20% + 20px);
-    height: -moz-max-content;
-    height: max-content;
-    border: 1px solid #dddd;
-    background-color: white;
-    min-width: 200px;
-    text-align: left;
-}
-
-.content .profile-section .profile-menu-card ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-}
-
-.content .profile-section .profile-menu-card ul li {
-    margin: 0;
-    padding: 0;
-    font-size: 16px;
-    font-weight: 500;
-    text-indent: 20px;
-    line-height: 40px;
-    border-bottom: 1px solid #dddd;
-    cursor: pointer;
-}
-
-.content .profile-section .profile-menu-card ul li a{
-    text-decoration: none;
-    color: black;
-}
-
-.content .profile-section .profile-menu-card ul li:last-child {
-    border-bottom: none;
-}
-/* ------------------------ */
-
-.content .profile-content {
-    width: 70%;
 }

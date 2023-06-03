@@ -9,6 +9,10 @@
     border-right: 2px solid #cccc;
 }
 
+.contributions .menu ul li.contributions a{
+    color: #892be1 !important;
+}
+
 .dashboard-content.contributions > .content .profile-content{
     width: 100% !important;
 }
