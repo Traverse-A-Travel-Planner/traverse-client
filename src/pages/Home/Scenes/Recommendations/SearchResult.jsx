@@ -1,25 +1,29 @@
 import React from "react";
-// import { backendUrl } from "../../../../utils/config";
+
+import { Databases, ID } from "appwrite";
+import appwriteClient from "../../../../utils/appwriteClient";
 
 //importing styles
-import "./searchResults.css"
+import "./searchResults.css";
+import { databaseId } from "../../../../utils/config";
+import { Notification } from "@arco-design/web-react";
 
 const SearchResult = ({ title, searchResultData }) => {
-  const handleAddFavourites = async (obj) => {
-    console.log(obj);
-    // const options = {
-    //   method: "POST",
-    //   headers: {
-    //     authorization: `Bearer ${localStorage.getItem("token")}`,
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify(obj),
-    // };
-    // const res = await fetch(`${backendUrl}/favourites/add`, options);
-    // const data = await res.json();
-    // if (data.success === false) return toast.error("Something went wrong.");
+  const db = new Databases(appwriteClient);
 
-    // toast.success("Added to favourites.");
+  const handleAddFavourites = async (obj) => {
+    try {
+      await db.createDocument(databaseId, "favourites", ID.unique(), obj);
+      Notification.success({
+        title: "Success",
+        content: "Added to favourites.",
+      });
+    } catch (error) {
+      Notification.error({
+        title: "Error",
+        content: error.message,
+      });
+    }
   };
 
   return (
@@ -27,26 +31,24 @@ const SearchResult = ({ title, searchResultData }) => {
       <h5 className="text-bold mt-4">{title} places</h5>
       <div className="recommended-places">
         <div className="places-list">
-          {[1 ,2, 3, 4, 5, 6, 7, 8, 9, 10].map((item, index) => {
+          {searchResultData &&
+            searchResultData.map((item, index) => {
               return (
-                <div className="place-item" key={index}>
+                <div className="place-item" key={item.$id}>
                   <div className="image">
-                    <img src="https://www.nepaltraveladventure.com/blog/wp-content/uploads/2020/03/patan-durbar-square.jpg" alt="img"/>
+                    <img src={item.image[0]} alt="img" />
                   </div>
-                  <div className="title">Patan Durbar Square</div>
+                  <div className="title">{item.title}</div>
                   <div className="description text-muted">
-                  Lalitpur, Nepal
+                    {item.location_description}
                   </div>
-                  <div className="keyword">Tourist</div>
+                  <div className="keyword">{item.keyword}</div>
                   <div
                     className="favourites"
                     onClick={() =>
                       handleAddFavourites({
-                        image: "",
-                        name: "",
-                        description: "item.des",
-                        location: "",
-                        visited: "",
+                        user_id: localStorage.getItem("userId"),
+                        place_id: item.$id,
                       })
                     }
                   >

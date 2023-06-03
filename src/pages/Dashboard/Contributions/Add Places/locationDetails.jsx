@@ -23,7 +23,7 @@ const LocationDetails = ({state}) => {
         <>
         <div className="right item">
             <FormItem label='Location' field='location_description' tooltip={<div>Username is required </div>} rules={[{ required: true }]}>
-                <Input style={inputStyle} placeholder='please enter your name' />
+                <Input style={inputStyle} value='' placeholder='please enter your name' />
             </FormItem>
             <TextArea
                 className="mt-2"

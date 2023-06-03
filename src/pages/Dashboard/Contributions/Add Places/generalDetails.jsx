@@ -32,8 +32,7 @@ const KeywordOptions = [
 const inputStyle = {
     minWidth: '270px',
     width: '100%',
-    maxWidth: '400px'
-}
+    maxWidth: '400px'}
 
 const GeneralDetails = ({state}) => {
     return(

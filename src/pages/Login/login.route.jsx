@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { Notification, Spin } from "@arco-design/web-react";
 import { Link } from "react-router-dom";
 
-import { backendUrl } from "../../utils/config";
-
 import { Account } from "appwrite";
 import appwriteClient from "../../utils/appwriteClient";
 
@@ -47,7 +45,7 @@ const Login = ({ logStatus }) => {
       });
 
       logStatus.setLoggedIn(true);
-      localStorage.setItem("userId", response.$id);
+      localStorage.setItem("userId", response.userId);
 
       navigate("/");
     } catch (error) {

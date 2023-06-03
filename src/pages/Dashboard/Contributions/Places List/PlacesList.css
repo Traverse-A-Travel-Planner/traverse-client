@@ -24,7 +24,6 @@
     padding: 0 2em;
     flex: 2;
     min-width: 250px;
-    height: 72vh;
     max-height: 72vh;
     overflow: auto;
     display: flex;
