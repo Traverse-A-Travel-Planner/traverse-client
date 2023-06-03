@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { Link } from "react-router-dom";
+
 import LoginArt from "../Login/artt.svg";
 import "./signup.route.css";
 import { Notification, Spin } from "@arco-design/web-react";
@@ -8,7 +10,6 @@ import { Notification, Spin } from "@arco-design/web-react";
 import { Account } from "appwrite";
 import appwriteClient from "../../utils/appwriteClient";
 
-import { backendUrl } from "../../utils/config";
 import Footer from "../../components/Footer/Footer";
 import Header from ".././../components/Header/Header";
 
@@ -114,7 +115,9 @@ const Signup = () => {
           </div>
           <div className="signup-div">
             <p>
-              Already have an account? <a href="/login">Login</a>
+              Already have an account?  <Link style={{ textDecoration: "none", color: "black" }} to="/login">
+               Login
+              </Link>
             </p>
           </div>
         </div>

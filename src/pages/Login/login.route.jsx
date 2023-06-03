@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Notification, Spin } from "@arco-design/web-react";
+import { Link } from "react-router-dom";
 
 import { backendUrl } from "../../utils/config";
 
@@ -106,7 +107,9 @@ const Login = ({ logStatus }) => {
           </div>
           <div className="signup-div">
             <p>
-              Don't have an account? <a href="/signup">Sign Up</a>
+              Don't have an account? <Link style={{ textDecoration: "none", color: "black" }} to="/signup">
+                Signup
+              </Link>
             </p>
           </div>
         </div>

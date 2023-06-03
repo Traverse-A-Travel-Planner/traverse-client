@@ -21,6 +21,11 @@
     color: black;
 }
 
+
 .contributions .arco-tabs-header-ink{
     background-color: black !important;
+}
+
+.contributions .content{
+    width: calc(100% - 300px) !important;
 }

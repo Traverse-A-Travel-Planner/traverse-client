@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 
 // importing styles
 import "./PlacesList.css"
-import "../../css/dashboardGeneric.css";
 
 const Option = Select.Option;
 const options = ['Recent', 'Ratings', 'Oldest'];

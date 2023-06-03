@@ -17,18 +17,35 @@
     width: 95%;
     display: flex;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    gap: 2em 5em;
 }
+
+.add-place-section form .arco-form-item-control-wrapper{
+    text-align: left;
+}
+
+.add-place-section form div[role="alert"] {
+	text-align: left;
+	padding-bottom: 1em;
+}
+
+.arco-message-wrapper-top{
+    top: 90px;
+}
+.add-place-section .arco-steps.arco-steps-vertical{
+    border-right: 1px solid #dddd;
+    height: 35vh !important;
+}
+
 .add-place-section form div.item{
     flex: 1;
+    margin-bottom: 4em;
 }
 
 .add-place-section form div.right{
     display: flex;
     flex-direction: column;
-    height: 60vh;
-    max-height: 60vh;
-    overflow-y: auto;
 }
 
 /* .add-place-section form input{

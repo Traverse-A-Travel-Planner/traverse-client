@@ -21,8 +21,10 @@ div.login-form-main-wrapper {
 
 h3.org-name {
     margin: 20px 0;
-    font-size: 24px;
+    font-size: 25px;
+    font-weight: 600 !important;
 }
+
 
 .hr-container {
     position: relative;
