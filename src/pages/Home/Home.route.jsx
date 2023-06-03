@@ -6,11 +6,16 @@ import "./Home.route.css";
 // import { pythonServer } from "../../utils/config";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
-import getPlaces from "./getPlaces";
+
+import { Databases, Query } from "appwrite";
+import appwriteClient from "../../utils/appwriteClient";
+import { databaseId } from "../../utils/config";
 
 const Home = () => {
   const [searchResultData, setSearchResultData] = useState([]);
   const [title, setTitle] = useState("Recommended");
+
+  const db = new Databases(appwriteClient);
 
   const [lat, setLat] = useState(0);
   const [long, setLong] = useState(0);
@@ -31,11 +36,9 @@ const Home = () => {
 
   useEffect(() => {
     (async () => {
-      const data = await getPlaces(lat, long)
-      if (!data) return
-
-      setSearchResultData(data);
-    })()
+      const response = await db.listDocuments(databaseId, "places", [ Query.orderDesc("$createdAt") ]);
+      setSearchResultData(response.documents);
+    })();
   }, [lat, long]);
 
   return (
@@ -47,7 +50,9 @@ const Home = () => {
             <div className="searchBar-container">
               <SearchBar
                 setSearchResultData={setSearchResultData}
-                setTitle={setTitle} lat={lat} long={long}
+                setTitle={setTitle}
+                lat={lat}
+                long={long}
               />
             </div>
 
