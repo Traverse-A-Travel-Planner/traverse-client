@@ -1,4 +1,4 @@
-import { Avatar, Typography, Rate, Image } from '@arco-design/web-react';
+import { Avatar, Typography, Rate, Image, Button } from '@arco-design/web-react';
 import { Select, Message } from '@arco-design/web-react';
 
 // importing styles
@@ -7,6 +7,7 @@ import "../css/dashboardGeneric.css";
 
 import Header from "../../../components/Header/Header"
 import Sidebar from "../../../components/Sidebar/Sidebar";
+import RatingInsights from '../components/Ratings Insights/RatingInsights';
 
 const Option = Select.Option;
 const options = ['Recent', 'Ratings', 'Oldest'];
@@ -97,7 +98,33 @@ const ListReviews = ({data}) => {
                     }
                 </div>
                 <div className="review-details">
+                    <div className="header-block">
+                        <div className='content-header'>
+                            <Typography.Title heading={5} className="my-0 mb-1">Insights</Typography.Title>
+                            <Typography.Text type='secondary'>General overview of reviews published</Typography.Text>
+                        </div>
+                    </div>
+                    <div className="insights-details">
+                        <Typography.Title heading={6} className="my-0">
+                            {50} reviews published
+                        </Typography.Title>
+                        <RatingInsights />
+                    </div>
+                    <div className="bottom-block">
+                        <Typography.Title heading={6} className="mt-4 mb-1">
+                            Write more reviews?
+                        </Typography.Title>
+                        <Typography.Text type='secondary'>
+                            Explore featured collections on Traverse
+                        </Typography.Text>
 
+                        <Button
+                        className="mt-3"
+                        type='outline' 
+                        style={{width: 'max-content', color: 'black', border: '1px solid black'}}>
+                            View featured
+                        </Button>
+                    </div>
                 </div>
             </div>
         </div>

@@ -114,10 +114,12 @@
 /* ------------------------------ */
 
 .reviews-wrapper .review-details{
+    padding: 1.5em 2.5em;
+    padding-bottom: 1.75em;
     flex: 1;
     min-width: 300px;
     max-width: 350px;
-    height: 500px;
+    height: max-content;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -126,4 +128,17 @@
     border: 1px solid #eeee;
     border-radius: 10px;
     box-shadow: 0 5px 10px #eeee;
+}
+
+.reviews-wrapper .insights-details{
+    margin-top: 1.5em;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.reviews-wrapper .bottom-block{
+    margin-top: 0.5em;
+    display: flex;
+    flex-direction: column;
 }
