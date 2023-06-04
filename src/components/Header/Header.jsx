@@ -19,8 +19,8 @@ const dropList = (
       </Link>
     </Menu.Item>
     <Menu.Item key='3'>
-      <Link style={{ textDecoration: "none", color: "black" }} to="/contributions">
-        Contributions
+      <Link style={{ textDecoration: "none", color: "black" }} to="/contribute">
+        Contribute
       </Link>
     </Menu.Item>
     <Divider style={{ margin: '4px 0' }} />

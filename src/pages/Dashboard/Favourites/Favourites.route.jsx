@@ -38,9 +38,11 @@ const Favourites = ({ data }) => {
           [Query.equal("$id", placeIdArray), Query.orderDesc("$createdAt")]
         );
 
+        console.log(favPlaces)
         setLoading(false)
         setFavourites(favPlaces);
       } catch (error) {
+        setLoading(false)
         Notification.error({
           title: "Error",
           content: error.message,

@@ -11,6 +11,8 @@ import { Notification } from "@arco-design/web-react";
 const SearchResult = ({ title, searchResultData }) => {
   const db = new Databases(appwriteClient);
 
+  console.log(searchResultData)
+
   const handleAddFavourites = async (obj) => {
     try {
       await db.createDocument(databaseId, "favourites", ID.unique(), obj);

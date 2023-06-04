@@ -31,7 +31,7 @@
 
 .body-container .main-body .content,
 .body-container .main-body .mapBox {
-    width: 50%;
+    width: 100%;
     height: calc(100vh - 70px);
     display: flex;
     justify-content: flex-start;
@@ -39,3 +39,8 @@
     border: 1px solid #dddd;
     background-color: #f3f6f9;
 }
+
+/* .mapboxgl-canvas{
+    width: 100% !important;
+    height: 100% !important;
+} */

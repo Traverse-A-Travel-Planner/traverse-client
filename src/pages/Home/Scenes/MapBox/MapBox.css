@@ -33,3 +33,12 @@
 .mapbox-form-label{
   height: 100%;
 }
+
+.arco-resizebox-trigger-vertical,
+.arco-resizebox-trigger-icon-wrapper{
+  width: 10px !important;
+}
+
+.arco-resizebox-trigger-icon-wrapper{
+  height: 90.5vh !important;
+}
