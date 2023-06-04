@@ -10,6 +10,10 @@ import { databaseId } from "../../../utils/config";
 import { Databases, Query } from "appwrite";
 import { Notification, Spin, Typography } from "@arco-design/web-react";
 
+function capitalizeFirstCharacter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 const Favourites = ({ data }) => {
   const [favourites, setFavourites] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -85,7 +89,7 @@ const Favourites = ({ data }) => {
                             <div className="description text-muted">
                               {item.place_description.slice(0, 65)}...
                             </div>
-                            <div className="keyword">{item.keyword}</div>
+                            <div className="keyword">{capitalizeFirstCharacter(item.keyword)}</div>
     
                             <div className="button-container">
                               <button

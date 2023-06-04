@@ -70,7 +70,7 @@ const Home = () => {
               border: '1px solid var(--color-border)',
             }}
             max={0.75}
-            min={0.25}
+            min={0.275}
             panes={[
               <div className="content">
                 <div className="searchBar-container">

@@ -42,3 +42,7 @@
 .arco-resizebox-trigger-icon-wrapper{
   height: 90.5vh !important;
 }
+
+.mapbox-directions-component-keyline{
+  box-shadow: 0 2.5px 5px #cccc !important;
+}

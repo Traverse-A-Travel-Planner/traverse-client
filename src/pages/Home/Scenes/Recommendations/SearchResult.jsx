@@ -8,6 +8,10 @@ import "./searchResults.css";
 import { databaseId } from "../../../../utils/config";
 import { Notification } from "@arco-design/web-react";
 
+function capitalizeFirstCharacter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 const SearchResult = ({ title, searchResultData }) => {
   const db = new Databases(appwriteClient);
 
@@ -44,7 +48,7 @@ const SearchResult = ({ title, searchResultData }) => {
                   <div className="description text-muted">
                     {item.location_description}
                   </div>
-                  <div className="keyword">{item.keyword}</div>
+                  <div className="keyword">{capitalizeFirstCharacter(item.keyword)}</div>
                   <div
                     className="favourites"
                     onClick={() =>
