@@ -67,22 +67,19 @@ const ListReviews = ({data}) => {
                                 </div>
                                 <div className="row-right">
                                     <div className="right">
-                                        <div className="user-details">
-                                            <Typography.Text bold>
-                                                Bibek Shah
+                                        <Typography.Title heading={6} className="my-0 ">Patan Durbar Square</Typography.Title>
+                                        <Typography.Text type='secondary'>Lalitpur, Nepal</Typography.Text>
+            
+                                        <div className="rating mt-2">
+                                            <Rate readonly defaultValue={4} />
+                                            <Typography.Text type='success'>
+                                                {4} star review
+                                            </Typography.Text>
+                                            <Typography.Text type='secondary' className="">
+                                                Reviewed on {new Date().toLocaleDateString()} at {new Date().toLocaleTimeString()}
                                             </Typography.Text>
                                         </div>
-                                        <div className="rating">
-                                            <Rate readonly defaultValue={3.5} />
-                                            <Typography.Text type='secondary'>
-                                                {new Date().toLocaleDateString()}
-                                            </Typography.Text>
-                                        </div>
-                                        <div className="description mt-2">
-                                            <Typography.Text>
-                                                <span className='text-muted'>Location: </span>
-                                                Patan, Lalitpur
-                                            </Typography.Text>
+                                        <div className="description mt-3">
                                             <div className="text">
                                                 <Typography.Text >
                                                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem veritatis iure molestiae animi sed placeat nam error. consectetur adipisicing elit.

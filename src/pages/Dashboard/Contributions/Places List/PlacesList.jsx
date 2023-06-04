@@ -3,6 +3,8 @@ import {
   Typography,
   Image,
   Notification,
+  Divider,
+  Rate,
 } from "@arco-design/web-react";
 import { Select, Message } from "@arco-design/web-react";
 import { Link } from "react-router-dom";
@@ -17,6 +19,10 @@ import { databaseId } from "../../../../utils/config";
 
 const Option = Select.Option;
 const options = ["Recent", "Ratings", "Oldest"];
+
+function capitalizeFirstCharacter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 
 const ListPlaces = ({ data }) => {
   const [contributions, setContributions] = useState([]);
@@ -63,6 +69,8 @@ const ListPlaces = ({ data }) => {
         })();
   }, []);
 
+  console.log(contributions)
+
   return (
     <div className="contributed-places-list">
       <div className="header-block">
@@ -98,19 +106,16 @@ const ListPlaces = ({ data }) => {
               </div>
               <div className="row-right">
                 <div className="right">
-                  <div className="user-details">
-                    <Typography.Text bold>{userDetails.name}</Typography.Text>
-                  </div>
-
-                  <Typography.Text type="secondary">
-                    {new Date(item.$createdAt).toLocaleDateString()}
+                  <Typography.Title heading={6} className="my-0">{item.title}</Typography.Title>
+                  <Typography.Text> {item.location_description}</Typography.Text>
+                  <Typography.Text type="secondary" className="mt-1">
+                    Contributed on {new Date(item.$createdAt).toLocaleDateString()} at {new Date(item.$createdAt).toLocaleTimeString()}
                   </Typography.Text>
 
                   <div className="description mt-2">
-                    <Typography.Text>
-                      <span className="text-muted">Location: </span>
-                      {item.location_description}
-                    </Typography.Text>
+                    <Rate readonly defaultValue={3.5} />
+                    <Typography.Text type='success'>Reviewed by {3} people</Typography.Text>
+
                     <div className="text">
                       <Typography.Text>
                         {item.place_description}
@@ -128,11 +133,25 @@ const ListPlaces = ({ data }) => {
                   </button>
                 </div>
                 <div className="image">
-                  <Image
-                    width={150}
-                    src={item.image[0]}
-                    alt={item.location_description}
-                  />
+                    {
+                        !item.image.length ? (
+                            <Image
+                                width={145}
+                                height={130}
+                                style={{borderRadius: '5px'}}
+                                src='some-error.png'
+                                alt='No images found for this place'
+                            />
+                        ) : (
+                            <Image
+                                width={145}
+                                height={130}
+                                style={{borderRadius: '5px'}}
+                                src={item.image[0]}
+                                alt={item.location_description}
+                            />
+                        )
+                    }
                 </div>
               </div>
             </div>

@@ -13,6 +13,10 @@
     color: #892be1 !important;
 }
 
+.contributed-places-list > .contributed-place{
+    height: max-content !important;
+}
+
 .dashboard-content.contributions > .content .profile-content{
     width: 100% !important;
 }

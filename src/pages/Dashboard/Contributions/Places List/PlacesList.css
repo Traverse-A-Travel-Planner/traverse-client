@@ -22,6 +22,7 @@
 }
 .contributed-places-wrapper .contributed-places-list{
     padding: 0 2em;
+    padding-bottom: 1.5em;
     flex: 2;
     min-width: 250px;
     max-height: 72vh;
@@ -68,6 +69,23 @@
     flex-direction: column;
 }
 
+.contributed-places-list .contributed-place .right .description,
+.contributed-places-list .contributed-place .right{
+    display: flex;
+    flex-direction: column;
+}
+
+.contributed-places-list .contributed-place .right .description .text{
+    margin-top: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4; /* Change the number to the desired number of lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+}
 .arco-rate-inner{
     font-size: 18px;
 }
