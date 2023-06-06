@@ -8,9 +8,9 @@ import {
 import "./ContributePlaces.css";
 
 import { Storage, ID, Databases } from "appwrite";
-import appwriteClient from "../../../../utils/appwriteClient";
+import appwriteClient from "../../../../Services/appwriteClient";
 
-import { databaseId, bucketId } from "../../../../utils/config";
+import { databaseId, bucketId } from "../../../../Services/config";
 
 import { useNavigate } from "react-router-dom";
 import RenderContent from './renderSteps';

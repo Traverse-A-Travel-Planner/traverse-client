@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import mapboxgl from "mapbox-gl";
 import "./SearchBar.css";
-import { pythonServer } from "../../../../utils/config";
-import { toast } from "react-toastify";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoieWFtYW4xMzM3IiwiYSI6ImNrd3V4cWRrejFjcnIydXFxcHNjcG9hbHMifQ.0MvUydr2xdlAEM2eVWqEkw";
@@ -35,9 +33,7 @@ function setupMap(center) {
 }
 
 const SearchBar = ({ setSearchResultData, setTitle, lat, long }) => {
-  let i = 0;
   useEffect(() => {
-    if (i > 0) return;
     const geocoder = new window.MapboxGeocoder({
       accessToken: mapboxgl.accessToken,
       types: "country,region,place,postcode,locality,neighborhood",
@@ -48,10 +44,6 @@ const SearchBar = ({ setSearchResultData, setTitle, lat, long }) => {
     geocoder.on("result", (e) => {
       setupMap(e.result.center);
     });
-
-    i += 1;
-
-    console.log(1);
   }, []);
 
   const updateTheme = async (theme) => {

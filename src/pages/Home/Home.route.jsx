@@ -8,8 +8,8 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 
 import { Databases, Query } from "appwrite";
-import appwriteClient from "../../utils/appwriteClient";
-import { databaseId } from "../../utils/config";
+import appwriteClient from "../../Services/appwriteClient";
+import { databaseId } from "../../Services/config";
 import { ResizeBox } from "@arco-design/web-react";
 
 const MemoizedSearchBar = React.memo(SearchBar);

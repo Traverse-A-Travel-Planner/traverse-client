@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 
-import { QueryClient, QueryClientProvider } from "react-query";
-
+// arco design configurations
 import { ConfigProvider } from '@arco-design/web-react';
 import enUS from '@arco-design/web-react/es/locale/en-US';
 
+// appwrite libs
 import { Account } from "appwrite";
-import appwriteClient from "./utils/appwriteClient";
+import appwriteClient from "./Services/appwriteClient";
 
 // importing stles
 import "./App.css"
 import "@arco-design/web-react/dist/css/arco.css"
+import 'mapbox-gl/dist/mapbox-gl.css';
 
-// importing components
+
+// import page routing components
 import Home from "./pages/Home/Home.route.jsx";
 import Login from "./pages/Login/login.route.jsx";
 import Signup from "./pages/Signup/signup.route.jsx";
@@ -22,17 +24,7 @@ import Favourites from "./pages/Dashboard/Favourites/Favourites.route.jsx";
 import PageNotFound from "./pages/pageNotFound.jsx";
 import Changepassword from "./pages/Dashboard/Actions/ChangePassword/Changepassword.jsx";
 import ListReviews from "./pages/Dashboard/Reviews/ListReviews";
-import ContributePlaces from "./pages/Dashboard/Contributions/Add Places/ContributePlaces";
 import Contributions from "./pages/Dashboard/Contributions/Contributions";
-
-// Create a client
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      staleTime: Infinity,
-    },
-  },
-});
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -71,7 +63,6 @@ const App = () => {
         {loggedIn === true ? (
           <BrowserRouter>
             <Outlet />
-            <QueryClientProvider client={queryClient}>
               <div className="main">
               <ConfigProvider locale={enUS}>
                 <Routes>
@@ -87,7 +78,6 @@ const App = () => {
                 </Routes>
               </ConfigProvider>
               </div>
-            </QueryClientProvider>
           </BrowserRouter>
         ) : (
           <BrowserRouter>

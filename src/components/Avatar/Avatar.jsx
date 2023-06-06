@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import appwriteClient from '../../utils/appwriteClient';
+import appwriteClient from '../../Services/appwriteClient';
 import { Avatar } from '@arco-design/web-react';
 import { Avatars } from 'appwrite';
 

@@ -4,7 +4,7 @@ import { Notification, Spin } from "@arco-design/web-react";
 import { Link } from "react-router-dom";
 
 import { Account } from "appwrite";
-import appwriteClient from "../../utils/appwriteClient";
+import appwriteClient from "../../Services/appwriteClient";
 
 import LoginArt from "./artt.svg";
 import "./login.route.css";
@@ -44,6 +44,7 @@ const Login = ({ logStatus }) => {
         content: "Login successful.",
       });
 
+      // updating logged in status
       logStatus.setLoggedIn(true);
       localStorage.setItem("userId", response.userId);
 

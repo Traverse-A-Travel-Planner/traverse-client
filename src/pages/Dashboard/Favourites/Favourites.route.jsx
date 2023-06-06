@@ -4,8 +4,8 @@ import "./Favourites.route.css";
 import "../css/dashboardGeneric.css";
 import Header from "../../../components/Header/Header";
 
-import appwriteClient from "../../../utils/appwriteClient";
-import { databaseId } from "../../../utils/config";
+import appwriteClient from "../../../Services/appwriteClient";
+import { databaseId } from "../../../Services/config";
 
 import { Databases, Query } from "appwrite";
 import { Notification, Spin, Typography } from "@arco-design/web-react";

@@ -1,11 +1,11 @@
 import React from "react";
 
 import { Databases, ID } from "appwrite";
-import appwriteClient from "../../../../utils/appwriteClient";
+import appwriteClient from "../../../../Services/appwriteClient";
 
 //importing styles
 import "./searchResults.css";
-import { databaseId } from "../../../../utils/config";
+import { databaseId } from "../../../../Services/config";
 import { Notification } from "@arco-design/web-react";
 
 function capitalizeFirstCharacter(string) {

@@ -12,10 +12,8 @@
     "mapbox-gl": "^2.9.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-query": "^3.39.3",
     "react-router-dom": "^6.11.1",
     "react-scripts": "5.0.1",
-    "react-toastify": "^9.0.7",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

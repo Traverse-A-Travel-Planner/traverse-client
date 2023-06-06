@@ -9,12 +9,12 @@ import { Select, Message } from "@arco-design/web-react";
 import { Link } from "react-router-dom";
 
 import { Databases, Query, Account } from "appwrite";
-import appwriteClient from "../../../../utils/appwriteClient";
+import appwriteClient from "../../../../Services/appwriteClient";
 
 // importing styles
 import "./PlacesList.css";
 import { useEffect, useState } from "react";
-import { databaseId } from "../../../../utils/config";
+import { databaseId } from "../../../../Services/config";
 import UserAvatar from "../../../../components/Avatar/Avatar";
 
 const Option = Select.Option;

@@ -7,7 +7,7 @@ import ProfileMenuCard from "../../components/Profile Menu Card/ProfileMenuCard"
 import { Notification } from "@arco-design/web-react";
 
 import { Account } from "appwrite";
-import appwriteClient from "../../../../utils/appwriteClient";
+import appwriteClient from "../../../../Services/appwriteClient";
 
 const Changepassword = ({ data }) => {
   const [currentPassword, setCurrentPassword] = useState("");

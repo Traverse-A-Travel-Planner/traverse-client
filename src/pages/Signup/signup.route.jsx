@@ -8,7 +8,7 @@ import "./signup.route.css";
 import { Notification, Spin } from "@arco-design/web-react";
 
 import { Account } from "appwrite";
-import appwriteClient from "../../utils/appwriteClient";
+import appwriteClient from "../../Services/appwriteClient";
 
 import Footer from "../../components/Footer/Footer";
 import Header from ".././../components/Header/Header";
