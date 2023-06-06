@@ -1,9 +1,7 @@
 import {
-  Avatar,
   Typography,
   Image,
   Notification,
-  Divider,
   Rate,
   Spin,
 } from "@arco-design/web-react";
@@ -17,6 +15,7 @@ import appwriteClient from "../../../../utils/appwriteClient";
 import "./PlacesList.css";
 import { useEffect, useState } from "react";
 import { databaseId } from "../../../../utils/config";
+import UserAvatar from "../../../../components/Avatar/Avatar";
 
 const Option = Select.Option;
 const options = ["Recent", "Ratings", "Oldest"];
@@ -33,13 +32,6 @@ const ListPlaces = ({ data }) => {
         content: `You select ${value}.`,
         showIcon: true,
         });
-    };
-
-    const getInitials = (name) => {
-        if (!name) return;
-        const words = name.split(" ");
-        const initials = words.map((word) => word.charAt(0));
-        return initials.join("");
     };
 
     useEffect(() => {
@@ -106,7 +98,7 @@ const ListPlaces = ({ data }) => {
                         <div className="contributed-place" key={item.$id}>
                         <div className="left">
                             <div className="avatar">
-                            <Avatar>{getInitials(userDetails.name)}</Avatar>
+                                <UserAvatar initials={userDetails.name} size={40} />
                             </div>
                         </div>
                         <div className="row-right">

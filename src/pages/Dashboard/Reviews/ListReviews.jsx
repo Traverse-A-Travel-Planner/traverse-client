@@ -1,4 +1,4 @@
-import { Avatar, Typography, Rate, Image, Button } from '@arco-design/web-react';
+import { Typography, Rate, Image, Button } from '@arco-design/web-react';
 import { Select, Message } from '@arco-design/web-react';
 
 // importing styles
@@ -8,6 +8,7 @@ import "../css/dashboardGeneric.css";
 import Header from "../../../components/Header/Header"
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import RatingInsights from '../components/Ratings Insights/RatingInsights';
+import UserAvatar from '../../../components/Avatar/Avatar';
 
 const Option = Select.Option;
 const options = ['Recent', 'Ratings', 'Oldest'];
@@ -20,12 +21,6 @@ const ListReviews = ({data}) => {
             content: `You select ${value}.`,
             showIcon: true,
         })
-    }
-
-    const getInitials = (name) => {
-        const words = name.split(' ');
-        const initials = words.map(word => word.charAt(0));
-        return initials.join('');
     }
 
     return(
@@ -61,9 +56,7 @@ const ListReviews = ({data}) => {
                             <div className="review" key={index}>
                                 <div className="left">
                                     <div className="avatar">
-                                        <Avatar>
-                                            {getInitials("Bibek Shah")}
-                                        </Avatar>
+                                        <UserAvatar initials="Bibek Shah" size={40} />
                                     </div>
                                 </div>
                                 <div className="row-right">

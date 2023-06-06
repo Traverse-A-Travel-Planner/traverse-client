@@ -1,22 +1,14 @@
 import React from "react";
 import "./Sidebar.css";
 import { Link } from "react-router-dom";
-import { Avatar } from "@arco-design/web-react";
+import UserAvatar from "../Avatar/Avatar";
 
 const Sidebar = ({ data }) => {
-  const getInitials = (name) => {
-    const words = name.split(' ');
-    const initials = words.map(word => word.charAt(0));
-    return initials.join('');
-  }
-
   return (
     <div className="sidebar">
       <div className="profile">
         <div className="avatar">
-          <Avatar size={90}>
-            {getInitials(data?.full_name)}
-          </Avatar>
+          <UserAvatar initials={data?.full_name} size={95} />
         </div>
         <div className="role shadow-sm text-muted">User</div>
         <div className="name">{data?.full_name}</div>
