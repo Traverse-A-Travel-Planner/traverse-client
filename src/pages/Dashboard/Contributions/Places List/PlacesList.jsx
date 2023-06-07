@@ -4,6 +4,7 @@ import {
   Notification,
   Rate,
   Spin,
+  Tag,
 } from "@arco-design/web-react";
 import { Select, Message } from "@arco-design/web-react";
 import { Link } from "react-router-dom";
@@ -17,6 +18,7 @@ import { useEffect, useState } from "react";
 import { databaseId } from "../../../../Services/config";
 import UserAvatar from "../../../../components/Avatar/Avatar";
 import DropdownActions from "../../../../components/Actions/Dropdown/DropdownActions";
+import { IconCheckCircleFill, IconClockCircle, IconCloseCircle } from "@arco-design/web-react/icon";
 
 const Option = Select.Option;
 const options = ["Recent", "Ratings", "Oldest"];
@@ -64,7 +66,7 @@ const ListPlaces = ({ data }) => {
         });
         }
     }
-    
+
     useEffect(() => {
         fetchContributions();
     }, [eventTriggered]);
@@ -107,7 +109,7 @@ const ListPlaces = ({ data }) => {
             <Spin className="ms-4 mt-3 mb-2" />
         ) : contributions.length === 0 ? (
             <Typography.Title className="ms-4 pb-3" heading={6} bold>
-            No contributions yet
+                No contributions yet
             </Typography.Title>
         ) : (
             contributions.map((item, index) => {
@@ -122,23 +124,32 @@ const ListPlaces = ({ data }) => {
                     <div className="right">
                     <div className="contribution-header">
                         <Typography.Title heading={6} className="my-0">
-                        {item.title}
+                            {item.title} 
+                            {
+                                item.verification_status === "verified" ? (
+                                    <Tag className="ms-2" icon={<IconCheckCircleFill />} color="green">Complete</Tag>
+                                ) : item.verification_status === "pending" ? (
+                                    <Tag className="ms-2" icon={<IconClockCircle />} color="arcoblue">Pending</Tag>
+                                ) : (
+                                    <Tag className="ms-2" icon={<IconCloseCircle />} color="red">Rejected</Tag>
+                                )
+                            }
                         </Typography.Title>
                         <Typography.Text>
-                        {" "}
-                        {item.location_description}
+                            {" "}
+                            {item.location_description}
                         </Typography.Text>
                         <Typography.Text type="secondary" className="mt-1">
-                        Contributed on{" "}
-                        {new Date(item.$createdAt).toLocaleDateString()} at{" "}
-                        {new Date(item.$createdAt).toLocaleTimeString()}
+                            Contributed on{" "}
+                            {new Date(item.$createdAt).toLocaleDateString()} at {" "}
+                            {new Date(item.$createdAt).toLocaleTimeString()}
                         </Typography.Text>
                     </div>
 
                     <div className="description mt-2">
                         <Rate readonly defaultValue={3.5} />
-                        <Typography.Text type="success">
-                        Reviewed by {3} people
+                        <Typography.Text type="success" style={{color: 'rgb(var(--warning-6))'}}>
+                            Reviewed by {3} people
                         </Typography.Text>
 
                         <div className="text">
@@ -153,7 +164,7 @@ const ListPlaces = ({ data }) => {
                         style={{ textDecoration: "none", color: "white" }}
                         to="/contribute"
                         >
-                        View Details
+                            View Details
                         </Link>
                     </button>
                     </div>

@@ -22,9 +22,9 @@ const ContributePlaces = ({ data }) => {
   const [current, setCurrent] = useState(1);
 
   const navigate = useNavigate();
-
   const formRef = useRef();
 
+  const [loadingSave, setLoadingSave] = useState(true)
   const [imageFiles, setImageFiles] = useState([]);
   const [title, setTitle] = useState("");
   const [location_description, setLocationDescription] = useState("");
@@ -51,6 +51,7 @@ const ContributePlaces = ({ data }) => {
     })
     try {
       if (!author_id) {
+        setLoadingSave(false)
         Notification.error({
           title: "Error",
           content: "You are not logged in.",
@@ -59,6 +60,7 @@ const ContributePlaces = ({ data }) => {
       }
 
       if (!coordinates) {
+        setLoadingSave(false)
         Notification.error({
           title: "Error",
           content: "Please select the location on map.",
@@ -67,6 +69,7 @@ const ContributePlaces = ({ data }) => {
       }
 
       if (!place_description) {
+        setLoadingSave(false)
         Notification.error({
           title: "Error",
           content: "All fields are required.",
@@ -109,7 +112,8 @@ const ContributePlaces = ({ data }) => {
         content: "Place successfully added.",
       });
 
-      navigate("/");
+      setLoadingSave(false)
+      navigate("/contribute");
     } catch (error) {
       Notification.error({
         title: "Error",
@@ -129,7 +133,8 @@ const ContributePlaces = ({ data }) => {
     place_description,
     setPlaceDescription,
     setKeyWord,
-    handleAddPlace
+    handleAddPlace,
+    loadingSave
   }
 
   return (
@@ -146,7 +151,7 @@ const ContributePlaces = ({ data }) => {
       <Steps current={current} direction='vertical' style={{minWidth: 250, height: '100%'}}>
         <Step title='General' description="Add general details and images" />
         <Step title='Location' description="Add location details" />
-        <Step title='Description' description="Add description" />
+        <Step title='Description' description="Add place description" />
       </Steps>
       {<RenderContent state={state} />}
       </Form>

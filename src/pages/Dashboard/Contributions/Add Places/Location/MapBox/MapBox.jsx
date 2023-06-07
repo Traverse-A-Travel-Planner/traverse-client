@@ -5,7 +5,7 @@ import mapboxgl from "mapbox-gl";
 mapboxgl.accessToken =
   "pk.eyJ1IjoieWFtYW4xMzM3IiwiYSI6ImNrd3V4cWRrejFjcnIydXFxcHNjcG9hbHMifQ.0MvUydr2xdlAEM2eVWqEkw";
 
-const MapBox = ({ paneResized, state }) => {
+const MapBox = ({ state }) => {
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {
       enableHighAccuracy: true,
@@ -48,7 +48,7 @@ const MapBox = ({ paneResized, state }) => {
         marker.setLngLat(coordinates);
       }
     }
-  }, [paneResized]);
+  }, []);
 
   return (
     <>
