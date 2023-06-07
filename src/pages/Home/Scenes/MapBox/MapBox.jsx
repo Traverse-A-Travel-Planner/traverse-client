@@ -1,12 +1,20 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import "./MapBox.css";
 import mapboxgl from "mapbox-gl";
+
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoieWFtYW4xMzM3IiwiYSI6ImNrd3V4cWRrejFjcnIydXFxcHNjcG9hbHMifQ.0MvUydr2xdlAEM2eVWqEkw";
 
-const MapBox = ({paneResized}) => {
+const MapBox = ({paneResized, rawData}) => {
+  const data = useMemo(() => {
+    return rawData;
+  }, [rawData]);
+
   useEffect(() => {
+    if (data.length === 0) return
+
     navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {
       enableHighAccuracy: true,
     });
@@ -20,27 +28,47 @@ const MapBox = ({paneResized}) => {
     }
 
     function setupMap(center) {
+      function animateZoom(map, targetZoom, duration) {
+        const startZoom = map.getZoom();
+        const zoomIncrement = (targetZoom - startZoom) / (duration / 16);
+        let currentZoom = startZoom;
+  
+        const interval = setInterval(() => {
+          currentZoom += zoomIncrement;
+          map.setZoom(currentZoom);
+  
+          if (currentZoom >= targetZoom) {
+            map.setZoom(targetZoom);
+            clearInterval(interval);
+          }
+        }, 16);
+      }
+
       const map = new mapboxgl.Map({
         container: "map", // container ID
-        style: "mapbox://styles/mapbox/streets-v11",
+        style: "mapbox://styles/mapbox/streets-v12",
         center: center,
-        zoom: 14,
+        zoom: 1.5,
       });
 
-      const nav = new mapboxgl.NavigationControl();
-      map.addControl(nav);
+      setTimeout(() => {
+        animateZoom(map, 14, 1000);
+      }, 2000);
 
-      map.addControl(
-        new window.MapboxDirections({
-          accessToken: mapboxgl.accessToken,
-        }),
-        "top-left"
-      );
+      // const nav = new mapboxgl.NavigationControl();
+      // map.addControl(nav);
+
+      // map.addControl(
+      //   new window.MapboxDirections({
+      //     accessToken: mapboxgl.accessToken,
+      //   }),
+      //   "top-left"
+      // );
 
       map.on("click", function (e) {
-        var coordinates = e.lngLat;
-        updateMarker(coordinates);
-        console.log(coordinates)
+        // var coordinates = e.lngLat;
+        // updateMarker(coordinates);
+        // console.log(coordinates)
       });
 
       // Set marker options.
@@ -49,15 +77,39 @@ const MapBox = ({paneResized}) => {
         draggable: true,
       };
 
-      const marker = new mapboxgl.Marker(markerOptions)
+      new mapboxgl.Marker(markerOptions)
         .setLngLat(center)
         .addTo(map);
 
-      function updateMarker(coordinates) {
-        marker.setLngLat(coordinates);
+      // function updateMarker(coordinates) {
+      //   marker.setLngLat(coordinates);
+      // }
+
+      for (let i = 0; i < data?.length; i++) {
+        let item = data[i];
+        const marker = new mapboxgl.Marker()
+          .setLngLat([item.coordinates[1], item.coordinates[0]])
+          .addTo(map);
+
+        // Add a click event listener to each marker
+        marker.getElement().addEventListener("click", () => {
+          // Display a popup with the place description
+          new mapboxgl.Popup({ closeOnClick: false })
+            .setLngLat([item.coordinates[1], item.coordinates[0]])
+            .setHTML(
+              `<div>
+              ${item.title}
+              <hr />
+              ${item.location_description}
+              <hr />
+              ${item.place_description.slice(0, 100)}...
+              </div>`
+            )
+            .addTo(map);
+        });
       }
     }
-  }, [paneResized]);
+  }, [paneResized, data]);
 
   return (
     <>

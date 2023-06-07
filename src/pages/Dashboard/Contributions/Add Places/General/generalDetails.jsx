@@ -107,7 +107,7 @@ const GeneralDetails = ({state}) => {
                 <Select
                   onChange={(e) => state.setKeyWord(e)}
                   style={inputStyle}
-                  placeholder='please select'
+                  placeholder='Select keyword'
                   options={KeywordOptions}
                   allowClear
                 />

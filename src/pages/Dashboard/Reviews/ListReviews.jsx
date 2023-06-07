@@ -100,9 +100,6 @@ const ListReviews = ({ data }) => {
           ]
         );
 
-        let items;
-        console.log(myReviews.length)
-
         const finalReviewData = myReviews.map((item, i) => {
           let obj = {};
           obj = {

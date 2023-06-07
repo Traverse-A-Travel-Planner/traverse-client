@@ -1,27 +1,30 @@
 import React, { useState, useEffect } from "react";
+import { ResizeBox, Notification } from "@arco-design/web-react";
+
+// importing components
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 import MapBox from "./Scenes/MapBox/MapBox";
 import SearchBar from "./Scenes/Search Bar/SearchBar";
 import SearchResult from "./Scenes/Recommendations/SearchResult";
-import "./Home.route.css";
-// import { pythonServer } from "../../utils/config";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
 
+// importing appwrite functions, libs, and constants
 import { Databases, Query, ID } from "appwrite";
 import appwriteClient from "../../Services/appwriteClient";
 import { databaseId } from "../../Services/config";
-import { ResizeBox } from "@arco-design/web-react";
 
-import { Notification } from "@arco-design/web-react";
+// importing styles
+import "./Home.route.css";
 
 const MemoizedSearchBar = React.memo(SearchBar);
 const MemoizedSearchResult = React.memo(SearchResult);
 
-const MapBoxComponent = ({ paneResized }) => {
+// re-renering mapbox component when pane resized
+const MapBoxComponent = ({ paneResized, data }) => {
   return (
     <>
       <div className="mapBox">
-        <MapBox paneResized={paneResized} />
+        <MapBox paneResized={paneResized} rawData={data}/>
       </div>
     </>
   );
@@ -93,7 +96,7 @@ const Home = () => {
           title: "Success",
           content: "Removed from favourites.",
         });
-        fetchPlaces();
+        await fetchPlaces();
         return;
       }
 
@@ -150,7 +153,7 @@ const Home = () => {
                   handleAddFavourites={handleAddFavourites}
                 />
               </div>,
-              <MapBoxComponent paneResized={paneResized} />,
+              <MapBoxComponent paneResized={paneResized} data={searchResultData}/>,
             ]}
           />
         </div>

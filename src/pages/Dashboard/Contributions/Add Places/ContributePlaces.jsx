@@ -41,14 +41,6 @@ const ContributePlaces = ({ data }) => {
   author_id = userId;
 
   const handleAddPlace = async () => {
-    console.log({
-      imageFiles,
-      title,
-      coordinates,
-      keyword,
-      place_description,
-      location_description
-    })
     try {
       if (!author_id) {
         setLoadingSave(false)
