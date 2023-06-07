@@ -1,10 +1,10 @@
 import {
-    Form,
-    Image,
-    Input,
-    Select,
-    Upload,
-  } from '@arco-design/web-react';
+  Form,
+  Image,
+  Input,
+  Select,
+  Upload,
+} from '@arco-design/web-react';
 import { IconDelete } from '@arco-design/web-react/icon';
 
 // importing styles
@@ -12,69 +12,69 @@ import "./generalDetails.css"
 
 const FormItem = Form.Item;
 const KeywordOptions = [
-  {
-    label: 'Historic',
-    value: 'historic',
-  },
-  {
-    label: 'Religious',
-    value: 'religious',
-  },
-  {
-    label: 'Park',
-    value: 'park',
-  },
-  {
-    label: 'Nature',
-    value: 'nature',
-  },
-  {
-    label: 'Others',
-    value: 'others',
-  },
+{
+  label: 'Historic',
+  value: 'historic',
+},
+{
+  label: 'Religious',
+  value: 'religious',
+},
+{
+  label: 'Park',
+  value: 'park',
+},
+{
+  label: 'Nature',
+  value: 'nature',
+},
+{
+  label: 'Others',
+  value: 'others',
+},
 ];
 
 const inputStyle = {
-    minWidth: '250px',
-    width: '100%',
-    maxWidth: '400px',
-    fontSize: '14px !important'
+  minWidth: '250px',
+  width: '100%',
+  maxWidth: '400px',
+  fontSize: '14px !important'
 }
 
 const GeneralDetails = ({state}) => {
-  const renderUploadList = (filesList, props) => (
-    <div style={{ display: 'flex', gap: '1em 1em' }} >
-      {filesList.map((file) => {
-        const url = file.url || URL.createObjectURL(file.originFile);
-        return (
-          <Image 
-            width={80}
-            height={80}
-            src={url}
-            alt='img'
-            actions={[
-              <button
-                key='1'
-                className='image-demo-action-item'
-                style={{
-                  background: 'transparent', 
-                  color: 'white', 
-                  outline: 'none', 
-                  border: 'none', 
-                  fontSize: '18px'
-                }}
-                onClick={() => {
-                  props.onRemove(file);
-                }}
-              >
-                <IconDelete />
-              </button>
-            ]}
-          />
-        );
-      })}
-    </div>
-  )
+const renderUploadList = (filesList, props) => (
+  <div style={{ display: 'flex', gap: '1em 1em' }} >
+    {filesList.map((file) => {
+      const url = file.url || URL.createObjectURL(file.originFile);
+      return (
+        <Image 
+          width={80}
+          height={80}
+          src={url}
+          alt='img'
+          actions={[
+            <button
+              key='1'
+              className='image-demo-action-item'
+              style={{
+                background: 'transparent', 
+                color: 'white', 
+                outline: 'none', 
+                border: 'none', 
+                fontSize: '18px'
+              }}
+              onClick={() => {
+                props.onRemove(file);
+              }}
+            >
+              <IconDelete />
+            </button>
+          ]}
+        />
+      );
+    })}
+  </div>
+)
 
   return(
         <>
