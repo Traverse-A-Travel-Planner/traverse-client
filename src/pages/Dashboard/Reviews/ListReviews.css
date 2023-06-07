@@ -27,13 +27,14 @@
     padding: 0 2em;
     flex: 2;
     min-width: 250px;
+    max-height: 77vh;
+    overflow: auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
     background-color: white;
     border: 1px solid #eeee;
-    /* border: 1px solid #e3e3e3dd; */
     border-radius: 10px;
     box-shadow: 0 5px 10px #eeee;
 }
@@ -48,12 +49,16 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    padding: 1.5em 2em 3.5em 2em;
+    padding: 2em 2em 3em 2em;
     width: 100%;
     height: max-content;
     display: flex;
     background-color: white;
     border-bottom: 1px solid #e0e0e0cc;
+}
+
+.review-list > .review:first-child{
+    padding-top: 0em;
 }
 
 .review-list > .review:last-child{

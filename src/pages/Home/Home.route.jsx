@@ -51,31 +51,6 @@ const Home = () => {
     }
   );
 
-  useEffect(() => {
-    fetchPlaces();
-  }, [lat, long]);
-
-  async function handleAddFavourites(obj) {
-    try {
-      if (obj.isFavourite) {
-        await db.deleteDocument(databaseId, "favourites", obj.favouriteDocId);
-        Notification.success({
-          title: "Success",
-          content: "Removed from favourites.",
-        });
-        fetchPlaces();
-        return;
-      }
-
-      await addFavourite(obj);
-    } catch (error) {
-      Notification.error({
-        title: "Error",
-        content: error.message,
-      });
-    }
-  }
-
   async function fetchPlaces() {
     const { documents: places } = await db.listDocuments(databaseId, "places", [
       Query.orderDesc("$createdAt"),
@@ -106,12 +81,38 @@ const Home = () => {
     setSearchResultData(finalData);
   }
 
+  useEffect(() => {
+    fetchPlaces();
+  }, [lat, long]);
+
+  async function handleAddFavourites(obj) {
+    try {
+      if (obj.isFavourite) {
+        await db.deleteDocument(databaseId, "favourites", obj.favouriteDocId);
+        Notification.success({
+          title: "Success",
+          content: "Removed from favourites.",
+        });
+        fetchPlaces();
+        return;
+      }
+
+      await addFavourite(obj);
+    } catch (error) {
+      Notification.error({
+        title: "Error",
+        content: error.message,
+      });
+    }
+  }
+
   async function addFavourite(obj) {
     await db.createDocument(databaseId, "favourites", ID.unique(), {
       place_id: obj.place_id,
       user_id: obj.user_id,
     });
-    fetchPlaces();
+
+    await fetchPlaces();
     Notification.success({
       title: "Success",
       content: "Added to favourites.",
