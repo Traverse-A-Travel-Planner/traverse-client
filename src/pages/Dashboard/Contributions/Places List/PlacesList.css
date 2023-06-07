@@ -122,6 +122,11 @@
     margin-top: 10px;
 }
 
+.contributed-places-list .contribution-header{
+    display: flex;
+    flex-direction: column;
+}
+
 /* ------------------------------ */
 /* button css */
 

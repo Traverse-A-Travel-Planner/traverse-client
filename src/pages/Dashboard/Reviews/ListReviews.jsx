@@ -21,13 +21,14 @@ import appwriteClient from "../../../Services/appwriteClient";
 import { useEffect, useState } from "react";
 import { databaseId } from "../../../Services/config";
 import { Link } from "react-router-dom";
+import DropdownActions from "../../../components/Actions/Dropdown/DropdownActions";
 
 const Option = Select.Option;
 const options = ["Recent", "Ratings", "Oldest"];
 
-// temp url for reviews image
-// const url =
-//   "https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/a8c8cdb109cb051163646151a4a5083b.png~tplv-uwbnlip3yd-webp.webp";
+const actions = {
+  "delete": 'Are you sure you want to remove this review?',
+}
 
 const ListReviews = ({ data }) => {
   const [reviews, setReviews] = useState([]);
@@ -169,12 +170,16 @@ const ListReviews = ({ data }) => {
                       </div>
                       <div className="row-right">
                         <div className="right">
-                          <Typography.Title heading={6} className="my-0 ">
-                            {item.title}
-                          </Typography.Title>
-                          <Typography.Text type="secondary">
-                            {item.location_description}
-                          </Typography.Text>
+                          <div className="review-header">
+                            <div className="place-details">
+                              <Typography.Title heading={6} className="my-0 ">
+                                {item.title}
+                              </Typography.Title>
+                              <Typography.Text type="secondary">
+                                {item.location_description}
+                              </Typography.Text>
+                            </div>
+                          </div>
 
                           <div className="rating mt-2">
                             <Rate readonly defaultValue={item.rating} />
@@ -228,6 +233,9 @@ const ListReviews = ({ data }) => {
                             )
                           }
                         </div>
+                      </div>
+                      <div className="review-actions">
+                        <DropdownActions actions={actions}/>
                       </div>
                     </div>
                   );

@@ -16,9 +16,14 @@ import "./PlacesList.css";
 import { useEffect, useState } from "react";
 import { databaseId } from "../../../../Services/config";
 import UserAvatar from "../../../../components/Avatar/Avatar";
+import DropdownActions from "../../../../components/Actions/Dropdown/DropdownActions";
 
 const Option = Select.Option;
 const options = ["Recent", "Ratings", "Oldest"];
+
+const actions = {
+    "delete": 'Are you sure you want to remove this contribution?',
+  }
 
 const ListPlaces = ({ data }) => {
     const [loading, setLoading] = useState(true)
@@ -96,61 +101,66 @@ const ListPlaces = ({ data }) => {
                 contributions.map((item, index) => {
                     return (
                         <div className="contributed-place" key={item.$id}>
-                        <div className="left">
-                            <div className="avatar">
-                                <UserAvatar initials={userDetails.name} size={40} />
-                            </div>
-                        </div>
-                        <div className="row-right">
-                            <div className="right">
-                            <Typography.Title heading={6} className="my-0">{item.title}</Typography.Title>
-                            <Typography.Text> {item.location_description}</Typography.Text>
-                            <Typography.Text type="secondary" className="mt-1">
-                                Contributed on {new Date(item.$createdAt).toLocaleDateString()} at {new Date(item.$createdAt).toLocaleTimeString()}
-                            </Typography.Text>
-        
-                            <div className="description mt-2">
-                                <Rate readonly defaultValue={3.5} />
-                                <Typography.Text type='success'>Reviewed by {3} people</Typography.Text>
-        
-                                <div className="text">
-                                <Typography.Text>
-                                    {item.place_description}
-                                </Typography.Text>
+                            <div className="left">
+                                <div className="avatar">
+                                    <UserAvatar initials={userDetails.name} size={40} />
                                 </div>
                             </div>
-        
-                            <button className="btn btn-dark shadow-sm view-contributed-place-btn">
-                                <Link
-                                style={{ textDecoration: "none", color: "white" }}
-                                to="/contribute"
-                                >
-                                View Details
-                                </Link>
-                            </button>
+                            <div className="row-right">
+                                <div className="right">
+                                    <div className="contribution-header">
+                                        <Typography.Title heading={6} className="my-0">{item.title}</Typography.Title>
+                                        <Typography.Text> {item.location_description}</Typography.Text>
+                                        <Typography.Text type="secondary" className="mt-1">
+                                            Contributed on {new Date(item.$createdAt).toLocaleDateString()} at {new Date(item.$createdAt).toLocaleTimeString()}
+                                        </Typography.Text>
+                                    </div>
+            
+                                    <div className="description mt-2">
+                                        <Rate readonly defaultValue={3.5} />
+                                        <Typography.Text type='success'>Reviewed by {3} people</Typography.Text>
+                
+                                        <div className="text">
+                                            <Typography.Text>
+                                                {item.place_description}
+                                            </Typography.Text>
+                                        </div>
+                                    </div>
+            
+                                    <button className="btn btn-dark shadow-sm view-contributed-place-btn">
+                                    <Link
+                                    style={{ textDecoration: "none", color: "white" }}
+                                    to="/contribute"
+                                    >
+                                    View Details
+                                    </Link>
+                                </button>
+                                </div>
+                                <div className="image">
+                                    {
+                                        !item.image.length ? (
+                                            <Image
+                                                width={145}
+                                                height={130}
+                                                style={{borderRadius: '5px'}}
+                                                src='some-error.png'
+                                                alt='No images found for this place'
+                                            />
+                                        ) : (
+                                            <Image
+                                                width={145}
+                                                height={130}
+                                                style={{borderRadius: '5px'}}
+                                                src={item.image[0]}
+                                                alt={item.location_description}
+                                            />
+                                        )
+                                    }
+                                </div>
                             </div>
-                            <div className="image">
-                                {
-                                    !item.image.length ? (
-                                        <Image
-                                            width={145}
-                                            height={130}
-                                            style={{borderRadius: '5px'}}
-                                            src='some-error.png'
-                                            alt='No images found for this place'
-                                        />
-                                    ) : (
-                                        <Image
-                                            width={145}
-                                            height={130}
-                                            style={{borderRadius: '5px'}}
-                                            src={item.image[0]}
-                                            alt={item.location_description}
-                                        />
-                                    )
-                                }
+                            <div className="review-actions">
+                                <DropdownActions actions={actions}/>
                             </div>
-                        </div>
                         </div>
                     );
                 })

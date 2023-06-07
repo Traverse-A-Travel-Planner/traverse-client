@@ -1,0 +1,12 @@
+.dropdown-demo > .arco-btn {
+    padding: 0 8px;
+    font-weight: normal;
+  }
+  
+.dropdown-demo .arco-dropdown-popup-visible .arco-icon-down {
+    transform: rotate(180deg);
+}
+
+.arco-dropdown-menu-item{
+    padding: 0px !important;
+}
