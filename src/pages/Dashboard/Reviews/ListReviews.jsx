@@ -50,7 +50,7 @@ const ListReviews = ({ data }) => {
         const db = new Databases(appwriteClient);
         const { documents: myReviews } = await db.listDocuments(
           databaseId,
-          "647a14b15f4e0e6a13be",
+          "reviews",
           [Query.equal("author_id", localStorage.getItem("userId"))]
         );
 
