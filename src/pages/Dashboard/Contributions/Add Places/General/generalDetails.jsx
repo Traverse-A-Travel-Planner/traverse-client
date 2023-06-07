@@ -37,7 +37,9 @@ const KeywordOptions = [
 const inputStyle = {
     minWidth: '250px',
     width: '100%',
-    maxWidth: '400px'}
+    maxWidth: '400px',
+    fontSize: '14px !important'
+}
 
 const GeneralDetails = ({state}) => {
   const renderUploadList = (filesList, props) => (
@@ -94,14 +96,14 @@ const GeneralDetails = ({state}) => {
               />
             </Form.Item>
     
-            <FormItem label='Title' field='title' tooltip={<div>Title is the name of place </div>} rules={[{ required: true }]}>
+            <FormItem label='Place name' field='Place_Name' tooltip={<div>Title is the name of place </div>} rules={[{ required: true }]}>
               <Input 
               onChange={(e) => state.setTitle(e)}
               style={inputStyle} 
               placeholder='please enter your name' />
             </FormItem>
     
-            <FormItem label='Post' field='post' rules={[{ required: true }]}>
+            <FormItem label='Keyword' field='Keyword' rules={[{ required: true }]}>
                 <Select
                   onChange={(e) => state.setKeyWord(e)}
                   style={inputStyle}

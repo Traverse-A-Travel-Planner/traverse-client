@@ -43,56 +43,6 @@ const ListReviews = ({ data }) => {
     fiveStar: 0,
   });
 
-  useEffect(() => {
-    (async function () {
-      try {
-        const db = new Databases(appwriteClient);
-        const { documents: myReviews } = await db.listDocuments(
-          databaseId,
-          "reviews",
-          [Query.equal("author_id", localStorage.getItem("userId"))]
-        );
-
-        if (myReviews.length === 0){
-          setLoading(false);
-          return
-        };
-        const { documents: reviewedPlaces } = await db.listDocuments(
-          databaseId,
-          "places",
-          [
-            Query.equal(
-              "$id",
-              myReviews.map((item) => item["place_id"])
-            ),
-          ]
-        );
-
-        const finalReviewData = myReviews.map((item, i) => {
-          let obj = {};
-          obj = {
-            ...item,
-            location_description: reviewedPlaces[i].location_description,
-            title: reviewedPlaces[i].title,
-            image: reviewedPlaces[i].image[0],
-          };
-
-          return obj;
-        });
-
-        setReviews(finalReviewData);
-        calculateInsights(finalReviewData);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        Notification.error({
-          title: "Error",
-          content: error.message,
-        });
-      }
-    })();
-  }, []);
-
   async function calculateInsights(reviews) {
     let obj = {
       totalReviewsPublished: 0,
@@ -124,6 +74,59 @@ const ListReviews = ({ data }) => {
     obj.totalReviewsPublished = total;
     setInsights(obj);
   }
+
+  useEffect(() => {
+    (async function () {
+      try {
+        const db = new Databases(appwriteClient);
+        const { documents: myReviews } = await db.listDocuments(
+          databaseId,
+          "reviews",
+          [Query.equal("author_id", localStorage.getItem("userId"))]
+        );
+
+        if (myReviews.length === 0){
+          setLoading(false);
+          return
+        };
+        const { documents: reviewedPlaces } = await db.listDocuments(
+          databaseId,
+          "places",
+          [
+            Query.equal(
+              "$id",
+              myReviews.map((item) => item["place_id"])
+            ),
+          ]
+        );
+
+        let items;
+        console.log(myReviews.length)
+
+        const finalReviewData = myReviews.map((item, i) => {
+          let obj = {};
+          obj = {
+            ...item,
+            location_description: reviewedPlaces[i].location_description,
+            title: reviewedPlaces[i].title,
+            image: reviewedPlaces[i].image[0],
+          };
+
+          return obj;
+        });
+
+        setReviews(finalReviewData);
+        calculateInsights(finalReviewData);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        Notification.error({
+          title: "Error",
+          content: error.message,
+        });
+      }
+    })();
+  }, []);
 
   const handleFilterClick = (value) => {
     Message.info({
