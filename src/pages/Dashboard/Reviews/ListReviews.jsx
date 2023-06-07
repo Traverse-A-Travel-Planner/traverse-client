@@ -4,8 +4,7 @@ import {
   Image,
   Button,
   Notification,
-  Spin,
-  Divider,
+  Spin
 } from "@arco-design/web-react";
 import { Select, Message } from "@arco-design/web-react";
 
@@ -54,7 +53,10 @@ const ListReviews = ({ data }) => {
           [Query.equal("author_id", localStorage.getItem("userId"))]
         );
 
-        if (myReviews.length === 0) return;
+        if (myReviews.length === 0){
+          setLoading(false);
+          return
+        };
         const { documents: reviewedPlaces } = await db.listDocuments(
           databaseId,
           "places",
@@ -164,10 +166,10 @@ const ListReviews = ({ data }) => {
                 </div>
               </div>
               {loading === true ? (
-                <Spin className="ms-2" />
+                <Spin className="ms-4 mt-3 mb-4" />
               ) : reviews.length === 0 ? (
                 <Typography.Title className="ms-4 pb-3" heading={6} bold>
-                  No contributions yet
+                  No reviews posted yet
                 </Typography.Title>
               ) : (
                 reviews.map((item, index) => {

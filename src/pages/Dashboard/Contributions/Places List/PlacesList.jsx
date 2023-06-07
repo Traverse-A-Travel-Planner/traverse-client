@@ -91,7 +91,7 @@ const ListPlaces = ({ data }) => {
 
         {
             loading === true ? (
-                <Spin className="ms-2" />
+                <Spin className="ms-4 mt-3 mb-2" />
             ) : (contributions.length === 0 ? (
                     <Typography.Title 
                         className="ms-4 pb-3" 

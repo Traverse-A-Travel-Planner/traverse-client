@@ -96,7 +96,7 @@ div.recommended-places .places-list .place-item .favourites {
 
 /* Add to favourites tooltip animation */
 
-div.recommended-places .places-list .place-item .favourites:hover::before {
+/* div.recommended-places .places-list .place-item .favourites:hover::before {
     position: absolute;
     content: "Add to favourites";
     display: flex;
@@ -147,7 +147,7 @@ div.recommended-places .places-list .place-item .favourites:hover::after {
         opacity: 1;
         margin-left: -70px;
     }
-}
+} */
 
 
 /* -------- */

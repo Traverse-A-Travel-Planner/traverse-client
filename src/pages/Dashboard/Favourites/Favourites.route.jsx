@@ -94,7 +94,6 @@ const Favourites = ({ data }) => {
                         <div className="button-container">
                           <button
                             className="btn btn-dark shadow-sm"
-                            id="view-favourites-btn"
                           >
                             View Details
                           </button>
