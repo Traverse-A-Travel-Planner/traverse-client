@@ -34,7 +34,10 @@ const Favourites = ({ data }) => {
 
         let placeIdArray = allFavItems.map((item) => item.place_id);
 
-        if (placeIdArray.length <= 0) return;
+        if (placeIdArray.length <= 0) {
+          setLoading(false);
+          return;
+        }
 
         const { documents: favPlaces } = await db.listDocuments(
           databaseId,
@@ -42,11 +45,11 @@ const Favourites = ({ data }) => {
           [Query.equal("$id", placeIdArray), Query.orderDesc("$createdAt")]
         );
 
-        console.log(favPlaces)
-        setLoading(false)
+        console.log(favPlaces);
+        setLoading(false);
         setFavourites(favPlaces);
       } catch (error) {
-        setLoading(false)
+        setLoading(false);
         Notification.error({
           title: "Error",
           content: error.message,
@@ -66,46 +69,41 @@ const Favourites = ({ data }) => {
           <div className="favourites-section">
             <p className="favourites-header">My Favourites</p>
             <div className="favourites-content">
-              {
-                loading === true ? (
-                  <Spin />
-                ) : (
-                  favourites.length === 0 ? 
-                    (
-                      <Typography.Title className="ms-4 pb-3" heading={6} bold>
-                        No favourite place added yet
-                      </Typography.Title>
-                    ) : (
-                      favourites.map((item) => {
-                      return (
-                        <div className="favourites-item" key={item.$id}>
-                          <div className="image">
-                            <img 
-                            src={item.image[0]}
-                            alt="travel place" />
-                          </div>
-                          <div className="text-container">
-                            <div className="title">{item.title}</div>
-                            <div className="description text-muted">
-                              {item.place_description.slice(0, 65)}...
-                            </div>
-                            <div className="keyword">{capitalizeFirstCharacter(item.keyword)}</div>
-    
-                            <div className="button-container">
-                              <button
-                                className="btn btn-dark shadow-sm"
-                                id="view-favourites-btn"
-                              >
-                                View Details
-                              </button>
-                            </div>
-                          </div>
+              {loading === true ? (
+                <Spin />
+              ) : favourites.length === 0 ? (
+                <Typography.Title className="ms-4 pb-3" heading={6} bold>
+                  No favourite place added yet
+                </Typography.Title>
+              ) : (
+                favourites.map((item) => {
+                  return (
+                    <div className="favourites-item" key={item.$id}>
+                      <div className="image">
+                        <img src={item.image[0]} alt="travel place" />
+                      </div>
+                      <div className="text-container">
+                        <div className="title">{item.title}</div>
+                        <div className="description text-muted">
+                          {item.place_description.slice(0, 65)}...
                         </div>
-                      );
-                      })
-                    )
-                )
-              }
+                        <div className="keyword">
+                          {capitalizeFirstCharacter(item.keyword)}
+                        </div>
+
+                        <div className="button-container">
+                          <button
+                            className="btn btn-dark shadow-sm"
+                            id="view-favourites-btn"
+                          >
+                            View Details
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })
+              )}
             </div>
           </div>
         </div>

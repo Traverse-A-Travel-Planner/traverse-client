@@ -28,11 +28,11 @@ const Option = Select.Option;
 const options = ["Recent", "Ratings", "Oldest"];
 
 const actions = {
-  "delete": 'Are you sure you want to remove this review?',
-}
+  delete: "Are you sure you want to remove this review?",
+};
 
 const ListReviews = ({ data }) => {
-  const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true);
   const [reviews, setReviews] = useState([]);
   const [insights, setInsights] = useState({
     totalReviewsPublished: 0,
@@ -54,7 +54,7 @@ const ListReviews = ({ data }) => {
         );
 
         if (myReviews.length === 0) return;
-        const { documents: reviewdPlaces } = await db.listDocuments(
+        const { documents: reviewedPlaces } = await db.listDocuments(
           databaseId,
           "places",
           [
@@ -69,9 +69,9 @@ const ListReviews = ({ data }) => {
           let obj = {};
           obj = {
             ...item,
-            location_description: reviewdPlaces[i].location_description,
-            title: reviewdPlaces[i].title,
-            image: reviewdPlaces[i].image[0],
+            location_description: reviewedPlaces[i].location_description,
+            title: reviewedPlaces[i].title,
+            image: reviewedPlaces[i].image[0],
           };
 
           return obj;
@@ -79,9 +79,9 @@ const ListReviews = ({ data }) => {
 
         setReviews(finalReviewData);
         calculateInsights(finalReviewData);
-        setLoading(false)
+        setLoading(false);
       } catch (error) {
-        setLoading(false)
+        setLoading(false);
         Notification.error({
           title: "Error",
           content: error.message,
@@ -106,18 +106,18 @@ const ListReviews = ({ data }) => {
     for (let i = 0; i < reviews.length; i++) {
       let currentItem = parseInt(reviews[i].rating);
       total += 1;
-      
+
       if (currentItem >= 1 && currentItem <= 5) {
         ratings[currentItem - 1] += 1; // Increment the corresponding rating count
       }
     }
 
     // updating the ratings object
-    obj.oneStar = (ratings[0] / total) * 100;
-    obj.twoStar = (ratings[1] / total) * 100;
-    obj.threeStar = (ratings[2] / total) * 100;
-    obj.fourStar = (ratings[3] / total) * 100;
-    obj.fiveStar = (ratings[4] / total) * 100;
+    obj.oneStar = Math.floor((ratings[0] / total) * 100);
+    obj.twoStar = Math.floor((ratings[1] / total) * 100);
+    obj.threeStar = Math.floor((ratings[2] / total) * 100);
+    obj.fourStar = Math.floor((ratings[3] / total) * 100);
+    obj.fiveStar = Math.floor((ratings[4] / total) * 100);
     obj.totalReviewsPublished = total;
     setInsights(obj);
   }
@@ -162,100 +162,92 @@ const ListReviews = ({ data }) => {
                   </Select>
                 </div>
               </div>
-              {
-                loading === true ? (
-                    <Spin className="ms-2" />
-                ) : (
-                    reviews.length === 0 ? (
-                    <Typography.Title 
-                      className="ms-4 pb-3" 
-                      heading={6} bold>
-                          No contributions yet
-                    </Typography.Title>
-                  ) : (
-                    reviews.map((item, index) => {
-                      return (
-                        <div className="review" key={item.$id}>
-                          <div className="left">
-                            <div className="avatar">
-                              <UserAvatar initials={data?.full_name} size={40} />
+              {loading === true ? (
+                <Spin className="ms-2" />
+              ) : reviews.length === 0 ? (
+                <Typography.Title className="ms-4 pb-3" heading={6} bold>
+                  No contributions yet
+                </Typography.Title>
+              ) : (
+                reviews.map((item, index) => {
+                  return (
+                    <div className="review" key={item.$id}>
+                      <div className="left">
+                        <div className="avatar">
+                          <UserAvatar initials={data?.full_name} size={40} />
+                        </div>
+                      </div>
+                      <div className="row-right">
+                        <div className="right">
+                          <div className="review-header">
+                            <div className="place-details">
+                              <Typography.Title heading={6} className="my-0 ">
+                                {item.title}
+                              </Typography.Title>
+                              <Typography.Text type="secondary">
+                                {item.location_description}
+                              </Typography.Text>
                             </div>
                           </div>
-                          <div className="row-right">
-                            <div className="right">
-                              <div className="review-header">
-                                <div className="place-details">
-                                  <Typography.Title heading={6} className="my-0 ">
-                                    {item.title}
-                                  </Typography.Title>
-                                  <Typography.Text type="secondary">
-                                    {item.location_description}
-                                  </Typography.Text>
-                                </div>
-                              </div>
-    
-                              <div className="rating mt-2">
-                                <Rate readonly defaultValue={item.rating} />
-                                <Typography.Text type="success">
-                                  {item.rating} star review
-                                </Typography.Text>
-                                <Typography.Text type="secondary" className="">
-                                  Reviewed on{" "}
-                                  {new Date(item.$createdAt).toLocaleDateString()}{" "}
-                                  at{" "}
-                                  {new Date(item.$createdAt).toLocaleTimeString()}
-                                </Typography.Text>
-                              </div>
-    
-                              <div className="description mt-3">
-                                <div className="text">
-                                  <Typography.Text>
-                                    {item.review_description}
-                                  </Typography.Text>
-                                </div>
-                              </div>
-    
-                              <button className="btn btn-dark shadow-sm view-review-btn">
-                              <Link
+
+                          <div className="rating mt-2">
+                            <Rate readonly defaultValue={item.rating} />
+                            <Typography.Text type="success">
+                              {item.rating} star review
+                            </Typography.Text>
+                            <Typography.Text type="secondary" className="">
+                              Reviewed on{" "}
+                              {new Date(item.$createdAt).toLocaleDateString()}{" "}
+                              at{" "}
+                              {new Date(item.$createdAt).toLocaleTimeString()}
+                            </Typography.Text>
+                          </div>
+
+                          <div className="description mt-3">
+                            <div className="text">
+                              <Typography.Text>
+                                {item.review_description}
+                              </Typography.Text>
+                            </div>
+                          </div>
+
+                          <button className="btn btn-dark shadow-sm view-review-btn">
+                            <Link
                               style={{ textDecoration: "none", color: "white" }}
                               to="/reviews"
-                              >
-                                View Details
-                              </Link>
-                              </button>
-                            </div>
-    
-                            <div className="image">
-                              {
-                                !item.image.length ? (
-                                    <Image
-                                        width={145}
-                                        height={130}
-                                        style={{borderRadius: '5px'}}
-                                        src='some-error.png'
-                                        alt='No images found for this place'
-                                    />
-                                ) : (
-                                    <Image
-                                        width={145}
-                                        height={130}
-                                        style={{borderRadius: '5px'}}
-                                        src={item.image}
-                                        alt={item.title}
-                                    />
-                                )
-                              }
-                            </div>
-                          </div>
-                          <div className="review-actions">
-                            <DropdownActions actions={actions}/>
-                          </div>
+                            >
+                              View Details
+                            </Link>
+                          </button>
                         </div>
-                      );
-                    })
-                  )
-                ) 
-              }
+
+                        <div className="image">
+                          {!item.image.length ? (
+                            <Image
+                              width={145}
+                              height={130}
+                              style={{ borderRadius: "5px" }}
+                              src="some-error.png"
+                              alt="No images found for this place"
+                            />
+                          ) : (
+                            <Image
+                              width={145}
+                              height={130}
+                              style={{ borderRadius: "5px" }}
+                              src={item.image}
+                              alt={item.title}
+                            />
+                          )}
+                        </div>
+                      </div>
+                      <div className="review-actions">
+                        <DropdownActions actions={actions} />
+                      </div>
+                    </div>
+                  );
+                })
+              )}
             </div>
 
             <div className="review-details">
