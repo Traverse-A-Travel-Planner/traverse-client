@@ -4,7 +4,7 @@
 }
 
 .contributed-places-wrapper{
-    margin-top: 0.5em;
+    margin-top: 0px;
     width: 100%;
     position: relative;
     padding: 0 2em 0 0;
@@ -14,6 +14,11 @@
     justify-content: flex-start;
     align-items: flex-start;
     gap: 2em 2em;
+}
+
+.contributions .content{
+    height: max-content !important;
+    max-height: max-content !important;
 }
 /* -------------- */
 

@@ -9,7 +9,7 @@
 
 .reviews-wrapper{
     position: relative;
-    margin-top: 25px;
+    margin-top: 17px;
     padding: 0 2em 0 0;
     display: flex;
     flex-direction: row;
@@ -27,9 +27,6 @@
     padding: 0 2em;
     flex: 2;
     min-width: 250px;
-    height: 80vh;
-    max-height: 80vh;
-    overflow: auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -51,9 +48,9 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    padding: 2em 2em;
+    padding: 1.5em 2em 3.5em 2em;
     width: 100%;
-    height: 500px;
+    height: max-content;
     display: flex;
     background-color: white;
     border-bottom: 1px solid #e0e0e0cc;
@@ -151,6 +148,7 @@
     display: flex;
     flex-direction: column;
 }
+
 
 /* ------------------------------ */
 /* button css */

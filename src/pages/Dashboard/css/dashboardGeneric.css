@@ -10,6 +10,9 @@
 
 .dashboard-content .content{
   width: 100% !important;
+  height: 85vh;
+  max-height: 85vh;
+  overflow: auto;
 }
 
 .main-body {
@@ -24,11 +27,11 @@
 }
 
 .main-body .content {
-  padding: 20px 10px 10px 40px;
+  padding: 0px 10px 0px 40px;
 }
 
 .main-body .content .url-path {
-  margin: 0 0 10px 0;
+  margin-top: 17px;
   color: blueviolet !important;
   text-align: left;
 }
