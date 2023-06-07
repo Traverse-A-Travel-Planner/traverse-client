@@ -1,39 +1,59 @@
-import { Modal, Message, Button } from '@arco-design/web-react';
-import "./DeleteModal.css"
+import { Modal, Message, Button } from "@arco-design/web-react";
+import "./DeleteModal.css";
+import { Databases } from "appwrite";
+import appwriteClient from "../../../Services/appwriteClient";
+import { databaseId } from "../../../Services/config";
 
-function handleAction(content) {
+const db = new Databases(appwriteClient);
+
+function handleAction(content, type, payload) {
   Modal.confirm({
-    title: 'Confirm deletion',
+    title: "Confirm deletion",
     content: content,
-    okText: 'Delete',
+    okText: "Delete",
     okButtonProps: {
-      status: 'danger',
+      status: "danger",
     },
     onOk: async () => {
       try {
-            return await new Promise((resolve, reject) => {
-                setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
-            });
-        } catch (e) {
-            Message.error({
-                content: 'Failed to delete!',
-            });
-            throw e;
+        let collectionId = "";
+        let event;
+        if (type == "contribution") {
+          collectionId = "places";
+          event = new CustomEvent("contributionDeleted", {});
+        } else {
+          collectionId = "reviews";
+          event = new CustomEvent("reviewDeleted", {});
         }
+
+        await db.deleteDocument(databaseId, collectionId, payload.id);
+
+        document.dispatchEvent(event);
+
+        Message.success({
+          content: "Contribution deleted successfully.",
+        });
+      } catch (e) {
+        Message.error({
+          content: "Failed to delete!",
+        });
+        throw e;
+      }
     },
   });
 }
 
-const DeleteModal = ({content}) => {
+const DeleteModal = ({ content, type, payload }) => {
   return (
-    <Button 
-    type='secondary' 
-    onClick={() => handleAction(content)} 
-    style={{
-        width: '100%', 
-        background: "transparent", 
-        textAlign: 'left'
-    }}>
+    <Button
+      type="secondary"
+      onClick={() => handleAction(content, type, payload)}
+      style={{
+        width: "100%",
+        background: "transparent",
+        textAlign: "left",
+      }}
+    >
       Delete
     </Button>
   );
