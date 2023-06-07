@@ -14,28 +14,28 @@ const FormItem = Form.Item;
 const KeywordOptions = [
   {
     label: 'Historic',
-    value: 'Historic',
+    value: 'historic',
   },
   {
     label: 'Religious',
-    value: 'Religious',
+    value: 'religious',
   },
   {
     label: 'Park',
-    value: 'Park',
+    value: 'park',
   },
   {
     label: 'Nature',
-    value: 'Nature',
+    value: 'nature',
   },
   {
     label: 'Others',
-    value: 'Others',
+    value: 'others',
   },
 ];
 
 const inputStyle = {
-    minWidth: '270px',
+    minWidth: '250px',
     width: '100%',
     maxWidth: '400px'}
 

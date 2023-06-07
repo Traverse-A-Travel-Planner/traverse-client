@@ -2,7 +2,8 @@ import { Button } from '@arco-design/web-react';
 import { IconLeft, IconRight } from '@arco-design/web-react/icon';
 
 import GeneralDetails from './General/generalDetails';
-import LocationDescription from './Description/locationDescription';
+import LocationDetails from './Location/LocationDetails';
+import PlaceDescription from './Description/PlaceDescription';
 
 const RenderContent = ({state}) => {
     return (
@@ -18,7 +19,11 @@ const RenderContent = ({state}) => {
         {
             state.current === 1 ? 
             (<GeneralDetails state={state} />)
-            : (<LocationDescription state={state} />)
+            : state.current === 2 ? (
+              <LocationDetails state={state} />
+            ) : (
+              <PlaceDescription state={state} />
+            )
         }
 
         <div style={{textAlign: 'left'}}>

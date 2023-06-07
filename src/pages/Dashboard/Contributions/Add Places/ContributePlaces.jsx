@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
   Form,
-  Steps
+  Steps,
+  Notification
 } from '@arco-design/web-react';
 
 // importing styles
@@ -40,8 +41,15 @@ const ContributePlaces = ({ data }) => {
   author_id = userId;
 
   const handleAddPlace = async () => {
+    console.log({
+      imageFiles,
+      title,
+      coordinates,
+      keyword,
+      place_description,
+      location_description
+    })
     try {
-      setCoordinates([80, 27]);
       if (!author_id) {
         Notification.error({
           title: "Error",
@@ -118,17 +126,11 @@ const ContributePlaces = ({ data }) => {
     setTitle,
     setLocationDescription,
     setCoordinates,
+    place_description,
     setPlaceDescription,
-    setKeyWord
+    setKeyWord,
+    handleAddPlace
   }
-
-  useEffect(() => {
-    console.log({
-      title,
-      imageFiles,
-      keyword
-    })
-  }, [title, imageFiles, keyword])
 
   return (
     <div className="add-place-section">
@@ -140,7 +142,6 @@ const ContributePlaces = ({ data }) => {
       autoComplete='off'
       layout="vertical"
       size='large'
-      onSubmit={e => console.log(e)}
       >
       <Steps current={current} direction='vertical' style={{minWidth: 250, height: '100%'}}>
         <Step title='General' description="Add general details and images" />

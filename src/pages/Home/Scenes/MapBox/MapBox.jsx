@@ -12,7 +12,6 @@ const MapBox = ({paneResized}) => {
     });
 
     function successLocation(position) {
-      console.log(position);
       setupMap([position.coords.longitude, position.coords.latitude]);
     }
 
@@ -38,18 +37,25 @@ const MapBox = ({paneResized}) => {
         "top-left"
       );
 
-      // map.on('click', function (e) {
-      //   var coordinates = e.lngLat;
-      //   console.log('Clicked coordinates:', coordinates);
-      // });
+      map.on("click", function (e) {
+        var coordinates = e.lngLat;
+        updateMarker(coordinates);
+        console.log(coordinates)
+      });
 
       // Set marker options.
-      // const marker = new mapboxgl.Marker({
-      //   color: "red",
-      //   draggable: true,
-      // })
-      //   .setLngLat(center)
-      //   .addTo(map);
+      const markerOptions = {
+        color: "red",
+        draggable: true,
+      };
+
+      const marker = new mapboxgl.Marker(markerOptions)
+        .setLngLat(center)
+        .addTo(map);
+
+      function updateMarker(coordinates) {
+        marker.setLngLat(coordinates);
+      }
     }
   }, [paneResized]);
 
