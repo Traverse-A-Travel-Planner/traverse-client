@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Form,
   Steps
@@ -110,6 +110,26 @@ const ContributePlaces = ({ data }) => {
     }
   };
 
+  let state = {
+    current, 
+    setCurrent, 
+    formRef,
+    setImageFiles,
+    setTitle,
+    setLocationDescription,
+    setCoordinates,
+    setPlaceDescription,
+    setKeyWord
+  }
+
+  useEffect(() => {
+    console.log({
+      title,
+      imageFiles,
+      keyword
+    })
+  }, [title, imageFiles, keyword])
+
   return (
     <div className="add-place-section">
     <div style={{
@@ -127,7 +147,7 @@ const ContributePlaces = ({ data }) => {
         <Step title='Location' description="Add location details" />
         <Step title='Description' description="Add description" />
       </Steps>
-      {<RenderContent state={{current, setCurrent, formRef}} />}
+      {<RenderContent state={state} />}
       </Form>
     </div>
     </div>

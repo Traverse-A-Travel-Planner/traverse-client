@@ -16,7 +16,7 @@ const inputStyle = {
     // height: '40px'
 }
 
-const LocationDetails = ({state}) => {
+const LocationDescription = ({state}) => {
     const [placeDescription, setPlaceDescription] = useState("")
 
     return(
@@ -63,4 +63,4 @@ const LocationDetails = ({state}) => {
     )
 }
 
-export default LocationDetails;
+export default LocationDescription;

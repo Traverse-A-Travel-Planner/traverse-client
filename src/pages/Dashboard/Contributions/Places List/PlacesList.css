@@ -38,9 +38,8 @@
     align-items: flex-start;
     background-color: white;
     border: 1px solid #eeee;
-    /* border: 1px solid #e3e3e3dd; */
     border-radius: 10px;
-    box-shadow: 0 5px 10px #eeee;
+    /* box-shadow: 0 5px 10px #eeee; */
 }
 
 @media screen and (max-width: 900px) {

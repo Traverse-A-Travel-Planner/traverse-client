@@ -1,0 +1,10 @@
+.add-place-section .arco-upload-list{
+    width: max-content !important;
+}
+
+.arco-form-item-control-children{
+    display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+    gap: 1em;
+}

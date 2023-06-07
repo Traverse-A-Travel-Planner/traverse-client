@@ -15,7 +15,11 @@ const DropdownActions = ({actions}) => {
     );
 
     return(
-        <DropdownComponent droplist={dropList} trigger='click' position='br'>
+        <DropdownComponent 
+        style={{padding: 0}}
+        droplist={dropList} 
+        trigger='click' 
+        position='br'>
             <Button
             type='secondary'>
                 <i className="bi bi-three-dots-vertical"></i>
