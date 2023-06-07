@@ -123,7 +123,7 @@ const ListPlaces = ({ data }) => {
                             <button className="btn btn-dark shadow-sm view-contributed-place-btn">
                                 <Link
                                 style={{ textDecoration: "none", color: "white" }}
-                                to="/dashboard"
+                                to="/contribute"
                                 >
                                 View Details
                                 </Link>

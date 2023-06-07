@@ -97,6 +97,15 @@
     align-items: center;
 }
 
+.description .text > span{
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Number of lines to display */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word !important;
+    text-overflow: ellipsis;
+}
+
 /* ------------------------- */
 .review-list .header-block{
     width: 100%;
@@ -141,4 +150,39 @@
     margin-top: 0.5em;
     display: flex;
     flex-direction: column;
+}
+
+/* ------------------------------ */
+/* button css */
+
+button.view-review-btn {
+    position: relative;
+    margin-top: 20px;
+    padding: 7px 20px;
+    width: max-content;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.4s ease-in-out;
+}
+
+button.view-review-btn::after {
+    position: relative;
+    content: " →";
+    position: absolute;
+    width: 20px;
+    height: 10px;
+    color: white;
+    opacity: 0;
+    transition: 0.4s ease-in-out;
+}
+
+button.view-review-btn:hover{
+    padding-right: 40px;
+
+}
+
+button.view-review-btn:hover::after {
+    opacity: 1;
+    margin-left: 10px;
 }

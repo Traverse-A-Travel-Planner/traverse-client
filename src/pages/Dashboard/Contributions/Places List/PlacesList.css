@@ -77,14 +77,12 @@
 
 .contributed-places-list .contributed-place .right .description .text{
     margin-top: 10px;
-    text-overflow: ellipsis;
-    overflow: hidden;
     display: -webkit-box;
-    -webkit-line-clamp: 4; /* Change the number to the desired number of lines */
+    -webkit-line-clamp: 3; /* Number of lines to display */
     -webkit-box-orient: vertical;
     overflow: hidden;
+    word-break: break-word !important;
     text-overflow: ellipsis;
-    word-break: break-word;
 }
 .arco-rate-inner{
     font-size: 18px;

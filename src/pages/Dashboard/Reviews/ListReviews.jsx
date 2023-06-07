@@ -20,18 +20,17 @@ import { Databases, Query } from "appwrite";
 import appwriteClient from "../../../Services/appwriteClient";
 import { useEffect, useState } from "react";
 import { databaseId } from "../../../Services/config";
+import { Link } from "react-router-dom";
 
 const Option = Select.Option;
 const options = ["Recent", "Ratings", "Oldest"];
 
-const url =
-  "https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/a8c8cdb109cb051163646151a4a5083b.png~tplv-uwbnlip3yd-webp.webp";
+// temp url for reviews image
+// const url =
+//   "https://p1-arco.byteimg.com/tos-cn-i-uwbnlip3yd/a8c8cdb109cb051163646151a4a5083b.png~tplv-uwbnlip3yd-webp.webp";
 
 const ListReviews = ({ data }) => {
-  const db = new Databases(appwriteClient);
-
   const [reviews, setReviews] = useState([]);
-
   const [insights, setInsights] = useState({
     totalReviewsPublished: 0,
     oneStar: 0,
@@ -44,6 +43,7 @@ const ListReviews = ({ data }) => {
   useEffect(() => {
     (async function () {
       try {
+        const db = new Databases(appwriteClient);
         const { documents: myReviews } = await db.listDocuments(
           databaseId,
           "647a14b15f4e0e6a13be",
@@ -95,40 +95,24 @@ const ListReviews = ({ data }) => {
       fiveStar: 0,
     };
 
-    let oneStar = 0,
-      twoStar = 0,
-      threeStar = 0,
-      fourStar = 0,
-      fiveStar = 0,
-      total = 0;
+    let ratings = [0, 0, 0, 0, 0]; // Use an array to store ratings count
+    let total = 0;
+
     for (let i = 0; i < reviews.length; i++) {
-      let currentItem = reviews[i].rating;
-      currentItem = parseInt(currentItem);
+      let currentItem = parseInt(reviews[i].rating);
       total += 1;
-      switch (currentItem) {
-        case 1:
-          oneStar += 1;
-          break;
-        case 2:
-          twoStar += 1;
-          break;
-        case 3:
-          threeStar += 1;
-          break;
-        case 4:
-          fourStar += 1;
-          break;
-        case 5:
-          fiveStar += 1;
-          break;
+      
+      if (currentItem >= 1 && currentItem <= 5) {
+        ratings[currentItem - 1] += 1; // Increment the corresponding rating count
       }
     }
 
-    obj.oneStar = (oneStar / total) * 100;
-    obj.twoStar = (twoStar / total) * 100;
-    obj.threeStar = (threeStar / total) * 100;
-    obj.fourStar = (fourStar / total) * 100;
-    obj.fiveStar = (fiveStar / total) * 100;
+    // updating the ratings object
+    obj.oneStar = (ratings[0] / total) * 100;
+    obj.twoStar = (ratings[1] / total) * 100;
+    obj.threeStar = (ratings[2] / total) * 100;
+    obj.fourStar = (ratings[3] / total) * 100;
+    obj.fiveStar = (ratings[4] / total) * 100;
     obj.totalReviewsPublished = total;
     setInsights(obj);
   }
@@ -180,7 +164,7 @@ const ListReviews = ({ data }) => {
                     <div className="review" key={item.$id}>
                       <div className="left">
                         <div className="avatar">
-                          <UserAvatar initials={item.title} size={40} />
+                          <UserAvatar initials={data?.full_name} size={40} />
                         </div>
                       </div>
                       <div className="row-right">
@@ -204,6 +188,7 @@ const ListReviews = ({ data }) => {
                               {new Date(item.$createdAt).toLocaleTimeString()}
                             </Typography.Text>
                           </div>
+
                           <div className="description mt-3">
                             <div className="text">
                               <Typography.Text>
@@ -211,13 +196,37 @@ const ListReviews = ({ data }) => {
                               </Typography.Text>
                             </div>
                           </div>
+
+                          <button className="btn btn-dark shadow-sm view-review-btn">
+                          <Link
+                          style={{ textDecoration: "none", color: "white" }}
+                          to="/reviews"
+                          >
+                            View Details
+                          </Link>
+                          </button>
                         </div>
+
                         <div className="image">
-                          <Image
-                            width={120}
-                            src={item.image}
-                            alt={item.title}
-                          />
+                          {
+                            !item.image.length ? (
+                                <Image
+                                    width={145}
+                                    height={130}
+                                    style={{borderRadius: '5px'}}
+                                    src='some-error.png'
+                                    alt='No images found for this place'
+                                />
+                            ) : (
+                                <Image
+                                    width={145}
+                                    height={130}
+                                    style={{borderRadius: '5px'}}
+                                    src={item.image}
+                                    alt={item.title}
+                                />
+                            )
+                          }
                         </div>
                       </div>
                     </div>
