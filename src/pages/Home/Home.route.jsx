@@ -56,7 +56,6 @@ const Home = () => {
   );
 
   const fetchMapPlaces = async () => {    
-    console.log("refetched")
     const { documents: places } = await db.listDocuments(databaseId, "places", [
       Query.orderDesc("$createdAt"),
     ]);
@@ -68,11 +67,8 @@ const Home = () => {
   const fetchFavouritesPlaces = async () => {
     try{
       let places = mapData;
-      console.log("before: ", places)
-      console.log(places.length)
 
       if (!places || !places.length){
-        console.log("MapData not found")
         places = await fetchMapPlaces()
       }
   
@@ -97,9 +93,7 @@ const Home = () => {
           };
         }
       });
-  
-      console.log("favourites list", finalData)
-  
+    
       setSearchResultData(finalData);
     } catch {
       Message.error("Something went wrong")

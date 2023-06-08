@@ -23,6 +23,7 @@ import { useEffect, useState } from "react";
 import { databaseId } from "../../../Services/config";
 import { Link } from "react-router-dom";
 import DropdownActions from "../../../components/Actions/Dropdown/DropdownActions";
+import filterData from "../../../components/Filters/filterList";
 
 const Option = Select.Option;
 const options = ["Recent", "Ratings", "Oldest"];
@@ -42,6 +43,8 @@ const ListReviews = ({ data }) => {
     fourStar: 0,
     fiveStar: 0,
   });
+
+  const [filteredData, setFilteredData] = useState(reviews);
 
   async function calculateInsights(reviews) {
     let obj = {
@@ -125,12 +128,22 @@ const ListReviews = ({ data }) => {
     })();
   }, []);
 
+  useEffect(() => {
+    setReviews(filteredData)
+  }, [filteredData])
+
   const handleFilterClick = (value) => {
+    const newData = filterData(reviews, value);
+    setFilteredData(newData)
+    
+    console.log(value)
     Message.info({
-      content: `You select ${value}.`,
+      content: `Filtered reviews to ${value}.`,
       showIcon: true,
     });
   };
+
+  console.log(reviews)
 
   return (
     <div className="main-body">
