@@ -98,7 +98,7 @@ const Home = () => {
           title: "Success",
           content: "Removed from favourites.",
         });
-        return;
+        return true;
       }
 
       await fetchPlaces()
@@ -112,15 +112,24 @@ const Home = () => {
   }
 
   async function addFavourite(obj) {
-    await db.createDocument(databaseId, "favourites", ID.unique(), {
-      place_id: obj.place_id,
-      user_id: obj.user_id,
-    });
-
-    Notification.success({
-      title: "Success",
-      content: "Added to favourites.",
-    });
+    try{
+      await db.createDocument(databaseId, "favourites", ID.unique(), {
+        place_id: obj.place_id,
+        user_id: obj.user_id,
+      });
+  
+      Notification.success({
+        title: "Success",
+        content: "Added to favourites.",
+      });
+  
+      return true;
+    } catch (error) {
+      Notification.error({
+        title: "Error",
+        content: error.message,
+      });
+    }
   }
 
   return (

@@ -1,6 +1,7 @@
 {
   "name": "traverse",
-  "version": "0.1.0",
+  "version": "1.1.0",
+  "authors": ["bibekshhh", "yaman1337"],
   "private": true,
   "dependencies": {
     "@arco-design/web-react": "^2.48.0",
