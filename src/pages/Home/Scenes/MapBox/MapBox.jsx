@@ -36,29 +36,8 @@ const MapBox = ({paneResized, rawData}) => {
         zoom: 1.5,
       });
 
-      function animateZoom(map, targetZoom, duration) {
-        const startZoom = map.getZoom();
-        const zoomIncrement = (targetZoom - startZoom) / (duration / 16);
-        let currentZoom = startZoom;
-  
-        const interval = setInterval(() => {
-          currentZoom += zoomIncrement;
-          map.setZoom(currentZoom);
-  
-          if (currentZoom >= targetZoom) {
-            map.setZoom(targetZoom);
-            clearInterval(interval);
-          }
-        }, 16);
-      }
-
-      const timer = setTimeout(() => {
-        animateZoom(map, 14, 1000);
-      }, 3500);
-
-
-      // const nav = new mapboxgl.NavigationControl();
-      // map.addControl(nav);
+      const nav = new mapboxgl.NavigationControl();
+      map.addControl(nav);
 
       // map.addControl(
       //   new window.MapboxDirections({
@@ -94,25 +73,52 @@ const MapBox = ({paneResized, rawData}) => {
           .addTo(map);
 
         // Add a click event listener to each marker
-        marker.getElement().addEventListener("click", () => {
+        marker.getElement().addEventListener("click", async () => {
+          console.log(marker._lngLat)
+
+          // Animate zoom to the location specified by lngLat
+          map.flyTo({
+            center: marker._lngLat,
+            zoom: 14,
+            duration: 1000,
+            essential: true,
+          });
+
           // Display a popup with the place description
-          new mapboxgl.Popup({ closeOnClick: false })
+          const popup = new mapboxgl.Popup({ closeOnClick: false })
             .setLngLat([item.coordinates[1], item.coordinates[0]])
             .setHTML(
-              `<div>
-              ${item.title}
-              <hr />
-              ${item.location_description}
-              <hr />
-              ${item.place_description.slice(0, 100)}...
-              </div>`
+              `<div class="places-card">
+                <div class="image">
+                    <img src=${item.image[0]} alt="img" />
+                </div>
+                <div class="card-content">
+                    <div class="keyword">
+                        <p>${item.keyword}</p>
+                    </div>
+                    <div class="header-block">
+                      ${item.title}
+                    </div>
+                    <div class="location-description">
+                      ${item.location_description}
+                    </div>
+                    <div class="description">
+                      ${item.place_description}
+                    </div>
+                </div>
+                <div class="footer-block">
+                    <button class="places-redirect-btn"><a href="#">View</a></button>
+                </div>
+            </div>`
             )
-            .addTo(map);
+            .addTo(map);  
+          
+          popup.addClassName('places-card-popup');
         });
       }
 
       return () => {
-        clearTimeout(timer)
+        map.remove()
       }
     }
   }, [paneResized, data]);

@@ -46,3 +46,126 @@
 .mapbox-directions-component-keyline{
   box-shadow: 0 2.5px 5px #cccc !important;
 }
+
+.places-card-popup .mapboxgl-popup-close-button{
+  background-color: transparent;
+  border: 0;
+  border-radius: 0 3px 0 0;
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  top: 2.5px;
+  font-size: 28px;
+}
+
+/* ------------------------------ */
+/* css for mapbox places card popup */
+
+.places-card-popup .mapboxgl-popup-content{
+  padding: 0px !important;
+}
+
+.places-card{
+  display: flex;
+  flex-direction: column;
+  padding: 1em 1em;
+  width: 240px;
+  height: 310px;
+}
+
+.places-card .image{
+  position: relative;
+  height: 40%;
+  background-color:beige;
+}
+
+.places-card .image img{
+  width: 100%;
+  height: 100%;
+  border: 1px solid #eeee;
+  border-radius: 10px;
+}
+
+.places-card .card-content{
+  padding: 10px 5px;
+  height: 47%;
+  display: flex;
+  flex-direction: column;
+}
+
+.places-card .card-content .keyword{
+  position: absolute;
+  top: 100px;
+  left: 18px;
+}
+
+.places-card .card-content .keyword p{
+  margin: 0;
+  width: max-content;
+  font-size: 12px;
+  padding: 0px 7px;
+  background-color: white;
+  border-radius: 10px;
+}
+
+.places-card .card-content .header-block{
+  padding: 6px 0;
+  padding-bottom: 2px !important;
+  font-size: 18px;
+  font-weight: 500;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* Number of lines to display */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word !important;
+  text-overflow: ellipsis;
+}
+
+.places-card .location-description{
+  font-size: 14px;
+  color: rgb(68, 68, 68);
+  padding-bottom: 5px;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* Number of lines to display */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word !important;
+  text-overflow: ellipsis;
+}
+
+.places-card .card-content .description{
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Number of lines to display */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-word !important;
+  text-overflow: ellipsis;
+  font-size: 13px;
+  padding-top: 3px;
+}
+
+
+.places-card .footer-block{
+  height: 13%;
+  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.places-card .footer-block button.places-redirect-btn{
+  width: max-content;
+  padding: 7px 15px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  background-color: black;
+  font-size: ;
+}
+
+.places-card .footer-block button.places-redirect-btn a{
+  text-decoration: none;
+  color: white;
+  font-size: 13px;
+  font-weight: 500;
+}
