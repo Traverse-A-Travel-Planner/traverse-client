@@ -13,6 +13,7 @@ const MapBox = ({paneResized, rawData}) => {
   }, [rawData]);
 
   useEffect(() => {
+    console.log(data)
     if (data.length === 0) return
 
     navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {
@@ -28,6 +29,13 @@ const MapBox = ({paneResized, rawData}) => {
     }
 
     function setupMap(center) {
+      const map = new mapboxgl.Map({
+        container: "map", // container ID
+        style: "mapbox://styles/mapbox/streets-v12",
+        center: center,
+        zoom: 1.5,
+      });
+
       function animateZoom(map, targetZoom, duration) {
         const startZoom = map.getZoom();
         const zoomIncrement = (targetZoom - startZoom) / (duration / 16);
@@ -44,16 +52,10 @@ const MapBox = ({paneResized, rawData}) => {
         }, 16);
       }
 
-      const map = new mapboxgl.Map({
-        container: "map", // container ID
-        style: "mapbox://styles/mapbox/streets-v12",
-        center: center,
-        zoom: 1.5,
-      });
-
-      setTimeout(() => {
+      const timer = setTimeout(() => {
         animateZoom(map, 14, 1000);
-      }, 2000);
+      }, 3500);
+
 
       // const nav = new mapboxgl.NavigationControl();
       // map.addControl(nav);
@@ -107,6 +109,10 @@ const MapBox = ({paneResized, rawData}) => {
             )
             .addTo(map);
         });
+      }
+
+      return () => {
+        clearTimeout(timer)
       }
     }
   }, [paneResized, data]);

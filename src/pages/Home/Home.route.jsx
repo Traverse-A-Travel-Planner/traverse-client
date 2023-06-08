@@ -85,6 +85,8 @@ const Home = () => {
   }
 
   useEffect(() => {
+    if (!lat || !long) return;
+    // console.log({lat, long})
     fetchPlaces();
   }, [lat, long]);
 
@@ -96,10 +98,10 @@ const Home = () => {
           title: "Success",
           content: "Removed from favourites.",
         });
-        await fetchPlaces();
         return;
       }
 
+      await fetchPlaces()
       await addFavourite(obj);
     } catch (error) {
       Notification.error({
@@ -115,7 +117,6 @@ const Home = () => {
       user_id: obj.user_id,
     });
 
-    await fetchPlaces();
     Notification.success({
       title: "Success",
       content: "Added to favourites.",
