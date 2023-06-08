@@ -139,6 +139,9 @@ const Home = () => {
           title: "Success",
           content: "Removed from favourites.",
         });
+
+        await fetchMapPlaces();
+        setTitle("recommended");
         await fetchFavouritesPlaces();
         return;
       }
@@ -164,6 +167,7 @@ const Home = () => {
         content: "Added to favourites.",
       });
 
+      await fetchMapPlaces();
       await fetchFavouritesPlaces();
       return;
     } catch (error) {
@@ -194,7 +198,6 @@ const Home = () => {
                 <div className="searchBar-container">
                   <MemoizedSearchBar
                     allPlaces={allPlaces}
-                    searchResultData={searchResultData}
                     setSearchResultData={setSearchResultData}
                     setTitle={setTitle}
                     setMapData={setMapData}
