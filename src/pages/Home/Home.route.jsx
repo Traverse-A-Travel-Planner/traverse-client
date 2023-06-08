@@ -57,11 +57,34 @@ const Home = () => {
     }
   );
 
-  const fetchMapPlaces = async () => {    
+  const fetchMapPlaces = async () => {
     const { documents: places } = await db.listDocuments(databaseId, "places", [
       Query.orderDesc("$createdAt"),
     ]);
 
+    let { documents: favourites } = await db.listDocuments(
+      databaseId,
+      "favourites",
+      [Query.equal("user_id", [localStorage.getItem("userId")])]
+    );
+
+    let favouritesPlaceIds = favourites.map((item) => item.place_id);
+    let favouritesDOcIds = favourites.map((item) => item.$id);
+
+    const finalData = places.map((item) => {
+      let idx = favouritesPlaceIds.indexOf(item.$id);
+      if (idx === -1) {
+        return { ...item, isFavourite: false };
+      } else {
+        return {
+          ...item,
+          isFavourite: true,
+          favouriteDocId: favouritesDOcIds[idx],
+        };
+      }
+    });
+
+    setAllPlaces(finalData);
     setMapData(places);
     return places;
   };
@@ -70,8 +93,8 @@ const Home = () => {
     try {
       let places = mapData;
 
-      if (!places || !places.length){
-        places = await fetchMapPlaces()
+      if (!places || !places.length) {
+        places = await fetchMapPlaces();
       }
 
       let { documents: favourites } = await db.listDocuments(
@@ -95,7 +118,7 @@ const Home = () => {
           };
         }
       });
-    
+
       setSearchResultData(finalData);
     } catch {
       Message.error("Something went wrong");

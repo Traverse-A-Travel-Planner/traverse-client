@@ -55,6 +55,9 @@ const SearchBar = ({
   }, []);
 
   const updateTheme = async (theme) => {
+
+    
+
     if (theme === "recommended") {
       setSearchResultData(allPlaces);
       setTitle("Recommended");
