@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ResizeBox, Notification } from "@arco-design/web-react";
+import { ResizeBox, Notification, Message } from "@arco-design/web-react";
 
 // importing components
 import Header from "../../components/Header/Header";
@@ -35,6 +35,7 @@ const Home = () => {
 
   const [paneResized, setPaneResized] = useState(false);
   const [searchResultData, setSearchResultData] = useState([]);
+  const [mapData, setMapData] = useState([])
   const [title, setTitle] = useState("Recommended");
 
   const [lat, setLat] = useState(0);
@@ -54,41 +55,63 @@ const Home = () => {
     }
   );
 
-  async function fetchPlaces() {
+  const fetchMapPlaces = async () => {    
+    console.log("refetched")
     const { documents: places } = await db.listDocuments(databaseId, "places", [
       Query.orderDesc("$createdAt"),
     ]);
 
-    let { documents: favourites } = await db.listDocuments(
-      databaseId,
-      "favourites",
-      [Query.equal("user_id", [localStorage.getItem("userId")])]
-    );
+    setMapData(places)
+    return places
+  }
 
-    let favouritesPlaceIds = favourites.map((item) => item.place_id);
-    let favouritesDOcIds = favourites.map((item) => item.$id);
+  const fetchFavouritesPlaces = async () => {
+    try{
+      let places = mapData;
+      console.log("before: ", places)
+      console.log(places.length)
 
-    const finalData = places.map((item) => {
-      let idx = favouritesPlaceIds.indexOf(item.$id);
-      if (idx === -1) {
-        return { ...item, isFavourite: false };
-      } else {
-        return {
-          ...item,
-          isFavourite: true,
-          favouriteDocId: favouritesDOcIds[idx],
-        };
+      if (!places || !places.length){
+        console.log("MapData not found")
+        places = await fetchMapPlaces()
       }
-    });
-
-    setSearchResultData(finalData);
+  
+      let { documents: favourites } = await db.listDocuments(
+        databaseId,
+        "favourites",
+        [Query.equal("user_id", [localStorage.getItem("userId")])]
+      );
+  
+      let favouritesPlaceIds = favourites.map((item) => item.place_id);
+      let favouritesDOcIds = favourites.map((item) => item.$id);
+  
+      const finalData = places.map((item) => {
+        let idx = favouritesPlaceIds.indexOf(item.$id);
+        if (idx === -1) {
+          return { ...item, isFavourite: false };
+        } else {
+          return {
+            ...item,
+            isFavourite: true,
+            favouriteDocId: favouritesDOcIds[idx],
+          };
+        }
+      });
+  
+      console.log("favourites list", finalData)
+  
+      setSearchResultData(finalData);
+    } catch {
+      Message.error("Something went wrong")
+    }
   }
 
   useEffect(() => {
     if (!lat || !long) return;
     // console.log({lat, long})
-    fetchPlaces();
+    fetchFavouritesPlaces();
   }, [lat, long]);
+
 
   async function handleAddFavourites(obj) {
     try {
@@ -98,10 +121,10 @@ const Home = () => {
           title: "Success",
           content: "Removed from favourites.",
         });
-        return true;
+        await fetchFavouritesPlaces()
+        return;
       }
 
-      await fetchPlaces()
       await addFavourite(obj);
     } catch (error) {
       Notification.error({
@@ -123,7 +146,8 @@ const Home = () => {
         content: "Added to favourites.",
       });
   
-      return true;
+      await fetchFavouritesPlaces()
+      return;
     } catch (error) {
       Notification.error({
         title: "Error",
@@ -163,7 +187,7 @@ const Home = () => {
                   handleAddFavourites={handleAddFavourites}
                 />
               </div>,
-              <MapBoxComponent paneResized={paneResized} data={searchResultData}/>,
+              <MapBoxComponent paneResized={paneResized} data={mapData}/>,
             ]}
           />
         </div>
