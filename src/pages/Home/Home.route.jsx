@@ -24,7 +24,7 @@ const MapBoxComponent = ({ paneResized, data }) => {
   return (
     <>
       <div className="mapBox">
-        <MapBox paneResized={paneResized} rawData={data}/>
+        <MapBox paneResized={paneResized} rawData={data} />
       </div>
     </>
   );
@@ -33,9 +33,11 @@ const MapBoxComponent = ({ paneResized, data }) => {
 const Home = () => {
   const db = new Databases(appwriteClient);
 
+  const [allPlaces, setAllPlaces] = useState([]);
+
   const [paneResized, setPaneResized] = useState(false);
   const [searchResultData, setSearchResultData] = useState([]);
-  const [mapData, setMapData] = useState([])
+  const [mapData, setMapData] = useState([]);
   const [title, setTitle] = useState("Recommended");
 
   const [lat, setLat] = useState(0);
@@ -55,36 +57,36 @@ const Home = () => {
     }
   );
 
-  const fetchMapPlaces = async () => {    
-    console.log("refetched")
+  const fetchMapPlaces = async () => {
+    console.log("refetched");
     const { documents: places } = await db.listDocuments(databaseId, "places", [
       Query.orderDesc("$createdAt"),
     ]);
 
-    setMapData(places)
-    return places
-  }
+    setMapData(places);
+    return places;
+  };
 
   const fetchFavouritesPlaces = async () => {
-    try{
+    try {
       let places = mapData;
-      console.log("before: ", places)
-      console.log(places.length)
+      console.log("before: ", places);
+      console.log(places.length);
 
-      if (!places || !places.length){
-        console.log("MapData not found")
-        places = await fetchMapPlaces()
+      if (!places || !places.length) {
+        console.log("MapData not found");
+        places = await fetchMapPlaces();
       }
-  
+
       let { documents: favourites } = await db.listDocuments(
         databaseId,
         "favourites",
         [Query.equal("user_id", [localStorage.getItem("userId")])]
       );
-  
+
       let favouritesPlaceIds = favourites.map((item) => item.place_id);
       let favouritesDOcIds = favourites.map((item) => item.$id);
-  
+
       const finalData = places.map((item) => {
         let idx = favouritesPlaceIds.indexOf(item.$id);
         if (idx === -1) {
@@ -97,21 +99,20 @@ const Home = () => {
           };
         }
       });
-  
-      console.log("favourites list", finalData)
-  
+
+      console.log("favourites list", finalData);
+      setAllPlaces(finalData);
       setSearchResultData(finalData);
     } catch {
-      Message.error("Something went wrong")
+      Message.error("Something went wrong");
     }
-  }
+  };
 
   useEffect(() => {
     if (!lat || !long) return;
     // console.log({lat, long})
     fetchFavouritesPlaces();
   }, [lat, long]);
-
 
   async function handleAddFavourites(obj) {
     try {
@@ -121,7 +122,7 @@ const Home = () => {
           title: "Success",
           content: "Removed from favourites.",
         });
-        await fetchFavouritesPlaces()
+        await fetchFavouritesPlaces();
         return;
       }
 
@@ -135,18 +136,18 @@ const Home = () => {
   }
 
   async function addFavourite(obj) {
-    try{
+    try {
       await db.createDocument(databaseId, "favourites", ID.unique(), {
         place_id: obj.place_id,
         user_id: obj.user_id,
       });
-  
+
       Notification.success({
         title: "Success",
         content: "Added to favourites.",
       });
-  
-      await fetchFavouritesPlaces()
+
+      await fetchFavouritesPlaces();
       return;
     } catch (error) {
       Notification.error({
@@ -175,8 +176,11 @@ const Home = () => {
               <div className="content">
                 <div className="searchBar-container">
                   <MemoizedSearchBar
+                    allPlaces={allPlaces}
+                    searchResultData={searchResultData}
                     setSearchResultData={setSearchResultData}
                     setTitle={setTitle}
+                    setMapData={setMapData}
                     lat={lat}
                     long={long}
                   />
@@ -187,7 +191,7 @@ const Home = () => {
                   handleAddFavourites={handleAddFavourites}
                 />
               </div>,
-              <MapBoxComponent paneResized={paneResized} data={mapData}/>,
+              <MapBoxComponent paneResized={paneResized} data={mapData} />,
             ]}
           />
         </div>
