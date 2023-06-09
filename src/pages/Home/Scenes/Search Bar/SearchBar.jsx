@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "./SearchBar.css";
 import { Databases, Query } from "appwrite";
@@ -10,31 +10,94 @@ mapboxgl.accessToken =
 
 const db = new Databases(appwriteClient);
 
-function setupMap(center) {
+function setupMap(center, data) {
   const map = new mapboxgl.Map({
     container: "map", // container ID
-    style: "mapbox://styles/mapbox/streets-v11",
+    style: "mapbox://styles/mapbox/streets-v12",
     center: center,
-    zoom: 14,
+    zoom: 7,
   });
 
   const nav = new mapboxgl.NavigationControl();
   map.addControl(nav);
 
-  map.addControl(
-    new window.MapboxDirections({
-      accessToken: mapboxgl.accessToken,
-    }),
-    "top-left"
-  );
+  // map.addControl(
+  //   new window.MapboxDirections({
+  //     accessToken: mapboxgl.accessToken,
+  //   }),
+  //   "top-left"
+  // );
+
+  map.on("click", function (e) {
+    // var coordinates = e.lngLat;
+    // updateMarker(coordinates);
+    // console.log(coordinates)
+  });
 
   // Set marker options.
-  // const marker = new mapboxgl.Marker({
-  //   color: "red",
-  //   draggable: true,
-  // })
-  // .setLngLat(center)
-  // .addTo(map);
+  const markerOptions = {
+    color: "red",
+    draggable: true,
+  };
+
+  new mapboxgl.Marker(markerOptions).setLngLat(center).addTo(map);
+
+  // function updateMarker(coordinates) {
+  //   marker.setLngLat(coordinates);
+  // }
+
+  for (let i = 0; i < data?.length; i++) {
+    let item = data[i];
+    const marker = new mapboxgl.Marker({
+      color: "rgb(137, 43, 225)",
+    })
+      .setLngLat([item.coordinates[1], item.coordinates[0]])
+      .addTo(map);
+
+    // Add a click event listener to each marker
+    marker.getElement().addEventListener("click", async () => {
+      console.log(marker._lngLat);
+
+      // Animate zoom to the location specified by lngLat
+      map.flyTo({
+        center: marker._lngLat,
+        zoom: 14,
+        duration: 1000,
+        essential: true,
+      });
+
+      // Display a popup with the place description
+      const popup = new mapboxgl.Popup({ closeOnClick: false })
+        .setLngLat([item.coordinates[1], item.coordinates[0]])
+        .setHTML(
+          `<div class="places-card">
+            <div class="image">
+                <img src=${item.image[0]} alt="img" />
+            </div>
+            <div class="card-content">
+                <div class="keyword">
+                    <p>${item.keyword}</p>
+                </div>
+                <div class="header-block">
+                  ${item.title}
+                </div>
+                <div class="location-description">
+                  ${item.location_description}
+                </div>
+                <div class="description">
+                  ${item.place_description}
+                </div>
+            </div>
+            <div class="footer-block">
+                <button class="places-redirect-btn"><a href="#">View</a></button>
+            </div>
+        </div>`
+        )
+        .addTo(map);
+
+      popup.addClassName("places-card-popup");
+    });
+  }
 }
 
 const SearchBar = ({
@@ -45,18 +108,26 @@ const SearchBar = ({
   lat,
   long,
 }) => {
+  const geocoder = new window.MapboxGeocoder({
+    accessToken: mapboxgl.accessToken,
+    types: "country,region,place,postcode,locality,neighborhood",
+  });
+
+  const [newGeoCoded, setNewGeoCoded] = useState(0);
+
+  geocoder.on("result", (e) => {
+    setNewGeoCoded(e);
+  });
+
   useEffect(() => {
-    const geocoder = new window.MapboxGeocoder({
-      accessToken: mapboxgl.accessToken,
-      types: "country,region,place,postcode,locality,neighborhood",
-    });
-
     geocoder.addTo("#geocoder");
-
-    geocoder.on("result", (e) => {
-      setupMap(e.result.center);
-    });
   }, []);
+
+  useEffect(() => {
+    if (!newGeoCoded) return;
+    console.log("hehe", allPlaces);
+    setupMap(newGeoCoded.result.center, allPlaces);
+  }, [newGeoCoded]);
 
   const updateTheme = async (theme) => {
     if (theme === "recommended") {
