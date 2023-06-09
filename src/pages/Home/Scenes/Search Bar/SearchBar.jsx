@@ -1,9 +1,14 @@
 import React, { useEffect } from "react";
 import mapboxgl from "mapbox-gl";
 import "./SearchBar.css";
+import { Databases, Query } from "appwrite";
+import appwriteClient from "../../../../Services/appwriteClient";
+import { databaseId } from "../../../../Services/config";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoieWFtYW4xMzM3IiwiYSI6ImNrd3V4cWRrejFjcnIydXFxcHNjcG9hbHMifQ.0MvUydr2xdlAEM2eVWqEkw";
+
+const db = new Databases(appwriteClient);
 
 function setupMap(center) {
   const map = new mapboxgl.Map({
@@ -34,7 +39,6 @@ function setupMap(center) {
 
 const SearchBar = ({
   allPlaces,
-  searchResultData,
   setSearchResultData,
   setTitle,
   setMapData,
