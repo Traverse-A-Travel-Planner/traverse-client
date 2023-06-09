@@ -2,6 +2,7 @@ import {
     Form,
     Input,
 } from '@arco-design/web-react';
+import { useNavigate } from 'react-router-dom';
 
 const FormItem = Form.Item;
 const TextArea = Input.TextArea;
@@ -12,6 +13,7 @@ const inputStyle = {
 }
 
 const PlaceDescription = ({state}) => {
+  const navigate = useNavigate();
     return(
         <>
         <div className="right item">
@@ -28,7 +30,10 @@ const PlaceDescription = ({state}) => {
             <FormItem>
                 <button
                   className="dashboard-form-submit-btn mt-4"
-                  onClick={async () => state.handleAddPlace()}
+                  onClick={async () => {
+                    state.handleAddPlace()
+                    navigate("/contribute")
+                  }}
                   type='primary'
                   style={{ marginRight: 24 }}
                 >
