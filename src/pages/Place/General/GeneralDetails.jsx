@@ -13,7 +13,6 @@ function GeneralDetails({state}) {
                 minWidth: 400,
                 width: '100%',
                 height: '300px', 
-                background: "linear-gradient(90deg, var(--color-fill-3) 25%, var(--color-fill-1) 37%, var(--color-fill-3) 63%)",
             } 
         }}
         image={{ 

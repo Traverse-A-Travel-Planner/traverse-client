@@ -1,11 +1,10 @@
 import { useState, useCallback, useEffect } from "react";
-import { Link } from "react-router-dom";
 
 // importing styles
 import "./Review.css"
 
 // importing components from arco-design
-import { Typography, Select, Spin, Message, Rate, Image, Button } from "@arco-design/web-react"
+import { Typography, Select, Spin, Message, Rate, Button, Skeleton } from "@arco-design/web-react"
 
 // importing appwrite libs
 import { Databases, Query } from "appwrite";
@@ -135,13 +134,34 @@ const ReviewTab = ({state}) => {
                 </Select>
             </div>
             </div>
+
             {
                 loading === true ? (
-                    <Spin className="ms-4 mt-3 mb-4" />
-                ) : state.length === 0 ? (
-                    <Typography.Title className="ms-4 pb-3" heading={6} bold>
-                        No reviews posted yet
-                    </Typography.Title>
+                    <Skeleton
+                        style={{margin: '15px 0 0 20px'}}
+                        loading={loading}
+                        text={{
+                            rows: 3, 
+                            width: '100%',
+                            style: {
+                                minWidth: 250,
+                                width: '100%',
+                                height: 100, 
+                            } 
+                        }}
+                        image={{ 
+                            shape: "square", 
+                            style: {
+                                width: 50,
+                                height: 50,
+                            } 
+                        }}
+                        animation
+                    />
+                    ) : state.length === 0 ? (
+                        <Typography.Title className="ms-4 pb-3" heading={6} bold>
+                            No reviews posted yet
+                        </Typography.Title>
                     ) : (
                         reviews.map((item, index) => {
                         return (
@@ -204,7 +224,13 @@ const ReviewTab = ({state}) => {
                             </div> */}
                             </div>
                             <div className="review-actions">
-                                <DropdownActions actions={actions} />
+                                {
+                                    state.placeData.author_id === item.author_id ? (
+                                        <DropdownActions actions={actions} />
+                                    ) : (
+                                        <></>
+                                    )
+                                }
                             </div>
                         </div>
                         );
