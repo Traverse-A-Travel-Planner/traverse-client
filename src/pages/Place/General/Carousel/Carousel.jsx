@@ -3,11 +3,14 @@ import { Carousel, Image } from '@arco-design/web-react';
 function ImgComponent(props) {
   const { src, style, className } = props;
   return (
-    <div style={style} className={className}>
+    <div 
+    style={{ ...style, borderRadius: '10px' }}
+    className={className}>
       <Image
         src={src}
         width={430}
         height={300}
+        style={{borderRadius: '10px'}}
         alt='img'
       />
     </div>

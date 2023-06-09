@@ -96,3 +96,7 @@
     padding-bottom: 4em;
     background-color: white;
 }
+
+.place-content .arco-carousel-indicator-wrapper-bottom{
+    border-radius: 10px !important;
+}
