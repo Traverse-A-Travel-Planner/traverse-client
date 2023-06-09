@@ -68,7 +68,9 @@ const MapBox = ({paneResized, rawData}) => {
 
       for (let i = 0; i < data?.length; i++) {
         let item = data[i];
-        const marker = new mapboxgl.Marker()
+        const marker = new mapboxgl.Marker({
+          color: 'rgb(137, 43, 225)'
+        })
           .setLngLat([item.coordinates[1], item.coordinates[0]])
           .addTo(map);
 

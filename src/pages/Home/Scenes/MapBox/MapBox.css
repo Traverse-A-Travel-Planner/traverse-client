@@ -76,7 +76,6 @@
 .places-card .image{
   position: relative;
   height: 40%;
-  background-color:beige;
 }
 
 .places-card .image img{
@@ -154,13 +153,12 @@
 }
 
 .places-card .footer-block button.places-redirect-btn{
-  width: max-content;
-  padding: 7px 15px;
+  width: 100%;
+  padding: 10px 15px;
   border-radius: 5px;
   border: none;
   outline: none;
   background-color: black;
-  font-size: ;
 }
 
 .places-card .footer-block button.places-redirect-btn a{
@@ -168,4 +166,8 @@
   color: white;
   font-size: 13px;
   font-weight: 500;
+}
+
+.places-card-popup .mapboxgl-popup-content{
+  border-radius: 15px;
 }

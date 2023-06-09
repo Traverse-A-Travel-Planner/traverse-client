@@ -48,7 +48,7 @@ const SearchResult = ({ title, searchResultData, handleAddFavourites }) => {
                         <Spin />
                       ) : (
                         item.isFavourite ? (
-                          <i className="bi bi-bookmark-check-fill"></i>
+                          <i className="bi bi-bookmark-check-fill favourited"></i>
                         ) : (
                           <i className="bi bi-bookmark"></i>
                         )

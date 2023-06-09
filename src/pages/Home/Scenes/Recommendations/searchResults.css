@@ -91,6 +91,9 @@ div.recommended-places .places-list .place-item .favourites {
 }
 
 
+.favourites i.favourited{
+    color: rgb(137, 43, 225);
+}
 /* ------- */
 
 

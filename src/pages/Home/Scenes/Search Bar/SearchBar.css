@@ -2,6 +2,7 @@
 
 .body-container .main-body .content {
   padding: 15px 20px;
+  padding-bottom: 0px !important;
   display: flex;
   flex-direction: column;
   justify-content: center;
