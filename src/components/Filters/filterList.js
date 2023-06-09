@@ -1,55 +1,53 @@
 function filterByRecent(params) {
-    const {data} = params;
+  const { data } = params;
+  console.log("filter by recent.");
+  const newData = data.sort((a, b) => {
+    const dateA = new Date(a.$createdAt);
+    const dateB = new Date(b.$createdAt);
+    return dateB - dateA;
+  });
 
-    const newData = data.sort((a, b) => {
-      const dateA = new Date(a.$createdAt);
-      const dateB = new Date(b.$createdAt);
-      return dateB - dateA;
-    });
-
-    console.log("recent", newData)
-    return newData
+  return newData;
 }
 
 function filterByRating(params) {
-    const {data} = params;
-
-    const newData = data.sort((a, b) => b.rating - a.rating);
-    console.log("rating", newData)
-    return newData
+  const { data } = params;
+  console.log("filter by rating.");
+  const newData = data.sort((a, b) => b.rating - a.rating);
+  return newData;
 }
-  
+
 function filterByOldest(params) {
-    const {data} = params;
+  const { data } = params;
+  console.log("filter by oldest.");
+  const newData = data.sort((a, b) => {
+    const dateA = new Date(a.$createdAt);
+    const dateB = new Date(b.$createdAt);
+    return dateA - dateB;
+  });
 
-    const newData = data.sort((a, b) => {
-      const dateA = new Date(a.$createdAt);
-      const dateB = new Date(b.$createdAt);
-      return dateA - dateB;
-    });
-
-    console.log("oldest", newData)
-    return newData
+  return newData;
 }
 
 function filterData(data, filterType) {
-  const params = { data, filterType }
+  const params = { data, filterType };
 
-    console.log(filterType)
-    var newData = [];
-    switch (filterType) {
-      case "Recent":
-        newData = filterByRecent(params);
-        return newData
-      case "Oldest":
-        newData = filterByOldest(params);
-        return newData;
-      case "Ratings":
-        newData = filterByRating(params);
-        return newData;
-      default:
-        return data
-    }
+  console.log(filterType);
+  var newData = [];
+  switch (filterType) {
+    case "Recent":
+      newData = filterByRecent(params);
+      break;
+    case "Oldest":
+      newData = filterByOldest(params);
+      break;
+    case "Ratings":
+      newData = filterByRating(params);
+      break;
+    default:
+      newData = data;
+  }
+  return newData;
 }
 
 export default filterData;

@@ -4,7 +4,7 @@ import {
   Image,
   Button,
   Notification,
-  Spin
+  Spin,
 } from "@arco-design/web-react";
 import { Select, Message } from "@arco-design/web-react";
 
@@ -88,10 +88,10 @@ const ListReviews = ({ data }) => {
           [Query.equal("author_id", localStorage.getItem("userId"))]
         );
 
-        if (myReviews.length === 0){
+        if (myReviews.length === 0) {
           setLoading(false);
-          return
-        };
+          return;
+        }
         const { documents: reviewedPlaces } = await db.listDocuments(
           databaseId,
           "places",
@@ -129,21 +129,19 @@ const ListReviews = ({ data }) => {
   }, []);
 
   useEffect(() => {
-    setReviews(filteredData)
-  }, [filteredData])
+    setReviews(() => filteredData.map((i) => i));
+  }, [filteredData]);
 
-  const handleFilterClick = (value) => {
+  const handleFilterClick = async (value) => {
     const newData = filterData(reviews, value);
-    setFilteredData(newData)
-    
-    console.log(value)
+
+    setFilteredData(newData);
+
     Message.info({
       content: `Filtered reviews to ${value}.`,
       showIcon: true,
     });
   };
-
-  console.log(reviews)
 
   return (
     <div className="main-body">
