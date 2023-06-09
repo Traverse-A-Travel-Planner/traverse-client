@@ -69,11 +69,11 @@ const ListReviews = ({ data }) => {
     }
 
     // updating the ratings object
-    obj.oneStar = Math.floor((ratings[0] / total) * 100);
-    obj.twoStar = Math.floor((ratings[1] / total) * 100);
-    obj.threeStar = Math.floor((ratings[2] / total) * 100);
-    obj.fourStar = Math.floor((ratings[3] / total) * 100);
-    obj.fiveStar = Math.floor((ratings[4] / total) * 100);
+    obj.oneStar = Math.floor((ratings[0] / total) * 100) || 0;
+    obj.twoStar = Math.floor((ratings[1] / total) * 100) || 0;
+    obj.threeStar = Math.floor((ratings[2] / total) * 100) || 0;
+    obj.fourStar = Math.floor((ratings[3] / total) * 100) || 0;
+    obj.fiveStar = Math.floor((ratings[4] / total) * 100) || 0;
     obj.totalReviewsPublished = total;
     setInsights(obj);
   }

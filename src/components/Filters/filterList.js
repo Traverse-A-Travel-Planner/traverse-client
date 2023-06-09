@@ -32,7 +32,6 @@ function filterByOldest(params) {
 function filterData(data, filterType) {
   const params = { data, filterType };
 
-  console.log(filterType);
   var newData = [];
   switch (filterType) {
     case "Recent":

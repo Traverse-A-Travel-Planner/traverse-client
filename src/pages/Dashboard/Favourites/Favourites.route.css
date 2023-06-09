@@ -75,6 +75,12 @@ p.favourites-header {
     font-weight: 500;
     font-size: 19px;
     text-align: left;
+    display: -webkit-box;
+    -webkit-line-clamp: 1; /* Number of lines to display */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word !important;
+    text-overflow: ellipsis;
 }
 
 .favourites-content .favourites-item .description {

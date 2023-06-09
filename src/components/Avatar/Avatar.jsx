@@ -9,7 +9,7 @@ const UserAvatar = ({ initials, size }) => {
   const [avatarUrl, setAvatarUrl] = useState('');
 
   // default initials avatar
-  const getInitials = (name) => {
+  const getInitials = (name="") => {
     const words = name.split(' ');
     const initials = words.map(word => word.charAt(0));
     return initials.join('');

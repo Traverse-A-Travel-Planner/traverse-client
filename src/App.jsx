@@ -25,6 +25,7 @@ import PageNotFound from "./pages/pageNotFound.jsx";
 import Changepassword from "./pages/Dashboard/Actions/ChangePassword/Changepassword.jsx";
 import ListReviews from "./pages/Dashboard/Reviews/ListReviews";
 import Contributions from "./pages/Dashboard/Contributions/Contributions";
+import PlaceSpecificPage from "./pages/Place/Place.route";
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -72,6 +73,8 @@ const App = () => {
                   <Route path="/reviews" element={<ListReviews data={user_details} />} />
                   <Route path="/changePassword" element={<Changepassword data={user_details} />} />
                   <Route path="/contribute" element={<Contributions data={user_details}/>} />
+
+                  <Route path="/place" element={<PlaceSpecificPage />} />
 
                   {/* 👇️ only match this when no other routes match */}
                   <Route path="*" element={<PageNotFound />} />

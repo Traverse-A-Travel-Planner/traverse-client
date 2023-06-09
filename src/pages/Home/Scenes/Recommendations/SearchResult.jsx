@@ -3,6 +3,7 @@ import React, { useState } from "react";
 //importing styles
 import "./searchResults.css";
 import { Spin } from "@arco-design/web-react";
+import { useNavigate } from "react-router-dom";
 
 function capitalizeFirstCharacter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -10,10 +11,15 @@ function capitalizeFirstCharacter(string) {
 
 const ResultCard = ({ item, handleAddFavourites }) => {
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate()
+
+  const handlePageRouting = (item) => {
+    navigate(`place?id=${item.$id}`)
+  }
 
   return (
     <>
-      <div className="place-item">
+      <div className="place-item" onClick={() => handlePageRouting(item)}>
         <div className="image">
           <img src={item.image[0]} alt="img" />
         </div>
