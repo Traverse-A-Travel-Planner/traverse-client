@@ -1,5 +1,11 @@
-#  Welcome To Traverse :tw-1f60d:
+<h1 align="center">Welcome To Traverse 👋</h1>
 
+
+## 🔗 Try it out here .
+- [Production Server](https://traverse-rho.vercel.app/)
+
+
+## 🏄🏼‍♀️ Plan your next trip with us  👇
 
 ![ss](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/648315553b0f625ac6ea/view?project=64777ba0910c827a975b&mode=admin)
 
@@ -15,11 +21,11 @@
 
 
 
-## Tech Stack
+## 👨🏼‍💻 Tech Stack
 
 **Client:** React, Arco Design, MapBox GL
 
-**Server:**: Appwrite
+**Server**: Appwrite
 
 **Other**: OpenAI
 
@@ -94,3 +100,20 @@ Deploy the cloud function
 - There is a serverless function in `serverless_function/postInsights`. Deploy it and set the necessary environment variable from your cloud function dashboard.
 
 - Navigate to [http://localhost:3000](http://localhost:3000)
+
+## Developers
+- [Yaman Sarabariya](https://github.com/yaman1337)
+- [Bibek Shah](https://github.com/bibekshhh)
+
+
+## License
+
+[MIT](https://github.com/Traverse-A-Travel-Planner/traverse-client/blob/main/LICENSE)
+
+## Contributing
+
+Contributions are always welcome!
+
+See `contributing.md` for ways to get started.
+
+Please adhere to this project's `code of conduct`.
