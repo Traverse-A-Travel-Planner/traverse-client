@@ -108,11 +108,6 @@ const SearchBar = ({
 
     geocoder.addTo("#geocoder");
 
-    return () => {
-      // Cleanup function
-      geocoder.off("result");
-      geocoder.remove();
-    }
   }, []);
 
   useEffect(() => {
