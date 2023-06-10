@@ -3,8 +3,9 @@ import ImageCarousel from './Carousel/Carousel';
 
 function GeneralDetails({state}) {
   return (
-    <div>
-    <Skeleton
+    <>
+    <div className="image-section">
+        <Skeleton
         loading={state.loading}
         text={{
             rows: 6, 
@@ -29,6 +30,8 @@ function GeneralDetails({state}) {
         <ImageCarousel state={state} />
     </Skeleton>
     </div>
+    <div className="data-section"></div>
+    </>
   );
 }
 

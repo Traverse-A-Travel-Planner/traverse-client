@@ -33,6 +33,7 @@ const Home = () => {
   const db = new Databases(appwriteClient);
 
   const [paneResized, setPaneResized] = useState(false);
+  const [allPlaces, setAllPlaces] = useState([])
   const [searchResultData, setSearchResultData] = useState([]);
   const [mapData, setMapData] = useState([]);
   const [title, setTitle] = useState("Recommended");
@@ -63,6 +64,7 @@ const Home = () => {
       ]);
 
       setMapData(places);
+      setAllPlaces(places)
       setMapDataLoading(false)
       return places;
     } catch (error) {
@@ -180,7 +182,7 @@ const Home = () => {
               <div className="content">
                 <div className="searchBar-container">
                   <MemoizedSearchBar
-                    allPlaces={mapData}
+                    allPlaces={allPlaces}
                     setSearchResultData={setSearchResultData}
                     setTitle={setTitle}
                     setMapData={setMapData}
