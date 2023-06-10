@@ -114,7 +114,7 @@ const Home = () => {
     // console.log({lat, long})
     console.log(mapDataLoading)
     fetchFavouritesPlaces();
-  }, [lat, long]);
+  }, [lat, long, mapData]);
 
   async function handleAddFavourites(obj) {
     try {
@@ -186,8 +186,6 @@ const Home = () => {
                     setSearchResultData={setSearchResultData}
                     setTitle={setTitle}
                     setMapData={setMapData}
-                    lat={lat}
-                    long={long}
                   />
                 </div>
                 <SearchResult

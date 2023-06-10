@@ -1,13 +1,19 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Notification, Spin } from "@arco-design/web-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
+// arco-design components
+import { Notification, Spin, Typography } from "@arco-design/web-react";
+
+// importing appwrite functions and constants
 import { Account } from "appwrite";
 import appwriteClient from "../../Services/appwriteClient";
 
-import LoginArt from "./artt.svg";
+// login assets
+import LoginArt from "./login-art.svg";
+
 import "./login.route.css";
+
+// importing components
 import Header from ".././../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 
@@ -67,7 +73,14 @@ const Login = ({ logStatus }) => {
         </div>
         <div className="login-form-container">
           <div className="login-form">
-            <h3 className="org-name">Traverse</h3>
+            <Typography.Text 
+              type="primary"
+              className="my-3"
+              style={{fontSize: 22}}
+              bold
+              >
+                Login to continue..
+            </Typography.Text>
             <input
               type="text"
               value={email}

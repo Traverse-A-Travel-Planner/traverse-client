@@ -1,15 +1,18 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-import { Link } from "react-router-dom";
-
-import LoginArt from "../Login/artt.svg";
-import "./signup.route.css";
-import { Notification, Spin } from "@arco-design/web-react";
-
+// importing appwrite functions and constants
 import { Account } from "appwrite";
 import appwriteClient from "../../Services/appwriteClient";
 
+// arco-design components
+import { Notification, Spin, Typography } from "@arco-design/web-react";
+
+// signup assets
+import SignupArt from "./signup-art.svg";
+import "./signup.route.css";
+
+// importing components
 import Footer from "../../components/Footer/Footer";
 import Header from ".././../components/Header/Header";
 
@@ -61,13 +64,20 @@ const Signup = () => {
   return (
     <>
       <Header />
-      <div className="login-form-main-wrapper">
+      <div className="signup-form-main-wrapper">
         <div className="img-container">
-          <img src={LoginArt} alt="login art" />
+          <img src={SignupArt} alt="signup art" />
         </div>
-        <div className="login-form-container">
-          <div className="login-form">
-            <h3 className="org-name">Traverse</h3>
+        <div className="signup-form-container">
+          <div className="signup-form">
+            <Typography.Text 
+            type="primary"
+            className="my-3"
+            style={{fontSize: 22}}
+            bold
+            >
+              Explore further. Signup now.
+            </Typography.Text>
 
             <input
               type="text"
@@ -113,7 +123,7 @@ const Signup = () => {
               </button>
             </Spin>
           </div>
-          <div className="signup-div">
+          <div className="login-div">
             <p>
               Already have an account?  <Link style={{ textDecoration: "none", color: "black" }} to="/login">
                Login

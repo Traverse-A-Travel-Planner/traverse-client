@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from "react";
 import mapboxgl from "mapbox-gl";
 import "./SearchBar.css";
-import { Databases, Query } from "appwrite";
-import appwriteClient from "../../../../Services/appwriteClient";
-import { databaseId } from "../../../../Services/config";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoieWFtYW4xMzM3IiwiYSI6ImNrd3V4cWRrejFjcnIydXFxcHNjcG9hbHMifQ.0MvUydr2xdlAEM2eVWqEkw";
-
-const db = new Databases(appwriteClient);
 
 function setupMap(center, data) {
   const map = new mapboxgl.Map({
@@ -21,19 +16,6 @@ function setupMap(center, data) {
   const nav = new mapboxgl.NavigationControl();
   map.addControl(nav);
 
-  // map.addControl(
-  //   new window.MapboxDirections({
-  //     accessToken: mapboxgl.accessToken,
-  //   }),
-  //   "top-left"
-  // );
-
-  map.on("click", function (e) {
-    // var coordinates = e.lngLat;
-    // updateMarker(coordinates);
-    // console.log(coordinates)
-  });
-
   // Set marker options.
   const markerOptions = {
     color: "red",
@@ -41,10 +23,6 @@ function setupMap(center, data) {
   };
 
   new mapboxgl.Marker(markerOptions).setLngLat(center).addTo(map);
-
-  // function updateMarker(coordinates) {
-  //   marker.setLngLat(coordinates);
-  // }
 
   for (let i = 0; i < data?.length; i++) {
     let item = data[i];
@@ -104,32 +82,48 @@ const SearchBar = ({
   allPlaces,
   setSearchResultData,
   setTitle,
-  setMapData,
-  lat,
-  long,
+  setMapData
 }) => {
-  const geocoder = new window.MapboxGeocoder({
-    accessToken: mapboxgl.accessToken,
-    types: "country,region,place,postcode,locality,neighborhood",
-  });
-
   const [newGeoCoded, setNewGeoCoded] = useState(0);
+  const [activeTheme, setActiveTheme] = useState("recommended");
 
-  geocoder.on("result", (e) => {
-    setNewGeoCoded(e);
-  });
+  const themes = [
+    { id: "recommended", label: "Recommended" },
+    { id: "historic", label: "Historic" },
+    { id: "religious", label: "Religious" },
+    { id: "park", label: "Park" },
+    { id: "nature", label: "Nature" },
+    { id: "others", label: "Others" }
+  ];
 
   useEffect(() => {
+    const geocoder = new window.MapboxGeocoder({
+      accessToken: mapboxgl.accessToken,
+      types: "country,region,place,postcode,locality,neighborhood",
+    });
+
+    geocoder.on("result", (e) => {
+      setNewGeoCoded(e);
+    });
+
     geocoder.addTo("#geocoder");
+
+    return () => {
+      // Cleanup function
+      geocoder.off("result");
+      geocoder.remove();
+    }
   }, []);
 
   useEffect(() => {
     if (!newGeoCoded) return;
     console.log("hehe", allPlaces);
     setupMap(newGeoCoded.result.center, allPlaces);
-  }, [newGeoCoded]);
+  }, [newGeoCoded, allPlaces]);
 
   const updateTheme = async (theme) => {
+    setActiveTheme(theme);
+
     if (theme === "recommended") {
       setSearchResultData(allPlaces);
       setTitle("Recommended");
@@ -148,28 +142,17 @@ const SearchBar = ({
       <div id="geocoder"></div>
       <div className="search-buttons">
         <ul>
-          <li
-            className="search-items"
-            onClick={() => updateTheme("recommended")}
-          >
-            Recommended
-          </li>
-
-          <li className="search-items" onClick={() => updateTheme("historic")}>
-            Historic
-          </li>
-          <li className="search-items" onClick={() => updateTheme("religious")}>
-            Religious
-          </li>
-          <li className="search-items" onClick={() => updateTheme("park")}>
-            Park
-          </li>
-          <li className="search-items" onClick={() => updateTheme("nature")}>
-            Nature
-          </li>
-          <li className="search-items" onClick={() => updateTheme("others")}>
-            Others
-          </li>
+        {
+          themes.map((theme) => (
+            <li
+              key={theme.id}
+              className={`places-theme-filter-btn ${activeTheme === theme.id ? "active" : ""}`}
+              onClick={() => updateTheme(theme.id)}
+            >
+              {theme.label}
+            </li>
+          ))
+        }
         </ul>
       </div>
     </>
