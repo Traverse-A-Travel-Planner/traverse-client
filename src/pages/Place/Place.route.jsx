@@ -66,11 +66,7 @@ const PlaceSpecificPage = () => {
         </div>
         <div className="place-content">
             <div className="top">
-                <div className="image-section">
-                    <GeneralDetails state={stateProps} />
-                </div>
-                <div className="data-section">
-                </div>
+                <GeneralDetails state={stateProps} />
             </div>
             <div className="bottom">
                 <PlaceContent state={stateProps} />

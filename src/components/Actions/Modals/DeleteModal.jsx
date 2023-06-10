@@ -3,6 +3,7 @@ import "./DeleteModal.css";
 import { Databases } from "appwrite";
 import appwriteClient from "../../../Services/appwriteClient";
 import { databaseId } from "../../../Services/config";
+import { capitalizeFirstCharacter } from "../../../Services/helper";
 
 const db = new Databases(appwriteClient);
 
@@ -18,20 +19,22 @@ function handleAction(content, type, payload) {
       try {
         let collectionId = "";
         let event;
-        if (type == "contribution") {
+        if (type === "contribution") {
           collectionId = "places";
           event = new CustomEvent("contributionDeleted", {});
-        } else {
+        } else if (type === "reviews") {
           collectionId = "reviews";
           event = new CustomEvent("reviewDeleted", {});
         }
+
+        console.log("payload: ", payload)
 
         await db.deleteDocument(databaseId, collectionId, payload.id);
 
         document.dispatchEvent(event);
 
         Message.success({
-          content: "Contribution deleted successfully.",
+          content:  `${capitalizeFirstCharacter(type)} deleted successfully.`,
         });
       } catch (e) {
         Message.error({

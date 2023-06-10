@@ -1,5 +1,8 @@
 import { Carousel, Image } from '@arco-design/web-react';
 
+// import styles
+import "./Carousel.css"
+
 function ImgComponent(props) {
   const { src, style, className } = props;
   return (
@@ -8,9 +11,9 @@ function ImgComponent(props) {
     className={className}>
       <Image
         src={src}
-        width={430}
+        width={"100%"}
         height={300}
-        style={{borderRadius: '10px'}}
+        style={{borderRadius: '10px', minWidth: 430}}
         alt='img'
       />
     </div>
@@ -23,7 +26,7 @@ function ImageCarousel({state}) {
     autoPlay={true}
     indicatorType="dot"
     showArrow='hover'
-    style={{ width: 430 }}>
+    style={{ width: '100%', borderRadius: '10px' }}>
         {
             (
                 state.placeData.image && 

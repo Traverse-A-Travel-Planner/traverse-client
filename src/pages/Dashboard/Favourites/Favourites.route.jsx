@@ -9,10 +9,7 @@ import { databaseId } from "../../../Services/config";
 
 import { Databases, Query } from "appwrite";
 import { Notification, Spin, Typography } from "@arco-design/web-react";
-
-function capitalizeFirstCharacter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
+import { capitalizeFirstCharacter } from "../../../Services/helper";
 
 const Favourites = ({ data }) => {
   const [favourites, setFavourites] = useState([]);

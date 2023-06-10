@@ -1,5 +1,9 @@
 import { Tabs, Typography } from '@arco-design/web-react';
 import ReviewTab from './Reviews/Review';
+
+//importing styles
+import "./PlaceContent.css"
+
 const TabPane = Tabs.TabPane;
 const style = {
   textAlign: 'center',
@@ -8,7 +12,8 @@ const style = {
 
 const PlaceContent = ({state}) => {
   return (
-    <Tabs defaultActiveTab='reviews'>
+    <div id='bottom-tab-div'>
+      <Tabs defaultActiveTab='reviews'>
       <TabPane key='reviews' title='Reviews'>
         <ReviewTab state={state} />
       </TabPane>
@@ -19,6 +24,7 @@ const PlaceContent = ({state}) => {
         <Typography.Paragraph style={style}>Content of Tab Panel 3</Typography.Paragraph>
       </TabPane>
     </Tabs>
+    </div>
   );
 };
 

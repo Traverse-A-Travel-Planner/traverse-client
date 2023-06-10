@@ -8,20 +8,23 @@ import {
 } from "@arco-design/web-react";
 import { Select, Message } from "@arco-design/web-react";
 
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
 // importing styles
 import "./ListReviews.css";
 import "../css/dashboardGeneric.css";
 
+// importing appwrite contants and libs
+import { Databases, Query } from "appwrite";
+import appwriteClient from "../../../Services/appwriteClient";
+import { databaseId } from "../../../Services/config";
+
+// importing components
 import Header from "../../../components/Header/Header";
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import RatingInsights from "../components/Ratings Insights/RatingInsights";
 import UserAvatar from "../../../components/Avatar/Avatar";
-
-import { Databases, Query } from "appwrite";
-import appwriteClient from "../../../Services/appwriteClient";
-import { useEffect, useState } from "react";
-import { databaseId } from "../../../Services/config";
-import { Link } from "react-router-dom";
 import DropdownActions from "../../../components/Actions/Dropdown/DropdownActions";
 import filterData from "../../../components/Filters/filterList";
 
@@ -45,6 +48,7 @@ const ListReviews = ({ data }) => {
   });
 
   const [filteredData, setFilteredData] = useState(reviews);
+  const [eventTriggered, setEventTriggered] = useState(false);
 
   async function calculateInsights(reviews) {
     let obj = {
@@ -78,59 +82,76 @@ const ListReviews = ({ data }) => {
     setInsights(obj);
   }
 
-  useEffect(() => {
-    (async function () {
-      try {
-        const db = new Databases(appwriteClient);
-        const { documents: myReviews } = await db.listDocuments(
-          databaseId,
-          "reviews",
-          [Query.equal("author_id", localStorage.getItem("userId"))]
-        );
+  const fetchReviews = async() => {
+    try {
+      const db = new Databases(appwriteClient);
+      const { documents: myReviews } = await db.listDocuments(
+        databaseId,
+        "reviews",
+        [Query.equal("author_id", localStorage.getItem("userId"))]
+      );
 
-        if (myReviews.length === 0) {
-          setLoading(false);
-          return;
-        }
-        const { documents: reviewedPlaces } = await db.listDocuments(
-          databaseId,
-          "places",
-          [
-            Query.equal(
-              "$id",
-              myReviews.map((item) => item["place_id"])
-            ),
-          ]
-        );
-
-        const finalReviewData = myReviews.map((item, i) => {
-          let obj = {};
-          obj = {
-            ...item,
-            location_description: reviewedPlaces[i].location_description,
-            title: reviewedPlaces[i].title,
-            image: reviewedPlaces[i].image[0],
-          };
-
-          return obj;
-        });
-
-        setReviews(finalReviewData);
-        calculateInsights(finalReviewData);
+      if (myReviews.length === 0) {
         setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        Notification.error({
-          title: "Error",
-          content: error.message,
-        });
+        return;
       }
-    })();
+      const { documents: reviewedPlaces } = await db.listDocuments(
+        databaseId,
+        "places",
+        [
+          Query.equal(
+            "$id",
+            myReviews.map((item) => item["place_id"])
+          ),
+        ]
+      );
+
+      const finalReviewData = myReviews.map((item, i) => {
+        let obj = {};
+        obj = {
+          ...item,
+          location_description: reviewedPlaces[i].location_description,
+          title: reviewedPlaces[i].title,
+          image: reviewedPlaces[i].image[0],
+        };
+
+        return obj;
+      });
+
+      setReviews(finalReviewData);
+      calculateInsights(finalReviewData);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      Notification.error({
+        title: "Error",
+        content: error.message,
+      });
+    }
+  }
+
+  useEffect(() => {
+    fetchReviews();
   }, []);
 
   useEffect(() => {
     setReviews(() => filteredData.map((i) => i));
   }, [filteredData]);
+
+  useEffect(() => {
+    fetchReviews();
+  }, [eventTriggered]);
+
+  document.addEventListener("reviewDeleted", async () => {
+      try {
+          setEventTriggered(!eventTriggered)
+      } catch (error) {
+          setEventTriggered(!eventTriggered)
+          Message.error({
+              content: error.message,
+          });
+      }
+  });
 
   const handleFilterClick = async (value) => {
     const newData = filterData(reviews, value);
@@ -256,7 +277,13 @@ const ListReviews = ({ data }) => {
                         </div>
                       </div>
                       <div className="review-actions">
-                        <DropdownActions actions={actions} />
+                        <DropdownActions 
+                        actions={actions}
+                        type="reviews"
+                        payload={
+                            {...item, id: item.$id }
+                        }
+                        />
                       </div>
                     </div>
                   );

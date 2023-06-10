@@ -4,10 +4,7 @@ import React, { useEffect, useState } from "react";
 import "./searchResults.css";
 import { Skeleton, Spin } from "@arco-design/web-react";
 import { useNavigate } from "react-router-dom";
-
-function capitalizeFirstCharacter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
+import { capitalizeFirstCharacter } from "../../../../Services/helper";
 
 const ResultCard = ({ item, handleAddFavourites, searchResultLoading }) => {
   const [loading, setLoading] = useState(false);
@@ -16,10 +13,6 @@ const ResultCard = ({ item, handleAddFavourites, searchResultLoading }) => {
   const handlePageRouting = (item) => {
     navigate(`place?id=${item.$id}`)
   }
-
-  useEffect(() => {
-    console.log(searchResultLoading)
-  }, [searchResultLoading])
 
   return (
     <>

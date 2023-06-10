@@ -1,0 +1,47 @@
+.general-description-container .header-block{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.general-description-container .rating-block{
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ------------------------------ */
+/* button css */
+
+button.view-map-btn {
+    position: relative;
+    margin-top: 20px;
+    padding: 7px 20px;
+    width: max-content;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.4s ease-in-out;
+}
+
+button.view-map-btn::after {
+    position: relative;
+    content: " →";
+    position: absolute;
+    width: 20px;
+    height: 10px;
+    color: white;
+    opacity: 0;
+    transition: 0.4s ease-in-out;
+}
+
+button.view-map-btn:hover{
+    padding-right: 40px;
+
+}
+
+button.view-map-btn:hover::after {
+    opacity: 1;
+    margin-left: 10px;
+}

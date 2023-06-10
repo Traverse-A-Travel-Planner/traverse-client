@@ -1,0 +1,33 @@
+
+/* ---------------------------- */
+/* top */
+
+.place-content .top{
+    padding: 2em 2em;
+    padding-bottom: 4em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1em 2em;
+    background-color: rgb(244, 244, 244);
+}
+
+.place-content .top .image-section,
+.place-content .top .data-section{
+    flex: 1;
+}
+
+
+/* =============================== */
+/* data section */
+
+.place-content .top .data-section{
+    min-width: 350px;
+}
+
+.place-content .place-description-paragraph{
+    display: -webkit-box;
+    -webkit-line-clamp: auto; /* Number of lines to display */
+    -webkit-box-orient: vertical;
+    word-break: break-word !important;
+}

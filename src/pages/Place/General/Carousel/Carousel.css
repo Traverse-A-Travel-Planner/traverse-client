@@ -1,0 +1,51 @@
+.arco-carousel-slide.arco-carousel-horizontal, 
+.image-section > .arco-carousel-card, 
+.image-section > .arco-carousel-fade{
+    border-radius: 10px !important;
+}
+
+.place-content .top .image-section .arco-skeleton {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.5em 1em;
+}
+
+.place-content .top .arco-skeleton-content{
+    flex: 1;
+}
+
+.place-content .top .arco-skeleton .arco-skeleton-text{
+    min-width: 450px !important;
+}
+
+.place-content .top .image-section .arco-skeleton-header{
+    flex: 1 1;
+}
+
+.arco-skeleton-animate .arco-skeleton-image, 
+.arco-skeleton-animate .arco-skeleton-text > li{
+    background-size: 400% 100% !important;
+}
+
+@media only screen and (max-width: 1300px) {
+    .place-page-wrapper .place-content{
+        padding: 70px 40px 1.5em 40px;
+        min-width: 650px;
+    }
+}
+
+@media only screen and (max-width: 930px) {
+    .place-page-wrapper .place-content{
+        padding: 70px 0 1.5em 0;
+        min-width: 650px;
+    }
+
+    .arco-skeleton-animate .arco-skeleton-image{
+        width: 100% !important;
+    }
+    
+    .place-content .top .image-section .arco-skeleton{
+        flex-direction: column !important;
+    }
+}

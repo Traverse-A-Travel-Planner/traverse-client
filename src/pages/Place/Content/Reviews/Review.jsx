@@ -4,7 +4,7 @@ import { useState, useCallback, useEffect } from "react";
 import "./Review.css"
 
 // importing components from arco-design
-import { Typography, Select, Spin, Message, Rate, Button, Skeleton } from "@arco-design/web-react"
+import { Typography, Select, Message, Rate, Button, Skeleton } from "@arco-design/web-react"
 
 // importing appwrite libs
 import { Databases, Query } from "appwrite";
@@ -35,6 +35,8 @@ const ReviewTab = ({state}) => {
         fourStar: 0,
         fiveStar: 0,
     });
+
+    const [eventTriggered, setEventTriggered] = useState(false)
 
     async function calculateInsights(reviews) {
         let obj = {
@@ -106,6 +108,21 @@ const ReviewTab = ({state}) => {
     useEffect(() => {
         fetchPlaceReviews()
     }, [fetchPlaceReviews])
+
+    useEffect(() => {
+        fetchPlaceReviews();
+    }, [eventTriggered]);
+
+    document.addEventListener("reviewDeleted", async () => {
+        try {
+            setEventTriggered(!eventTriggered)
+        } catch (error) {
+            setEventTriggered(!eventTriggered)
+            Message.error({
+                content: error.message,
+            });
+        }
+    });
 
     return(
     <div className="reviews-wrapper">
@@ -225,8 +242,13 @@ const ReviewTab = ({state}) => {
                             </div>
                             <div className="review-actions">
                                 {
-                                    state.placeData.author_id === item.author_id ? (
-                                        <DropdownActions actions={actions} />
+                                    item.author_id === localStorage.getItem('userId') ? (
+                                        <DropdownActions 
+                                        actions={actions}
+                                        type="reviews"
+                                        payload={
+                                            {...item, id: item.$id }
+                                        } />
                                     ) : (
                                         <></>
                                     )

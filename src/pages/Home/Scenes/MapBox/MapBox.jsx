@@ -13,7 +13,6 @@ const MapBox = ({paneResized, rawData}) => {
   }, [rawData]);
 
   useEffect(() => {
-    console.log("MapBox Data: ", data)
     if (data.length === 0) return
 
     navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {

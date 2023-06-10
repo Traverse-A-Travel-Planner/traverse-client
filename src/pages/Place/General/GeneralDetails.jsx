@@ -1,11 +1,16 @@
-import { Skeleton } from '@arco-design/web-react';
+import { Skeleton, Typography } from '@arco-design/web-react';
 import ImageCarousel from './Carousel/Carousel';
+import GeneralDescription from './Description/GeneralDescription';
+
+// importing styles
+import "./GeneralDetails.css"
+import Paragraph from '@arco-design/web-react/es/Typography/paragraph';
+import Title from '@arco-design/web-react/es/Typography/title';
 
 function GeneralDetails({state}) {
   return (
     <>
-    <div className="image-section">
-        <Skeleton
+    <Skeleton
         loading={state.loading}
         text={{
             rows: 6, 
@@ -27,10 +32,26 @@ function GeneralDetails({state}) {
         }}
         animation
     >
-        <ImageCarousel state={state} />
+        <div className="image-section">
+            <ImageCarousel state={state} />
+        </div>
+        <div className="data-section">
+            <GeneralDescription state={state} />
+        </div>
+        <div className="description-block mt-4">
+            <Typography>
+                <Title 
+                heading={5} 
+                style={{marginTop: '0px'}}
+                >
+                    About {state.placeData.title}
+                </Title>
+                <Paragraph type='secondary' className="place-description-paragraph">
+                    {state.placeData.place_description}
+                </Paragraph>
+            </Typography>
+        </div>
     </Skeleton>
-    </div>
-    <div className="data-section"></div>
     </>
   );
 }

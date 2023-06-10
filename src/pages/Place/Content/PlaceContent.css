@@ -1,0 +1,11 @@
+/* ------------------------------ */
+
+.place-content .bottom{
+    padding: 1em 2em;
+    padding-bottom: 4em;
+    background-color: white;
+}
+
+.place-content .arco-carousel-indicator-wrapper-bottom{
+    border-radius: 10px !important;
+}
