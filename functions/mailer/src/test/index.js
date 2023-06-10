@@ -13,7 +13,7 @@ console.log({ GMAIL_APP_PASSWORD });
 const receiver = "021a325@sxc.edu.np";
 const content = generateShareTripMail(
   "Kathmandu",
-  "Lets go this place",
+  "Email generated as code test is run.",
   "mymail@gmail.com"
 );
 
