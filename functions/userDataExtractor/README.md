@@ -8,14 +8,14 @@ relation with userId.
 
 _Example input:_
 
-{ "userId": "unique_user_id_of_any_user" } 
+{ "userId": ["unique_user_id_of_any_user", ...multiple_ids] } 
 
 _Example output:_
 
 ```json
 {
  "success": true,
- "userDetails": {"name": "user's name", "email": "user's email", ...other_data}
+ "userDetails": [{"name": "user's name", "email": "user's email", ...other_data}, ...other users]
 }
 ```
 

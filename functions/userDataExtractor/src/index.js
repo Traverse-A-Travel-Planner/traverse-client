@@ -38,7 +38,7 @@ module.exports = async function (req, res) {
 
     const { userId } = payload;
 
-    const userDetails = await users.get(userId);
+    const userDetails = await users.list([ sdk.Query.equal("$id", [userId]) ])
 
     res.json({
       success: true,
