@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import {
   Typography,
   Image,
@@ -6,19 +7,23 @@ import {
   Spin,
   Tag,
 } from "@arco-design/web-react";
+
 import { Select, Message } from "@arco-design/web-react";
 import { Link } from "react-router-dom";
 
+import { IconCheckCircleFill, IconClockCircle, IconCloseCircle } from "@arco-design/web-react/icon";
+
+// importing appwrite libs and constants
 import { Databases, Query, Account } from "appwrite";
 import appwriteClient from "../../../../Services/appwriteClient";
+import { databaseId } from "../../../../Services/config";
 
 // importing styles
 import "./PlacesList.css";
-import { useEffect, useState } from "react";
-import { databaseId } from "../../../../Services/config";
+
+// importing components
 import UserAvatar from "../../../../components/Avatar/Avatar";
 import DropdownActions from "../../../../components/Actions/Dropdown/DropdownActions";
-import { IconCheckCircleFill, IconClockCircle, IconCloseCircle } from "@arco-design/web-react/icon";
 
 const Option = Select.Option;
 const options = ["Recent", "Ratings", "Oldest"];
@@ -71,6 +76,7 @@ const ListPlaces = ({ data }) => {
         fetchContributions();
     }, [eventTriggered]);
 
+    // when custom event triggered, refetch the conttributions
     document.addEventListener("contributionDeleted", async () => {
         try {
             setEventTriggered(!eventTriggered)

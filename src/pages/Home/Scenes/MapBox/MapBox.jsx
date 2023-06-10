@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 import "./MapBox.css";
 import mapboxgl from "mapbox-gl";
-
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 mapboxgl.accessToken =
@@ -38,32 +37,15 @@ const MapBox = ({paneResized, rawData}) => {
       const nav = new mapboxgl.NavigationControl();
       map.addControl(nav);
 
-      // map.addControl(
-      //   new window.MapboxDirections({
-      //     accessToken: mapboxgl.accessToken,
-      //   }),
-      //   "top-left"
-      // );
-
-      map.on("click", function (e) {
-        // var coordinates = e.lngLat;
-        // updateMarker(coordinates);
-        // console.log(coordinates)
-      });
-
       // Set marker options.
       const markerOptions = {
         color: "red",
-        draggable: true,
+        draggable: false,
       };
 
       new mapboxgl.Marker(markerOptions)
         .setLngLat(center)
         .addTo(map);
-
-      // function updateMarker(coordinates) {
-      //   marker.setLngLat(coordinates);
-      // }
 
       for (let i = 0; i < data?.length; i++) {
         let item = data[i];

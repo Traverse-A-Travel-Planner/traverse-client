@@ -1,8 +1,11 @@
 import { Tabs, Typography } from '@arco-design/web-react';
-import ReviewTab from './Reviews/Review';
 
 //importing styles
 import "./PlaceContent.css"
+
+// importing components
+import PlaceMap from './Map/Map';
+import ReviewTab from './Reviews/Review';
 
 const TabPane = Tabs.TabPane;
 const style = {
@@ -18,7 +21,7 @@ const PlaceContent = ({state}) => {
         <ReviewTab state={state} />
       </TabPane>
       <TabPane key='maps' title='Map'>
-        <Typography.Paragraph style={style}>Content of Tab Panel 2</Typography.Paragraph>
+        <PlaceMap state={state} />
       </TabPane>
       <TabPane key='itinerary' title='Itinerary'>
         <Typography.Paragraph style={style}>Content of Tab Panel 3</Typography.Paragraph>

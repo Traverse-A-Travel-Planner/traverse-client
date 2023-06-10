@@ -1,11 +1,13 @@
 import { Skeleton, Typography } from '@arco-design/web-react';
-import ImageCarousel from './Carousel/Carousel';
-import GeneralDescription from './Description/GeneralDescription';
+import Paragraph from '@arco-design/web-react/es/Typography/paragraph';
+import Title from '@arco-design/web-react/es/Typography/title';
 
 // importing styles
 import "./GeneralDetails.css"
-import Paragraph from '@arco-design/web-react/es/Typography/paragraph';
-import Title from '@arco-design/web-react/es/Typography/title';
+
+// importing components
+import ImageCarousel from './Carousel/Carousel';
+import GeneralDescription from './Description/GeneralDescription';
 
 function GeneralDetails({state}) {
   return (
