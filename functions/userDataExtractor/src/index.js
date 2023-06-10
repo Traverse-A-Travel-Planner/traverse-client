@@ -45,6 +45,7 @@ module.exports = async function (req, res) {
       userDetails,
     });
   } catch (error) {
+    console.log(error)
     res.json({
       success: false,
       error: error.message,
