@@ -17,7 +17,6 @@ import { databaseId } from "../../Services/config";
 import "./Home.route.css";
 
 const MemoizedSearchBar = React.memo(SearchBar);
-const MemoizedSearchResult = React.memo(SearchResult);
 
 // re-renering mapbox component when pane resized
 const MapBoxComponent = ({ paneResized, data }) => {
@@ -33,12 +32,12 @@ const MapBoxComponent = ({ paneResized, data }) => {
 const Home = () => {
   const db = new Databases(appwriteClient);
 
-  const [allPlaces, setAllPlaces] = useState([]);
-
   const [paneResized, setPaneResized] = useState(false);
   const [searchResultData, setSearchResultData] = useState([]);
   const [mapData, setMapData] = useState([]);
   const [title, setTitle] = useState("Recommended");
+
+  const [mapDataLoading, setMapDataLoading] = useState(true)
 
   const [lat, setLat] = useState(0);
   const [long, setLong] = useState(0);
@@ -58,35 +57,18 @@ const Home = () => {
   );
 
   const fetchMapPlaces = async () => {
-    const { documents: places } = await db.listDocuments(databaseId, "places", [
-      Query.orderDesc("$createdAt"),
-    ]);
+    try{
+      const { documents: places } = await db.listDocuments(databaseId, "places", [
+        Query.orderDesc("$createdAt"),
+      ]);
 
-    let { documents: favourites } = await db.listDocuments(
-      databaseId,
-      "favourites",
-      [Query.equal("user_id", [localStorage.getItem("userId")])]
-    );
-
-    let favouritesPlaceIds = favourites.map((item) => item.place_id);
-    let favouritesDOcIds = favourites.map((item) => item.$id);
-
-    const finalData = places.map((item) => {
-      let idx = favouritesPlaceIds.indexOf(item.$id);
-      if (idx === -1) {
-        return { ...item, isFavourite: false };
-      } else {
-        return {
-          ...item,
-          isFavourite: true,
-          favouriteDocId: favouritesDOcIds[idx],
-        };
-      }
-    });
-
-    setAllPlaces(finalData);
-    setMapData(places);
-    return places;
+      setMapData(places);
+      setMapDataLoading(false)
+      return places;
+    } catch (error) {
+      setMapDataLoading(false)
+      Message.error("Something went wrong")
+    }
   };
 
   const fetchFavouritesPlaces = async () => {
@@ -128,6 +110,7 @@ const Home = () => {
   useEffect(() => {
     if (!lat || !long) return;
     // console.log({lat, long})
+    console.log(mapDataLoading)
     fetchFavouritesPlaces();
   }, [lat, long]);
 
@@ -197,7 +180,7 @@ const Home = () => {
               <div className="content">
                 <div className="searchBar-container">
                   <MemoizedSearchBar
-                    allPlaces={allPlaces}
+                    allPlaces={mapData}
                     setSearchResultData={setSearchResultData}
                     setTitle={setTitle}
                     setMapData={setMapData}
@@ -205,7 +188,8 @@ const Home = () => {
                     long={long}
                   />
                 </div>
-                <MemoizedSearchResult
+                <SearchResult
+                  searchResultLoading={mapDataLoading}
                   searchResultData={searchResultData}
                   title={title}
                   handleAddFavourites={handleAddFavourites}
