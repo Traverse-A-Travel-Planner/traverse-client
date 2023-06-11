@@ -10,13 +10,23 @@ import appwriteClient from "../../../Services/appwriteClient";
 import { databaseId } from "../../../Services/config";
 
 // importing arco-design components
-import { Message, Select, Skeleton, Tag, Typography } from "@arco-design/web-react";
+import {
+  Message,
+  Select,
+  Skeleton,
+  Tag,
+  Typography,
+} from "@arco-design/web-react";
 
 // importing components
 import UserAvatar from "../../../components/Avatar/Avatar";
 import DropdownActions from "../../../components/Actions/Dropdown/DropdownActions";
 import userDataExtractor from "../../../Services/UserDataExtractor";
-import { IconCheckCircleFill, IconClockCircle, IconCloseCircle } from "@arco-design/web-react/icon";
+import {
+  IconCheckCircleFill,
+  IconClockCircle,
+  IconCloseCircle,
+} from "@arco-design/web-react/icon";
 
 const Option = Select.Option;
 const options = ["Recent", "Ratings", "Oldest"];
@@ -30,37 +40,32 @@ const ListTrip = () => {
   const [sharedTrips, setSharedTrips] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    (async () => {
+      try {
+        const db = new Databases(appwriteClient);
 
-    useEffect(() => {
-        (async function () {
-          
-        })()
-    }, []);
+        const { documents: sharedTripsList } = await db.listDocuments(
+          databaseId,
+          "sharedTrips"
+        );
 
-    useEffect(() => {
-        (async () => {
-            try{
-                const db = new Databases(appwriteClient);
+        const newData = await userDataExtractor(sharedTripsList);
 
-                const {documents: sharedTripsList} = await db.listDocuments(databaseId, "sharedTrips")
+        if (newData.success === false) {
+          Message.error(newData.message);
+          setLoading(false);
+          return;
+        }
 
-                const newData = await userDataExtractor(sharedTripsList);
-
-                if (newData.success === false){
-                    Message.error(newData.message)
-                    setLoading(false)
-                    return
-                }
-
-                setSharedTrips(newData.data)
-                setLoading(false)
-            } catch (error) {
-                setLoading(false)
-                Message.error("Failed to fetch shared trips")
-            }
-        })()
-    }, [])
+        setSharedTrips(newData.data);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        Message.error("Failed to fetch shared trips");
+      }
+    })();
+  }, []);
 
   console.log(sharedTrips);
 
@@ -113,46 +118,87 @@ const ListTrip = () => {
           sharedTrips.map((item, index) => {
             return (
               <>
-               <div className="sharedTrip" key={item.$id}>
-                <div className="left">
-                  <div className="avatar">
-                    <UserAvatar initials={item.name} size={40} />
+                <div className="sharedTrip" key={item.$id}>
+                  <div className="left">
+                    <div className="avatar">
+                      <UserAvatar initials={item.name} size={40} />
+                    </div>
                   </div>
-                </div>
-                <div className="row-right">
-                  <div className="right">
-                    <div className="sharedTrip-header">
-                      <div className="sharedTrip-details">
-                        <Typography.Title heading={6} className="my-0 ">
-                          {item.location}
+                  <div className="row-right">
+                    <div className="right">
+                      <div className="sharedTrip-header">
+                        <div className="sharedTrip-details">
+                          <Typography.Title heading={6} className="my-0 ">
+                            {item.name}
+                          </Typography.Title>
+                          <Typography.Text type="secondary" className="mt-1">
+                            Shared on{" "}
+                            {new Date(item.$createdAt).toLocaleDateString()} at{" "}
+                            {new Date(item.$createdAt).toLocaleTimeString()}
+                          </Typography.Text>
+                        </div>
+                      </div>
+
+                      <div className="shared-trip-content mt-3">
+                        <Typography.Title
+                          style={{ fontSize: "17px", color: "#892BE1" }}
+                          heading={6}
+                          className="my-0"
+                        >
+                          {item.location}{" "}
+                          {item.status === "active" ? (
+                            <Tag
+                              className="ms-2"
+                              color="green"
+                              icon={<IconCheckCircleFill />}
+                            >
+                              Active
+                            </Tag>
+                          ) : item.status === "ended" ? (
+                            <Tag
+                              className="ms-2"
+                              color="red"
+                              icon={<IconClockCircle />}
+                            >
+                              Ended
+                            </Tag>
+                          ) : (
+                            <Tag
+                              className="ms-2"
+                              color="red"
+                              icon={<IconCloseCircle />}
+                            >
+                              Cancelled
+                            </Tag>
+                          )}
                         </Typography.Title>
                         <Typography.Text type="secondary" className="my-0 ">
-                          Departure: {item.departure_date}
-                        </Typography.Text>
-                      </div>
-                    </div>
-
-                    <div className="shared-trip-content">
-                      <Typography.Text type="secondary" className="">
-                        Shared on{" "}
-                        {new Date(item.$createdAt).toLocaleDateString()} at{" "}
-                        {new Date(item.$createdAt).toLocaleTimeString()}
-                      </Typography.Text>
-                    </div>
-
-                    <div className="description mt-3">
-                      <div className="text">
-                        <Typography.Text>
-                          {item.message}
+                          <i className="bi bi-airplane me-1"></i> Departure:{" "}
+                          {item.departure_date}
                         </Typography.Text>
                       </div>
 
-                    <div className="contact-menu">
-                        <button 
-                            disabled={item.status === "active" ? false : true}
-                            onClick={() => {}}
-                            className="btn btn-dark shadow-sm contact-sharer-btn">
-                                <i className="bi bi-chat-left-dots me-1"></i> Contact
+                      <div className="proposals mt-3">
+                        There are
+                        <Typography.Text type="success" bold>
+                          {" " + item.total_proposals + " "}
+                        </Typography.Text>
+                        proposals for this shared trip
+                      </div>
+
+                      <div className="description mt-3">
+                        <div className="text">
+                          <Typography.Text>{item.message}</Typography.Text>
+                        </div>
+                      </div>
+
+                      <div className="contact-menu">
+                        <button
+                          disabled={item.status === "active" ? false : true}
+                          onClick={() => {}}
+                          className="btn btn-dark shadow-sm contact-sharer-btn"
+                        >
+                          <i className="bi bi-chat-left-dots me-1"></i> Contact
                         </button>
                       </div>
                     </div>
@@ -177,5 +223,4 @@ const ListTrip = () => {
     </div>
   );
 };
-
 export default ListTrip;
