@@ -4,8 +4,7 @@ import {
   Button,
   Space,
   Typography,
-  Message,
-  Spin,
+  Message
 } from "@arco-design/web-react";
 
 // importing appwrite functions and constants
@@ -78,12 +77,11 @@ function Itinerary({ state }) {
     <div style={{padding: '1em 1.5em'}}>
       <Space style={{ marginBottom: "25px" }} direction="vertical">
         <Typography.Text style={{fontSize: 16}}>
-          Ask AI for things to do in this <strong>{data.title}</strong> in
-          current time:
+          Ask AI or Artifical Intelligence for things to do in <strong>{data.title}</strong>
         </Typography.Text>
         <Button
           loading={loading}
-          style={{background: 'black', color: 'white', padding: '0 25px 0 20px', margin: '7.5px 0 10px 0'}}
+          style={{background: 'black', color: 'white', padding: '0 20px 0 15px', margin: '7.5px 0 10px 0'}}
           onClick={() =>
             handleGenerateItinerary(data.title, data.location_description)
           }

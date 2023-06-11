@@ -17,8 +17,8 @@
 
 .share-trip-container .share-trip-feed{
     flex: 2;
-    min-width: 500px;
-    max-width: 600px;
+    min-width: 550px;
+    max-width: 650px;
     height: 80vh;
     background-color: transparent;
 }

@@ -1,4 +1,7 @@
 .sharedTrip-wrapper{
+    min-height: 40vh !important;
+    max-height: 65vh;
+    overflow: auto;
     position: relative;
     margin-top: 17px;
     padding: 0 2em;
@@ -18,9 +21,6 @@
     flex: 2;
     width: 100%;
     min-width: 250px;
-    min-height: 40vh !important;
-    max-height: 77vh;
-    overflow: auto;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -48,10 +48,10 @@
 }
 
 .sharedTrip-list > .sharedTrip:first-child{
-    padding-top: 0em;
+    padding-top: 0px !important;
 }
 
-.sharedTrip-list > .review:last-child{
+.sharedTrip-list > .sharedTrip:last-child{
     border-bottom: 0px !important;
 }
 
@@ -130,10 +130,10 @@
 /* ------------------------------ */
 /* button css */
 
-.sharedTrip > button.contact-user-btn{
+.contact-menu button.contact-sharer-btn{
     position: relative;
-    margin-top: 20px;
-    padding: 7px 20px;
+    margin-top: 20px !important;
+    padding: 7px 20px !important;
     width: max-content;
     border-radius: 2px;
     font-size: 14px;
