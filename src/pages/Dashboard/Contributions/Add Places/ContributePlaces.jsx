@@ -1,19 +1,21 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import {
   Form,
   Steps,
   Notification
 } from '@arco-design/web-react';
 
+import { useNavigate } from "react-router-dom";
+
 // importing styles
 import "./ContributePlaces.css";
 
+// import appweite functions and constants
 import { Storage, ID, Databases } from "appwrite";
 import appwriteClient from "../../../../Services/appwriteClient";
-
 import { databaseId, bucketId } from "../../../../Services/config";
 
-import { useNavigate } from "react-router-dom";
+// import components
 import RenderContent from './renderSteps';
 
 const Step = Steps.Step;
@@ -141,9 +143,20 @@ const ContributePlaces = ({ data }) => {
       size='large'
       >
       <Steps current={current} direction='vertical' style={{minWidth: 250, height: '100%'}}>
-        <Step title='General' description="Add general details and images" />
-        <Step title='Location' description="Add location details" />
-        <Step title='Description' description="Add place description" />
+        <Step 
+          icon={<i className="bi bi-postcard"></i>}
+          title='General' 
+          description="Add general details and images" />
+          
+        <Step 
+          icon={<i className="bi bi-geo-alt"></i>}
+          title='Location' 
+          description="Add location details" />
+
+        <Step 
+          icon={<i className="bi bi-card-text"></i>}
+          title='Description' 
+          description="Add place description" />
       </Steps>
       {<RenderContent state={state} />}
       </Form>

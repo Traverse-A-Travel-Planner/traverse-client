@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./MapBox.css";
 import mapboxgl from "mapbox-gl";
 
+import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+
 mapboxgl.accessToken =
   "pk.eyJ1IjoieWFtYW4xMzM3IiwiYSI6ImNrd3V4cWRrejFjcnIydXFxcHNjcG9hbHMifQ.0MvUydr2xdlAEM2eVWqEkw";
 
@@ -39,6 +41,17 @@ const MapBox = ({ state }) => {
         color: "red",
         draggable: true,
       };
+
+      const nav = new mapboxgl.NavigationControl();
+      map.addControl(nav);
+
+      // Add search functionality
+      var geocoder = new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl,
+      });
+
+      map.addControl(geocoder, 'top-left');
 
       const marker = new mapboxgl.Marker(markerOptions)
         .setLngLat(center)

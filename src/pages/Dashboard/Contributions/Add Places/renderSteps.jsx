@@ -38,8 +38,7 @@ const RenderContent = ({ state }) => {
         <Button
           disabled={state.current >= 3}
           onClick={() => state.setCurrent(state.current + 1)}
-          style={{ marginLeft: 20, paddingRight: 8 }}
-          type="primary"
+          style={{ marginLeft: 20, paddingRight: 8, background: 'black', color: "white" }}
         >
           Next
           <IconRight />
