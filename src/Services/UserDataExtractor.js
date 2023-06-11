@@ -3,7 +3,7 @@ import appwriteClient from "./appwriteClient";
 
 async function userDataExtractor(data) {
   try {
-    if (!data || !data.length){
+    if (data.length <= 0 || Object.keys(data).length <= 0){
       return {
         success: false,
         message: "Data not present"
@@ -11,16 +11,14 @@ async function userDataExtractor(data) {
     }
 
     let userID;
-    let dataType;
-    
-    if (typeof data === "object"){
+    let dataType = "";
+
+    if (data.author_id){
       dataType = "object"
       userID = [data.author_id];
-    }  else if (Array.isArray(data) === true) {
+    } else {
       dataType = "array"
       userID = data.map(item => item.author_id);
-    } else {
-      // Handle other data types or scenarios here
     }
 
     let executionResponse = []
@@ -35,7 +33,7 @@ async function userDataExtractor(data) {
 
     executionResponse = JSON.parse(executionResponse.response);
 
-    if (!executionResponse.length || !executionResponse.success) {
+    if (!executionResponse || !executionResponse.success) {
       return {
         success: false,
         message: "Internal server error occured while fetching place details."
@@ -62,9 +60,9 @@ async function userDataExtractor(data) {
     }
   } catch (error) {
     return {
-          success: false,
-          message: "Something went wrong"
-      }
+      success: false,
+      message: "Something went wrong"
+    }
   }
 }
 

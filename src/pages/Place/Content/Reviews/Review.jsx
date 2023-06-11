@@ -14,7 +14,7 @@ import {
 } from "@arco-design/web-react";
 
 // importing appwrite libs
-import { Databases, Query, Functions } from "appwrite";
+import { Databases, Query } from "appwrite";
 import appwriteClient from "../../../../Services/appwriteClient";
 import { databaseId } from "../../../../Services/config";
 
@@ -108,11 +108,11 @@ const ReviewTab = ({ state }) => {
           
           if (finalData.success === false){
             Message.error(finalData.message)
-            return
           }
 
-          setReviews(finalData);
-          calculateInsights(finalData);
+          console.log("reviews vitrakoL ", finalData)
+          setReviews(finalData.data);
+          calculateInsights(finalData.data);
           setLoading(false);
           return;
         }
