@@ -41,33 +41,41 @@ const ListTrip = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    (async () => {
-      try {
-        const db = new Databases(appwriteClient);
-
-        const { documents: sharedTripsList } = await db.listDocuments(
-          databaseId,
-          "sharedTrips"
-        );
-
-        const newData = await userDataExtractor(sharedTripsList);
-
-        if (newData.success === false) {
-          Message.error(newData.message);
-          setLoading(false);
-          return;
-        }
-
-        setSharedTrips(newData.data);
-        setLoading(false);
-      } catch (error) {
-        setLoading(false);
-        Message.error("Failed to fetch shared trips");
-      }
-    })();
+    fetchSharedTrips();
   }, []);
 
-  console.log(sharedTrips);
+  document.addEventListener("sharedTripCancelled", async () => {
+    await fetchSharedTrips();
+  });
+
+  async function fetchSharedTrips() {
+    try {
+      const db = new Databases(appwriteClient);
+
+      const { documents: sharedTripsList } = await db.listDocuments(
+        databaseId,
+        "sharedTrips"
+      );
+
+      const newData = await userDataExtractor(sharedTripsList);
+
+      if (newData.success === false) {
+        Message.error(newData.message);
+        setLoading(false);
+        return;
+      }
+
+      setSharedTrips(newData.data);
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      Message.error("Failed to fetch shared trips");
+    }
+  }
+
+  document.addEventListener("newTripAdded", async () => {
+    await fetchSharedTrips();
+  });
 
   const handleFilterClick = async (value) => {};
 
