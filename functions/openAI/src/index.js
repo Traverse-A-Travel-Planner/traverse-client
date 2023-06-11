@@ -52,7 +52,7 @@ module.exports = async function (req, res) {
       },
       body: JSON.stringify({
         prompt: payload.prompt,
-        max_tokens: 100,
+        max_tokens: 200,
         temperature: 0.7,
         // Add any other parameters as needed
       }),

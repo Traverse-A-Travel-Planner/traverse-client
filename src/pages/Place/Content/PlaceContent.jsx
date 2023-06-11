@@ -1,32 +1,33 @@
-import { Tabs, Typography } from '@arco-design/web-react';
+import { Tabs, Typography } from "@arco-design/web-react";
 
 //importing styles
-import "./PlaceContent.css"
+import "./PlaceContent.css";
 
 // importing components
-import PlaceMap from './Map/Map';
-import ReviewTab from './Reviews/Review';
+import PlaceMap from "./Map/Map";
+import ReviewTab from "./Reviews/Review";
+import Itinerary from "./Itinerary/Itinerary";
 
 const TabPane = Tabs.TabPane;
 const style = {
-  textAlign: 'center',
+  textAlign: "center",
   marginTop: 20,
 };
 
-const PlaceContent = ({state}) => {
+const PlaceContent = ({ state }) => {
   return (
-    <div id='bottom-tab-div'>
-      <Tabs defaultActiveTab='reviews'>
-      <TabPane key='reviews' title='Reviews'>
-        <ReviewTab state={state} />
-      </TabPane>
-      <TabPane key='maps' title='Map'>
-        <PlaceMap state={state} />
-      </TabPane>
-      <TabPane key='itinerary' title='Itinerary'>
-        <Typography.Paragraph style={style}>Content of Tab Panel 3</Typography.Paragraph>
-      </TabPane>
-    </Tabs>
+    <div id="bottom-tab-div">
+      <Tabs defaultActiveTab="reviews">
+        <TabPane key="reviews" title="Reviews">
+          <ReviewTab state={state} />
+        </TabPane>
+        <TabPane key="maps" title="Map">
+          <PlaceMap state={state} />
+        </TabPane>
+        <TabPane key="itinerary" title="Itinerary">
+          <Itinerary state={state} />
+        </TabPane>
+      </Tabs>
     </div>
   );
 };
