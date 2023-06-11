@@ -8,7 +8,7 @@ import ListTrip from "./List Trips/ListTrips";
 // importing styles
 import "./ShareTrip.route.css"
 
-const ShareTrip = () => {
+const ShareTrip = ({data}) => {
     return(
         <>
         <div className="share-trip-container">
@@ -18,10 +18,10 @@ const ShareTrip = () => {
             <div className="share-trip-wrapper">
                 <div className="share-trip-feed">
                     <div className="add-share-trip-box">
-                        <AddTrip />
+                        <AddTrip data={data}/>
                     </div>
                     <div className="list-share-trip">
-                        <ListTrip />
+                        <ListTrip data={data}/>
                     </div>
                 </div>
                 <div className="share-trip-insight">

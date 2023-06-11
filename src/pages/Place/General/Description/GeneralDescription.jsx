@@ -10,41 +10,20 @@ import "./GeneralDescription.css";
 // importing components
 import { capitalizeFirstCharacter } from "../../../../Services/helper";
 import UserAvatar from "../../../../components/Avatar/Avatar";
-
-// appwrite functions and constants
-import { Functions } from "appwrite";
-import appwriteClient from "../../../../Services/appwriteClient";
+import userDataExtractor from "../../../../Services/UserDataExtractor";
 
 const GeneralDescription = ({ state }) => {
   const [data, setData] = useState(state.placeData);
 
   useEffect(() => {
     (async function () {
-      try {
-        if (data.length <= 0) return;
-
-        const functions = new Functions(appwriteClient);
-        let executionResponse = await functions.createExecution(
-          "userDataExtractor",
-          JSON.stringify({
-            userId: [data.author_id],
-          })
-        );
-
-        executionResponse = JSON.parse(executionResponse.response);
-
-        if (!executionResponse.success) {
-          return Message.error(
-            "Internal server error occured while fetching place details."
-          );
-        }
-
-        setData({ ...data, name: executionResponse.userDetails.users[0].name });
-      } catch (error) {
-        console.log(error);
-        Message("Something went wrong.");
+      const newData = await userDataExtractor(data);
+      if (newData.success === false){
+        Message.error(newData.message)
       }
-    })();
+
+      setData(newData.data)
+    })()
   }, []);
 
   return (
