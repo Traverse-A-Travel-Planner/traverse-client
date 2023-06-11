@@ -2,6 +2,7 @@ import React, { useEffect, useMemo } from "react";
 import "./MapBox.css";
 import mapboxgl from "mapbox-gl";
 import 'mapbox-gl/dist/mapbox-gl.css';
+import { capitalizeFirstCharacter } from "../../../../Services/helper";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoieWFtYW4xMzM3IiwiYSI6ImNrd3V4cWRrejFjcnIydXFxcHNjcG9hbHMifQ.0MvUydr2xdlAEM2eVWqEkw";
@@ -78,7 +79,7 @@ const MapBox = ({paneResized, rawData}) => {
                 </div>
                 <div class="card-content">
                     <div class="keyword">
-                        <p>${item.keyword}</p>
+                        <p>${capitalizeFirstCharacter(item.keyword)}</p>
                     </div>
                     <div class="header-block">
                       ${item.title}
@@ -91,7 +92,7 @@ const MapBox = ({paneResized, rawData}) => {
                     </div>
                 </div>
                 <div class="footer-block">
-                    <button class="places-redirect-btn"><a href="#">View</a></button>
+                    <button class="places-redirect-btn"><a href="/place?id=${item.$id}">View</a></button>
                 </div>
             </div>`
             )
