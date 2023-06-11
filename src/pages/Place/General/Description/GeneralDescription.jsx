@@ -20,6 +20,7 @@ const GeneralDescription = ({ state }) => {
       const newData = await userDataExtractor(data);
       if (newData.success === false){
         Message.error(newData.message)
+        return
       }
 
       setData(newData.data)
