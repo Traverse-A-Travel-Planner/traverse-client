@@ -10,12 +10,13 @@ import appwriteClient from "../../../Services/appwriteClient";
 import { databaseId } from "../../../Services/config";
 
 // importing arco-design components
-import { Message, Select, Skeleton, Typography } from "@arco-design/web-react";
+import { Message, Select, Skeleton, Tag, Typography } from "@arco-design/web-react";
 
 // importing components
 import UserAvatar from "../../../components/Avatar/Avatar";
 import DropdownActions from "../../../components/Actions/Dropdown/DropdownActions";
 import userDataExtractor from "../../../Services/UserDataExtractor";
+import { IconCheckCircleFill, IconClockCircle, IconCloseCircle } from "@arco-design/web-react/icon";
 
 const Option = Select.Option;
 const options = ["Recent", "Ratings", "Oldest"];
@@ -91,7 +92,7 @@ const ListTrip = () => {
         <div className="sharedTrip-list">
         {loading === true ? (
           <Skeleton
-            style={{ margin: "15px 0 0 20px" }}
+            style={{ margin: "15px 0 0 0px" }}
             loading={loading}
             text={{
               rows: 3,
@@ -123,20 +124,44 @@ const ListTrip = () => {
                     <div className="sharedTrip-header">
                       <div className="sharedTrip-details">
                         <Typography.Title heading={6} className="my-0 ">
-                          {item.location}
+                          {item.name}
                         </Typography.Title>
-                        <Typography.Text type="secondary" className="my-0 ">
-                          Departure: {item.departure_date}
+                        <Typography.Text type="secondary" className="mt-1">
+                            Shared on{" "}
+                            {new Date(item.$createdAt).toLocaleDateString()} at{" "}
+                            {new Date(item.$createdAt).toLocaleTimeString()}
                         </Typography.Text>
                       </div>
                     </div>
 
-                    <div className="shared-trip-content">
-                      <Typography.Text type="secondary" className="">
-                        Shared on{" "}
-                        {new Date(item.$createdAt).toLocaleDateString()} at{" "}
-                        {new Date(item.$createdAt).toLocaleTimeString()}
-                      </Typography.Text>
+                    <div className="shared-trip-content mt-3">
+                        <Typography.Title 
+                        style={{fontSize: '17px', color: '#892BE1'}}
+                        heading={6} 
+                        className="my-0">
+                            {item.location} {
+                                item.status === "active" ? (
+                                    <Tag className="ms-2" color="green" icon={<IconCheckCircleFill />}>Active</Tag>
+                                ) : (
+                                    item.status === "ended" ? (
+                                        <Tag className="ms-2" color="red" icon={<IconClockCircle />}>Ended</Tag>
+                                    ) : (
+                                        <Tag className="ms-2" color="red" icon={<IconCloseCircle />}>Cancelled</Tag>
+                                    )
+                                )
+                            }
+                        </Typography.Title>
+                        <Typography.Text type="secondary" className="my-0 ">
+                            <i className="bi bi-airplane me-1"></i> Departure: {item.departure_date}
+                        </Typography.Text>
+                    </div>
+
+                    <div className="proposals mt-3">
+                        There are 
+                        <Typography.Text type="success" bold>
+                            {" " + item.total_proposals + " "}
+                        </Typography.Text>
+                        proposals for this shared trip
                     </div>
 
                     <div className="description mt-3">
@@ -149,9 +174,10 @@ const ListTrip = () => {
 
                     <div className="contact-menu">
                         <button 
+                            disabled={item.status === "active" ? false : true}
                             onClick={() => {}}
-                            className="btn btn-dark shadow-sm contact-user-btn">
-                                Contact
+                            className="btn btn-dark shadow-sm contact-sharer-btn">
+                                <i className="bi bi-chat-left-dots me-1"></i> Contact
                         </button>
                     </div>
 

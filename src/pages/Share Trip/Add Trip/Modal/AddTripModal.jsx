@@ -39,10 +39,11 @@ function AddTripModal() {
     return (
         <>
         <Input 
-        onClick={() => setVisible(true)}
-        style={{ width: 385, height: 35, background: '#e7e8ea' }} 
-        allowClear 
-        placeholder='Share trips with others' />
+            onClick={() => setVisible(true)}
+            style={{ width: 385, height: 35, background: '#e7e8ea' }} 
+            allowClear 
+            placeholder='Share trips with others' 
+        />
         <Modal
             title='Share Trip'
             visible={visible}
@@ -66,7 +67,7 @@ function AddTripModal() {
                     onClick={() => validateForm()}
                     style={{background: 'black', color: 'white'}}
                 >
-                    Submit
+                    <i className="bi bi-plus-circle me-1"></i> Submit
                 </Button>
                 </>
             }
