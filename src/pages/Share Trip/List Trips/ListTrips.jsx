@@ -32,28 +32,23 @@ const ListTrip = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        (async function () {
-          
-        })()
-    }, []);
-
-    useEffect(() => {
         (async () => {
             try{
                 const db = new Databases(appwriteClient);
 
                 const {documents: sharedTripsList} = await db.listDocuments(databaseId, "sharedTrips")
-
                 const newData = await userDataExtractor(sharedTripsList);
 
                 if (newData.success === false){
                     Message.error(newData.message)
+                    setSharedTrips(sharedTripsList)
                     setLoading(false)
                     return
                 }
 
                 setSharedTrips(newData.data)
                 setLoading(false)
+                return
             } catch (error) {
                 setLoading(false)
                 Message.error("Failed to fetch shared trips")
@@ -92,7 +87,7 @@ const ListTrip = () => {
         <div className="sharedTrip-list">
         {loading === true ? (
           <Skeleton
-            style={{ margin: "15px 0 0 0px" }}
+            style={{ margin: "0px 0 0 0px" }}
             loading={loading}
             text={{
               rows: 3,
@@ -124,7 +119,7 @@ const ListTrip = () => {
                     <div className="sharedTrip-header">
                       <div className="sharedTrip-details">
                         <Typography.Title heading={6} className="my-0 ">
-                          {item.name}
+                          {item.author_id}
                         </Typography.Title>
                         <Typography.Text type="secondary" className="mt-1">
                             Shared on{" "}
