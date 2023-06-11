@@ -1,12 +1,12 @@
+// importing styles
+import "./ShareTrip.route.css"
+
 // importing components
 import Footer from "../../components/Footer/Footer";
 import Header from "../../components/Header/Header";
 import AddTrip from "./Add Trip/AddTrip";
 import TripsInsight from "./Insight/TripsInsight";
 import ListTrip from "./List Trips/ListTrips";
-
-// importing styles
-import "./ShareTrip.route.css"
 
 const ShareTrip = ({data}) => {
     return(

@@ -1,10 +1,180 @@
-// importing styles
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+// importing style
 import "./ListTrip.css"
 
+// importing appwrite function and constants
+import { Databases } from "appwrite";
+import appwriteClient from "../../../Services/appwriteClient";
+import { databaseId } from "../../../Services/config";
+
+// importing arco-design components
+import { Message, Select, Skeleton, Typography } from "@arco-design/web-react";
+
+// importing components
+import UserAvatar from "../../../components/Avatar/Avatar";
+import DropdownActions from "../../../components/Actions/Dropdown/DropdownActions";
+import userDataExtractor from "../../../Services/UserDataExtractor";
+
+const Option = Select.Option;
+const options = ["Recent", "Ratings", "Oldest"];
+
+const actions = {
+    delete: "Are you sure you want to remove this review?",
+};
+
 const ListTrip = () => {
+    const [sharedTrips, setSharedTrips] = useState([])
+    const [loading, setLoading] = useState(true)
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        (async function () {
+          
+        })()
+    }, []);
+
+    useEffect(() => {
+        (async () => {
+            try{
+                const db = new Databases(appwriteClient);
+
+                const {documents: sharedTripsList} = await db.listDocuments(databaseId, "sharedTrips")
+
+                const newData = await userDataExtractor(sharedTripsList);
+
+                if (newData.success === false){
+                    Message.error(newData.message)
+                    setLoading(false)
+                    return
+                }
+
+                setSharedTrips(newData.data)
+                setLoading(false)
+            } catch (error) {
+                setLoading(false)
+                Message.error("Failed to fetch shared trips")
+            }
+        })()
+    }, [])
+
+    console.log(sharedTrips)
+
+    const handleFilterClick = async (value) => {
+    };
+
     return(
-        <>
-        </>
+        <div className="sharedTrip-wrapper">
+        <div className="header-block">
+          <div className="content-header">
+            <Typography.Title heading={5} className="ms-4 label-header">
+              Shared Trips
+            </Typography.Title>
+          </div>
+          <div className="filter-buttons">
+            <Select
+              placeholder="Filter Trips"
+              style={{ width: 154 }}
+              onChange={handleFilterClick}
+            >
+              {options.map((option, index) => (
+                <Option key={option} disabled={index === 3} value={option}>
+                  {option}
+                </Option>
+              ))}
+            </Select>
+          </div>
+        </div>
+
+        <div className="sharedTrip-list">
+        {loading === true ? (
+          <Skeleton
+            style={{ margin: "15px 0 0 20px" }}
+            loading={loading}
+            text={{
+              rows: 3,
+              width: "100%",
+              style: {
+                minWidth: 200,
+                width: "100%",
+                height: 100,
+              },
+            }}
+            animation
+          />
+        ) : sharedTrips.length === 0 ? (
+          <Typography.Title className="ms-4 pb-3" heading={6} bold>
+            No trips shared yet
+          </Typography.Title>
+        ) : (
+          sharedTrips.map((item, index) => {
+            return (
+              <>
+               <div className="sharedTrip" key={item.$id}>
+                <div className="left">
+                  <div className="avatar">
+                    <UserAvatar initials={item.name} size={40} />
+                  </div>
+                </div>
+                <div className="row-right">
+                  <div className="right">
+                    <div className="sharedTrip-header">
+                      <div className="sharedTrip-details">
+                        <Typography.Title heading={6} className="my-0 ">
+                          {item.location}
+                        </Typography.Title>
+                        <Typography.Text type="secondary" className="my-0 ">
+                          Departure: {item.departure_date}
+                        </Typography.Text>
+                      </div>
+                    </div>
+
+                    <div className="shared-trip-content">
+                      <Typography.Text type="secondary" className="">
+                        Shared on{" "}
+                        {new Date(item.$createdAt).toLocaleDateString()} at{" "}
+                        {new Date(item.$createdAt).toLocaleTimeString()}
+                      </Typography.Text>
+                    </div>
+
+                    <div className="description mt-3">
+                      <div className="text">
+                        <Typography.Text>
+                          {item.message}
+                        </Typography.Text>
+                      </div>
+                    </div>
+
+                    <div className="contact-menu">
+                        <button 
+                            onClick={() => {}}
+                            className="btn btn-dark shadow-sm contact-user-btn">
+                                Contact
+                        </button>
+                    </div>
+
+                  </div>
+                </div>
+                <div className="sharedTrip-actions">
+                  {item.author_id === localStorage.getItem("userId") ? (
+                    <DropdownActions
+                      actions={actions}
+                      type="sharedTrips"
+                      payload={{ ...item, id: item.$id }}
+                    />
+                  ) : (
+                    <></>
+                  )}
+                </div>
+              </div>
+              </>
+            );
+          })
+        )}
+        </div>
+    </div>
     )
 }
 

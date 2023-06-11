@@ -1,0 +1,142 @@
+.sharedTrip-wrapper{
+    position: relative;
+    margin-top: 17px;
+    padding: 0 2em;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 2em 2em;
+}
+/* -------------- */
+
+.sharedTrip-wrapper .label-header{
+    margin-left: -10px;
+}
+.sharedTrip-wrapper .sharedTrip-list{
+    flex: 2;
+    width: 100%;
+    min-width: 250px;
+    min-height: 40vh !important;
+    max-height: 77vh;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    background-color: white;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 900px) {
+    .sharedTrip-wrapper .sharedTrip-list{
+        width: 100% !important;
+    }
+}
+
+.sharedTrip-list > .sharedTrip{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding: 2em 2em 3em 2em;
+    width: 100%;
+    height: max-content;
+    display: flex;
+    background-color: white;
+    border-bottom: 1px solid #e0e0e0cc;
+}
+
+.sharedTrip-list > .sharedTrip:first-child{
+    padding-top: 0em;
+}
+
+.sharedTrip-list > .review:last-child{
+    border-bottom: 0px !important;
+}
+
+.sharedTrip-list > .sharedTrip .left{
+    margin-right: 1.25em;
+}
+
+.sharedTrip-list > .sharedTrip .shared-trip-content{
+    display: flex;
+    flex-direction: column;
+}
+
+.arco-rate-inner{
+    font-size: 18px;
+}
+
+.row-right{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1em 2.5em;
+}
+
+.row-right > .right{
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.row-right .image{
+    flex: 0 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.description .text > span{
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Number of lines to display */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-break: break-word !important;
+    text-overflow: ellipsis;
+}
+
+/* ------------------------- */
+.sharedTrip-wrapper .header-block{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sharedTrip-list .header-block .filter-buttons{
+    margin-top: 10px;
+}
+
+/* ------------------------------ */
+
+.sharedTrip-wrapper .insights-details{
+    margin-top: 1.5em;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.sharedTrip-wrapper .bottom-block{
+    margin-top: 0.5em;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* ------------------------------ */
+/* button css */
+
+.sharedTrip > button.contact-user-btn{
+    position: relative;
+    margin-top: 20px;
+    padding: 7px 20px;
+    width: max-content;
+    border-radius: 2px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.4s ease-in-out;
+}
