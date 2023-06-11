@@ -111,8 +111,6 @@ const Home = () => {
 
   useEffect(() => {
     if (!lat || !long) return;
-    // console.log({lat, long})
-    console.log(mapDataLoading)
     fetchFavouritesPlaces();
   }, [lat, long, mapData]);
 

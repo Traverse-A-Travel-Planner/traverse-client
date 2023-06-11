@@ -59,6 +59,11 @@ const Header = () => {
               Contribute
             </Link>
           </li>
+          <li className="header-items"> 
+            <Link style={{ textDecoration: "none", color: "black" }} to="/shareTrip">
+              Share Trip
+            </Link>
+          </li>
           <li className="header-items"><a href="#traverse-footer">Contact</a></li>
         </ul>
       </div>

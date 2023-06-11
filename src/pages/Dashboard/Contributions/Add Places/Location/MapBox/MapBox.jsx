@@ -8,6 +8,7 @@ mapboxgl.accessToken =
   "pk.eyJ1IjoieWFtYW4xMzM3IiwiYSI6ImNrd3V4cWRrejFjcnIydXFxcHNjcG9hbHMifQ.0MvUydr2xdlAEM2eVWqEkw";
 
 const MapBox = ({ state }) => {
+  let map;
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(successLocation, errorLocation, {
       enableHighAccuracy: true,

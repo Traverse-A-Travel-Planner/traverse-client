@@ -1,0 +1,36 @@
+.share-trip-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.share-trip-container .share-trip-wrapper{
+    margin-top: 2em;
+    padding: 0 10%;
+    padding-bottom: 4em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 1em 2em;
+}
+
+.share-trip-container .share-trip-feed{
+    flex: 2;
+    min-width: 500px;
+    max-width: 700px;
+    height: 70vh;
+    border: 1px solid #dddd;
+    background-color: white;
+    box-shadow: 0 2.5px 5px #dddd;
+}
+
+.share-trip-container .share-trip-insight{
+    flex: 1;
+    min-width: 300px;
+    max-width: 400px;
+    height: 70vh;
+    border: 1px solid #dddd;
+    background-color: white;
+    box-shadow: 0 2.5px 5px #dddd;
+}
