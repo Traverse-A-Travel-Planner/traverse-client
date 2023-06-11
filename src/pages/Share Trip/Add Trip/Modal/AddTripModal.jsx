@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Modal, Button, Message, Form, Input, Select } from '@arco-design/web-react';
+import { Modal, Button, Message, Form, Input, DatePicker } from '@arco-design/web-react';
+import dayjs from 'dayjs';
 
 const FormItem = Form.Item;
+const TextArea = Input.TextArea;
 
 function AddTripModal() {
     const [visible, setVisible] = useState(false);
@@ -10,21 +12,23 @@ function AddTripModal() {
 
     const formItemLayout = {
         labelCol: {
-        span: 4,
+            span: 4,
         },
         wrapperCol: {
-        span: 20,
+            span: 20,
         },
     };
 
     async function validateForm() {
         try {
-            await form.validate();
+            const res = await form.validate();
             setLoading(true);
+            console.log(res)
 
             setTimeout(() => {
                 setLoading(false)
                 setVisible(false)
+                form.clearFields()
             }, 3000)
         } catch (error) {
             // Handle the error here
@@ -33,20 +37,26 @@ function AddTripModal() {
     }
   
     return (
-        <div>
-        <Button onClick={() => setVisible(true)} type='primary'>
-            Open Draggable Modal
-        </Button>
+        <>
+        <Input 
+        onClick={() => setVisible(true)}
+        style={{ width: 385, height: 35, background: '#e7e8ea' }} 
+        allowClear 
+        placeholder='Share trips with others' />
         <Modal
             title='Share Trip'
             visible={visible}
-            onCancel={() => setVisible(false)}
+            onCancel={() => {
+                setVisible(false)
+                form.clearFields()
+            }}
             autoFocus={false}
             footer={
                 <>
                 <Button
                     onClick={() => {
-                    setVisible(false);
+                        setVisible(false)
+                        form.clearFields()
                     }}
                 >
                     Return
@@ -54,7 +64,7 @@ function AddTripModal() {
                 <Button
                     loading={loading}
                     onClick={() => validateForm()}
-                    type='primary'
+                    style={{background: 'black', color: 'white'}}
                 >
                     Submit
                 </Button>
@@ -71,15 +81,46 @@ function AddTripModal() {
                 style: { flexBasis: 'calc(100% - 90px)' },
             }}
             >
-            <FormItem label='Name' field='name' rules={[{ required: true }]}>
-                <Input placeholder='' />
+            <FormItem label='Location' required field='location' rules={[{ required: true }]}>
+                <Input placeholder='Name of location. Eg: Goa Beach' />
             </FormItem>
-            <FormItem label='Gender' required field='sex' rules={[{ required: true }]}>
-                <Select options={['1', '2']} />
+
+            <FormItem label='Date' required field='date' rules={[{ required: true }]}>
+                <DatePicker
+                    style={{ width: 390 }}
+                    placeholder="An estimate date for your departure"
+                    shortcutsPlacementLeft
+                    shortcuts={[
+                    {
+                        text: 'Today',
+                        value: () => dayjs(),
+                    },
+                    {
+                        text: 'A week later',
+                        value: () => dayjs().add(1, 'week'),
+                    },
+                    {
+                        text: 'A month later',
+                        value: () => dayjs().add(1, 'month'),
+                    },
+                    {
+                        text: '2 months later',
+                        value: () => dayjs().add(2, 'month'),
+                    },
+                    ]}
+                />
+            </FormItem>
+            
+            <FormItem label='Message' required field='message' rules={[{ required: true }]}>
+                <TextArea
+                    placeholder='What do you want others to know about this trip?'
+                    autoSize={{ minRows: 2, maxRows: 6 }}
+                    style={{ width: 390 }}
+                />
             </FormItem>
             </Form>
         </Modal>
-        </div>
+        </>
     );
 }
 
