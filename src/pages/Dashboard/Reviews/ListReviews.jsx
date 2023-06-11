@@ -9,7 +9,7 @@ import {
 import { Select, Message } from "@arco-design/web-react";
 
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 // importing styles
 import "./ListReviews.css";
@@ -46,6 +46,8 @@ const ListReviews = ({ data }) => {
     fourStar: 0,
     fiveStar: 0,
   });
+
+  const navigate = useNavigate();
 
   const [filteredData, setFilteredData] = useState(reviews);
   const [eventTriggered, setEventTriggered] = useState(false);
@@ -246,13 +248,10 @@ const ListReviews = ({ data }) => {
                             </div>
                           </div>
 
-                          <button className="btn btn-dark shadow-sm view-review-btn">
-                            <Link
-                              style={{ textDecoration: "none", color: "white" }}
-                              to="/reviews"
-                            >
+                          <button 
+                          onClick={() => navigate(`/place?id=${item.place_id}`)}
+                          className="btn btn-dark shadow-sm view-review-btn">
                               View Details
-                            </Link>
                           </button>
                         </div>
 

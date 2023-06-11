@@ -9,7 +9,7 @@ import {
 } from "@arco-design/web-react";
 
 import { Select, Message } from "@arco-design/web-react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { IconCheckCircleFill, IconClockCircle, IconCloseCircle } from "@arco-design/web-react/icon";
 
@@ -32,13 +32,15 @@ const actions = {
   delete: "Are you sure you want to remove this contribution?",
 };
 
-const ListPlaces = ({ data }) => {
+const ListPlaces = () => {
     const [eventTriggered, setEventTriggered] = useState(false)
     const [loading, setLoading] = useState(true);
     const [contributions, setContributions] = useState([]);
     const [userDetails, setUserDetails] = useState({
         name: "Loading ...",
     });
+
+    const navigate = useNavigate()
 
     const handleFilterClick = (value) => {
         Message.info({
@@ -165,13 +167,10 @@ const ListPlaces = ({ data }) => {
                         </div>
                     </div>
 
-                    <button className="btn btn-dark shadow-sm view-contributed-place-btn">
-                        <Link
-                        style={{ textDecoration: "none", color: "white" }}
-                        to="/contribute"
-                        >
-                            View Details
-                        </Link>
+                    <button 
+                    onClick={() => navigate(`place?id=${item.$id}`)}
+                    className="btn btn-dark shadow-sm view-contributed-place-btn">
+                        View Details
                     </button>
                     </div>
                     <div className="image">

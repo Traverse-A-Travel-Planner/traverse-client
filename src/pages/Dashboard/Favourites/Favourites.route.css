@@ -103,7 +103,7 @@ p.favourites-header {
     font-weight: 500;
 }
 
-/* .favourites-content .favourites-item .text-container .button-container button::after {
+.favourites-content .favourites-item .text-container .button-container button::after {
     content: " →";
     position: absolute;
     width: 20px;
@@ -116,7 +116,7 @@ p.favourites-header {
 .favourites-content .favourites-item .text-container .button-container button:hover::after {
     opacity: 1;
     margin-left: 10px;
-} */
+}
 
 /* ----------------- */
 

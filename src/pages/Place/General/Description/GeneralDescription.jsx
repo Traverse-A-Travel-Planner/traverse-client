@@ -1,3 +1,6 @@
+import { useEffect, useState } from "react";
+
+// arco-design components
 import { Rate, Tag, Typography, Message } from "@arco-design/web-react";
 import { IconCheckCircleFill } from "@arco-design/web-react/icon";
 
@@ -7,8 +10,8 @@ import "./GeneralDescription.css";
 // importing components
 import { capitalizeFirstCharacter } from "../../../../Services/helper";
 import UserAvatar from "../../../../components/Avatar/Avatar";
-import { useEffect, useState } from "react";
 
+// appwrite functions and constants
 import { Functions } from "appwrite";
 import appwriteClient from "../../../../Services/appwriteClient";
 

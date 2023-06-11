@@ -10,7 +10,7 @@ function ImgComponent(props) {
     style={{ ...style, borderRadius: '10px' }}
     className={className}>
       <Image
-        src={src}
+        src={src ? src : "some-error.png"}
         width={"100%"}
         height={300}
         style={{borderRadius: '10px', minWidth: 430}}

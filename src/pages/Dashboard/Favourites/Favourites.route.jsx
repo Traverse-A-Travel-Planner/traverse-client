@@ -10,10 +10,13 @@ import { databaseId } from "../../../Services/config";
 import { Databases, Query } from "appwrite";
 import { Notification, Spin, Typography } from "@arco-design/web-react";
 import { capitalizeFirstCharacter } from "../../../Services/helper";
+import { useNavigate } from "react-router-dom";
 
 const Favourites = ({ data }) => {
   const [favourites, setFavourites] = useState([]);
   const [loading, setLoading] = useState(true);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     (async function () {
@@ -77,7 +80,7 @@ const Favourites = ({ data }) => {
                   return (
                     <div className="favourites-item" key={item.$id}>
                       <div className="image">
-                        <img src={item.image[0]} alt="travel place" />
+                        <img src={item.image[0]} alt="travel place" loading="lazy"/>
                       </div>
                       <div className="text-container">
                         <div className="title">{item.title}</div>
@@ -90,6 +93,7 @@ const Favourites = ({ data }) => {
 
                         <div className="button-container">
                           <button
+                            onClick={() => navigate(`/place?id=${item.$id}`)}
                             className="btn btn-dark shadow-sm"
                           >
                             View Details
