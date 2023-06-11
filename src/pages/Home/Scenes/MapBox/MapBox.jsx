@@ -28,7 +28,7 @@ const MapBox = ({paneResized, rawData}) => {
 
     function setupMap(center) {
       const map = new mapboxgl.Map({
-        container: "map", // container ID
+        container: "home-map", // container ID
         style: "mapbox://styles/mapbox/streets-v12",
         center: center,
         zoom: 1.5,
@@ -56,7 +56,8 @@ const MapBox = ({paneResized, rawData}) => {
           .addTo(map);
 
         // Add a click event listener to each marker
-        marker.getElement().addEventListener("click", async () => {
+        marker.getElement().addEventListener("click", 
+        async () => {
           console.log(marker._lngLat)
 
           // Animate zoom to the location specified by lngLat
@@ -99,16 +100,12 @@ const MapBox = ({paneResized, rawData}) => {
           popup.addClassName('places-card-popup');
         });
       }
-
-      return () => {
-        map.remove()
-      }
     }
   }, [paneResized, data]);
 
   return (
     <>
-      <div id="map" style={{ height: "90vh", width: "100%" }} />
+      <div id="home-map" style={{ height: "90vh", width: "100%" }} />
     </>
   );
 };

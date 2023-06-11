@@ -34,8 +34,6 @@ function setupMap(center, data) {
 
     // Add a click event listener to each marker
     marker.getElement().addEventListener("click", async () => {
-      console.log(marker._lngLat);
-
       // Animate zoom to the location specified by lngLat
       map.flyTo({
         center: marker._lngLat,
@@ -107,17 +105,10 @@ const SearchBar = ({
     });
 
     geocoder.addTo("#geocoder");
-
-    return () => {
-      // Cleanup function
-      geocoder.off("result");
-      geocoder.remove();
-    }
   }, []);
 
   useEffect(() => {
     if (!newGeoCoded) return;
-    console.log("hehe", allPlaces);
     setupMap(newGeoCoded.result.center, allPlaces);
   }, [newGeoCoded, allPlaces]);
 
@@ -147,7 +138,9 @@ const SearchBar = ({
             <li
               key={theme.id}
               className={`places-theme-filter-btn ${activeTheme === theme.id ? "active" : ""}`}
-              onClick={() => updateTheme(theme.id)}
+              onClick={() => {
+                updateTheme(theme.id)
+              }}
             >
               {theme.label}
             </li>
