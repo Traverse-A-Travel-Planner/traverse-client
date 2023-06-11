@@ -237,26 +237,6 @@ const ReviewTab = ({ state }) => {
                       </div>
                     </div>
                   </div>
-
-                  {/* <div className="image">
-                                {!item.image.length ? (
-                                <Image
-                                    width={145}
-                                    height={130}
-                                    style={{ borderRadius: "5px" }}
-                                    src="some-error.png"
-                                    alt="No images found for this place"
-                                />
-                                ) : (
-                                <Image
-                                    width={145}
-                                    height={130}
-                                    style={{ borderRadius: "5px" }}
-                                    src={item.image}
-                                    alt={item.title}
-                                />
-                                )}
-                            </div> */}
                 </div>
                 <div className="review-actions">
                   {item.author_id === localStorage.getItem("userId") ? (

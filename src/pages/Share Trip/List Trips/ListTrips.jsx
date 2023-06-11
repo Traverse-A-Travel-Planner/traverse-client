@@ -119,7 +119,7 @@ const ListTrip = () => {
                     <div className="sharedTrip-header">
                       <div className="sharedTrip-details">
                         <Typography.Title heading={6} className="my-0 ">
-                          {item.author_id}
+                          {item.name}
                         </Typography.Title>
                         <Typography.Text type="secondary" className="mt-1">
                             Shared on{" "}
