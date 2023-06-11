@@ -23,6 +23,7 @@ import UserAvatar from "../../../../components/Avatar/Avatar";
 import DropdownActions from "../../../../components/Actions/Dropdown/DropdownActions";
 import RatingInsights from "../../../Dashboard/components/Ratings Insights/RatingInsights";
 import filterData from "../../../../components/Filters/filterList.js";
+import userDataExtractor from "../../../../Services/UserDataExtractor";
 
 const Option = Select.Option;
 const options = ["Recent", "Ratings", "Oldest"];
@@ -95,7 +96,6 @@ const ReviewTab = ({ state }) => {
         if (!state.placeData || !state.placeData.$id) return;
 
         const db = new Databases(appwriteClient);
-        const functions = new Functions(appwriteClient);
 
         let { documents: reviews } = await db.listDocuments(
           databaseId,
@@ -103,31 +103,13 @@ const ReviewTab = ({ state }) => {
           [Query.equal("place_id", state.placeData.$id)]
         );
 
-        let executionResponse = [];
-
         if (reviews.length > 0) {
-          // Get user details associated with reviews.
-          executionResponse = await functions.createExecution(
-            "userDataExtractor",
-            JSON.stringify({
-              userId: reviews.map((item) => item.author_id),
-            })
-          );
-
-          executionResponse = JSON.parse(executionResponse.response);
-
-          if (!executionResponse.success) {
-            return Message.error(
-              "Error occured while fetching the reviews of this place."
-            );
+          const finalData = await userDataExtractor(reviews)
+          
+          if (finalData.success === false){
+            Message.error(finalData.message)
+            return
           }
-
-          let finalData = executionResponse.userDetails.users?.map(
-            (item, idx) => {
-              let currentReview = reviews[idx];
-              return { ...currentReview, name: item.name };
-            }
-          );
 
           setReviews(finalData);
           calculateInsights(finalData);
@@ -138,7 +120,7 @@ const ReviewTab = ({ state }) => {
         setReviews([]);
         calculateInsights([]);
         setLoading(false);
-        
+        return
       } catch (error) {
         setLoading(false);
         console.log(error);
