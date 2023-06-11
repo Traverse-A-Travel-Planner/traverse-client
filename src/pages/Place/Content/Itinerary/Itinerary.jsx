@@ -8,6 +8,7 @@ import {
   Spin,
 } from "@arco-design/web-react";
 
+// importing appwrite functions and constants
 import appwriteClient from "../../../../Services/appwriteClient";
 import { Functions } from "appwrite";
 
@@ -43,10 +44,6 @@ function Itinerary({ state }) {
         months[new Date().getMonth()]
       } in short. Each itinerary must be strictly in this format example: 'June 1 - Do this' [No extra info just plain itinerary max 6. seperate day and task by hyphen. One task per day.]`;
 
-      //    const prompt = `Plan a itinerary for ${title}, ${location} in below format:
-      //    [{date: Date, "description": Description here}] just array not extra details, min 4 max
-      //    `
-
       let response = await functions.createExecution(
         "openAI",
         JSON.stringify({ prompt })
@@ -59,13 +56,6 @@ function Itinerary({ state }) {
       if (!response.success) {
         return Message.error(response.error);
       }
-
-      //   let dummyResponseText = {
-      //     text: "\n\nJune 1 - Arrive in Agra. Check into hotel. \nJune 2 - Visit Taj Mahal \nJune 3 - Visit Agra Fort \nJune 4 - Depart Agra",
-      //     index: 0,
-      //     logprobs: null,
-      //     finish_reason: "stop",
-      //   };
 
       console.log(response.data.choices[0].text);
 
@@ -85,39 +75,42 @@ function Itinerary({ state }) {
   };
 
   return (
-    <div>
-      <Space style={{ marginBottom: "20px" }} direction="vertical">
-        <Typography.Text>
+    <div style={{padding: '1em 1.5em'}}>
+      <Space style={{ marginBottom: "25px" }} direction="vertical">
+        <Typography.Text style={{fontSize: 16}}>
           Ask AI for things to do in this <strong>{data.title}</strong> in
           current time:
         </Typography.Text>
         <Button
-          type="primary"
           loading={loading}
+          style={{background: 'black', color: 'white', padding: '0 25px 0 20px', margin: '7.5px 0 10px 0'}}
           onClick={() =>
             handleGenerateItinerary(data.title, data.location_description)
           }
         >
-          {loading ? "Thinking ..." : "Ask AI"}
+          <i className="bi bi-robot ms-1 me-2"></i> {loading ? "Thinking" : "Ask AI"}
         </Button>
       </Space>
 
-      <hr />
-
-      {loading ? (
-        <Spin />
-      ) : (
-        <Timeline>
-          {itinerary &&
-            itinerary.map((item, key) => {
-              return (
-                <TimelineItem key={key} label={item.label}>
-                  {item.task}
-                </TimelineItem>
-              );
-            })}
-        </Timeline>
-      )}
+      <Typography.Title 
+      type="success"
+      heading={5} 
+      className="mt-1 mb-3">
+        <i className="bi bi-check2-circle me-2"></i> Timeline
+      </Typography.Title>
+              
+      <Timeline>
+        {itinerary &&
+          itinerary.map((item, key) => {
+            return (
+              <TimelineItem 
+              key={key} 
+              label={item.label}>
+                {item.task}
+              </TimelineItem>
+            );
+          })}
+      </Timeline>
     </div>
   );
 }

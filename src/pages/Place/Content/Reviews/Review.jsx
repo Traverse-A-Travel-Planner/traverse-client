@@ -194,7 +194,7 @@ const ReviewTab = ({ state }) => {
             }}
             animation
           />
-        ) : state.length === 0 ? (
+        ) : reviews.length === 0 ? (
           <Typography.Title className="ms-4 pb-3" heading={6} bold>
             No reviews posted yet
           </Typography.Title>
