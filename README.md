@@ -1,11 +1,11 @@
 <h1 align="center">Welcome To Traverse 👋</h1>
 
 
-## 🔗 Try it out here .
+# 🔗 Try it out here .
 - [Production Server](https://traverse-rho.vercel.app/)
 
 
-## 🏄🏼‍♀️ Plan your next trip with us  👇
+# 🏄🏼‍♀️ Plan your next trip with us  👇
 
 ![ss](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/648315553b0f625ac6ea/view?project=64777ba0910c827a975b&mode=admin)
 
@@ -21,7 +21,7 @@
 
 
 
-## 👨🏼‍💻 Tech Stack
+# 👨🏼‍💻 Tech Stack
 
 **Client:** React, Arco Design, MapBox GL
 
@@ -36,10 +36,15 @@
 - Storage bucket
 - Serverless cloud functions
 
-## Run Locally
+# Run Locally
 
+```
+PS: Running in own appwrite server can be a hectic task for now. We will soon create an automation script that will do all the tasks for setting up own server. As of now, it is preferred to use our own appwrite server configurations. 
+```
 
-Configure Appwrite Server
+If you want to configure your own appwrite server , follow these steps. If you want to use our server but run client locally, just clone the repo and follow steps given below server configurations.
+
+## Configure Appwrite Server
 
 - Create appwrite account.
 - Create database named traverse with custom databaseId traverse.
@@ -72,7 +77,7 @@ Configure Appwrite Server
 
 Clone the project
 ```bash
-  https://github.com/Traverse-A-Travel-Planner/traverse-client
+ git clone https://github.com/Traverse-A-Travel-Planner/traverse-client
 ```
 
 Go to the project directory
@@ -95,22 +100,23 @@ Start the server
 
 - Put the necessary configurations like project id and server endpoint in `src/Services/config.js`
 
-Deploy the cloud function
+## Deploy the cloud functions
 
-- There is a serverless function in `serverless_function/postInsights`. Deploy it and set the necessary environment variable from your cloud function dashboard.
+- If you are running  your own server, deploy the cloud functions that are inside `functions` folder and setup necessary configurations like `.env` , `roles`, etc.
 
+## Local URL
 - Navigate to [http://localhost:3000](http://localhost:3000)
 
-## Developers
+# Developers
 - [Yaman Sarabariya](https://github.com/yaman1337)
 - [Bibek Shah](https://github.com/bibekshhh)
 
 
-## License
+# License
 
 [MIT](https://github.com/Traverse-A-Travel-Planner/traverse-client/blob/main/LICENSE)
 
-## Contributing
+# Contributing
 
 Contributions are always welcome!
 

@@ -105,6 +105,7 @@ const SearchBar = ({
     });
 
     geocoder.addTo("#geocoder");
+
   }, []);
 
   useEffect(() => {

@@ -1,26 +1,35 @@
-# postInsights
+# mailer
 
-Welcome to the documentation of this function 👋 We strongly recommend keeping this file in sync with your function's logic to make sure anyone can easily understand your function in the future. If you don't need documentation, you can remove this file.
+It is used to send emails to the users. It supports mailing for different kinds of actions based
+on the payload provided by the user. The mail service is powered by GMAIL smtp. Later we might make it customizable.
 
 ## 🤖 Documentation
 
-Simple function similar to typical "hello world" example, but instead, we return a simple JSON that tells everyone how awesome developers are.
-
-<!-- Update with your description, for example 'Create Stripe payment and return payment URL' -->
-
 _Example input:_
 
-This function expects no input
+`action` means the event or purpose of email. Currently we have following actions.
 
-<!-- If input is expected, add example -->
-
-_Example output:_
-
-<!-- Update with your expected output -->
+- `shareTripMail`
 
 ```json
 {
- "areDevelopersAwesome": true
+  "action": "shareTripMail",
+  "data": {
+    "receiver": "test@gmail.com",
+    "sender": "sender@gmail.com",
+    "message": "Message to the receiver.",
+    "tripId": "Document id of trip."
+  }
+}
+```
+
+_Example output:_
+
+Email sent success output:
+
+```json
+{
+  "success": true
 }
 ```
 
@@ -29,8 +38,10 @@ _Example output:_
 List of environment variables used by this cloud function:
 
 - **APPWRITE_FUNCTION_ENDPOINT** - Endpoint of Appwrite project
+- **APPWRITE_FUNCTION_PROJECT_ID** - Project id of Appwrite project
 - **APPWRITE_FUNCTION_API_KEY** - Appwrite API Key
-<!-- Add your custom environment variables -->
+- **GMAIL_APP_USERNAME** - Gmail app username
+- **GMAIL_APP_PASSWORD** - Gmail app password
 
 ## 🚀 Deployment
 
