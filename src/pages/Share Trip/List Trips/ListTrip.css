@@ -1,5 +1,4 @@
 .sharedTrip-wrapper{
-    min-height: 40vh !important;
     max-height: 65vh;
     overflow: auto;
     position: relative;
@@ -27,6 +26,10 @@
     align-items: flex-start;
     background-color: white;
     border-radius: 10px;
+}
+
+.sharedTrip-list .arco-skeleton-animate .arco-skeleton-image{
+    width: 50px !important;
 }
 
 @media screen and (max-width: 900px) {

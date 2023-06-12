@@ -105,17 +105,13 @@ const ListTrip = () => {
       <div className="sharedTrip-list">
         {loading === true ? (
           <Skeleton
-            style={{ margin: "0px 0 0 0px" }}
+            style={{ margin: "0px 0 0 20px", width: '90%', display: 'flex' }}
             loading={loading}
-            text={{
-              rows: 3,
-              width: "100%",
-              style: {
-                minWidth: 200,
-                width: "100%",
-                height: 100,
-              },
+            text={{ 
+              rows: 8,
+              width: ['50%', '40%', "0%", '35%', '40%', "0%", '75%', '20%']
             }}
+            image={{ shape: 'circle' }}
             animation
           />
         ) : sharedTrips.length === 0 ? (
@@ -165,7 +161,7 @@ const ListTrip = () => {
                               color="red"
                               icon={<IconClockCircle />}
                             >
-                              Ended
+                              Expired
                             </Tag>
                           ) : (
                             <Tag
@@ -202,7 +198,7 @@ const ListTrip = () => {
                         <Typography.Text type="success" bold>
                           {" " + item.total_proposals + " "}
                         </Typography.Text>
-                        people interested onto sharing this trip
+                        people interested on this trip
                       </div>
 
                       <div className="description mt-3">

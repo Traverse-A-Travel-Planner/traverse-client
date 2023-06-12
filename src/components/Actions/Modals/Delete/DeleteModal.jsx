@@ -1,9 +1,16 @@
-import { Modal, Message, Button } from "@arco-design/web-react";
+// importing styles
 import "./DeleteModal.css";
+
+// importing appwrite functions and constants
 import { Databases } from "appwrite";
-import appwriteClient from "../../../Services/appwriteClient";
-import { databaseId } from "../../../Services/config";
-import { capitalizeFirstCharacter } from "../../../Services/helper";
+import appwriteClient from "../../../../Services/appwriteClient";
+import { databaseId } from "../../../../Services/config";
+
+// arco-design components
+import { Modal, Message, Button } from "@arco-design/web-react";
+
+// capitalize functions
+import { capitalizeFirstCharacter } from "../../../../Services/helper";
 
 const db = new Databases(appwriteClient);
 
@@ -27,20 +34,17 @@ function handleAction(content, type, payload) {
           event = new CustomEvent("reviewDeleted", {});
         }
 
-        console.log("payload: ", payload)
-
         await db.deleteDocument(databaseId, collectionId, payload.id);
 
         document.dispatchEvent(event);
 
         Message.success({
-          content:  `${capitalizeFirstCharacter(type)} deleted successfully.`,
+          content: `${capitalizeFirstCharacter(type)} deleted successfully.`,
         });
       } catch (e) {
         Message.error({
           content: "Failed to delete!",
         });
-        throw e;
       }
     },
   });

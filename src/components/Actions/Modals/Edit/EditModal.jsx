@@ -1,10 +1,14 @@
-import { Modal, Message, Button } from "@arco-design/web-react";
 import "./EditModal.css";
-import { Databases } from "appwrite";
-import appwriteClient from "../../../Services/appwriteClient";
-import { databaseId } from "../../../Services/config";
-import { capitalizeFirstCharacter } from "../../../Services/helper";
 
+// importing appwrite functions and constants
+import { Databases } from "appwrite";
+import appwriteClient from "../../../../Services/appwriteClient";
+import { databaseId } from "../../../../Services/config";
+
+// arco design components
+import { Modal, Message, Button } from "@arco-design/web-react";
+
+// db instance created
 const db = new Databases(appwriteClient);
 
 function handleAction(content, type, payload) {
@@ -30,8 +34,6 @@ function handleAction(content, type, payload) {
             event = new CustomEvent("sharedTripCancelled", {})
         }
 
-        console.log("payload: ", payload)
-
         await db.updateDocument(databaseId, collectionId, payload.$id, { status: "cancelled" })
 
         document.dispatchEvent(event);
@@ -43,7 +45,6 @@ function handleAction(content, type, payload) {
         Message.error({
           content: "Failed to perform action!",
         });
-        throw e;
       }
     },
   });

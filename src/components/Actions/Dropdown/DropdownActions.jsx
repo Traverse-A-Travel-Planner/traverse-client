@@ -1,10 +1,10 @@
 import { Button, Menu } from "@arco-design/web-react";
 import DropdownComponent from "@arco-design/web-react/es/Dropdown";
-import DeleteModal from "../Modals/DeleteModal";
+import DeleteModal from "../Modals/Delete/DeleteModal";
 
 // importing styles
 import "./DropdownActions.css";
-import EditModal from "../Modals/EditModal";
+import EditModal from "../Modals/Edit/EditModal";
 
 const DropdownActions = ({ actions, type, payload }) => {
   const dropList = (
