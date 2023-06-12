@@ -15,6 +15,10 @@ import {
   Skeleton,
   Tag,
   Typography,
+  Modal,
+  Form,
+  Input,
+  Button,
 } from "@arco-design/web-react";
 
 // importing components
@@ -36,9 +40,17 @@ const actions = {
   cancel: "Do you want to cancel the trip ?",
 };
 
+const FormItem = Form.Item;
+const TextArea = Input.TextArea;
+
 const ListTrip = () => {
   const [sharedTrips, setSharedTrips] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [visible, setVisible] = useState(false);
+
+  const [proposalMessage, setProposalMessge] = useState("");
+
+  const [proposalLoading, setProposalLoading] = useState(false);
 
   useEffect(() => {
     fetchSharedTrips();
@@ -77,6 +89,18 @@ const ListTrip = () => {
     await fetchSharedTrips();
   });
 
+  const handleSendProposal = async (sender) => {
+    try {
+      // setProposalLoading(true);
+      // console.log(sender);
+      // setProposalLoading(false);
+    } catch (error) {
+      setProposalLoading(true);
+      console.log(error);
+      Message.error(error.message);
+    }
+  };
+
   const handleFilterClick = async (value) => {};
 
   return (
@@ -105,13 +129,13 @@ const ListTrip = () => {
       <div className="sharedTrip-list">
         {loading === true ? (
           <Skeleton
-            style={{ margin: "0px 0 0 20px", width: '90%', display: 'flex' }}
+            style={{ margin: "0px 0 0 20px", width: "90%", display: "flex" }}
             loading={loading}
-            text={{ 
+            text={{
               rows: 8,
-              width: ['50%', '40%', "0%", '35%', '40%', "0%", '75%', '20%']
+              width: ["50%", "40%", "0%", "35%", "40%", "0%", "75%", "20%"],
             }}
-            image={{ shape: 'circle' }}
+            image={{ shape: "circle" }}
             animation
           />
         ) : sharedTrips.length === 0 ? (
@@ -132,36 +156,33 @@ const ListTrip = () => {
                     <div className="right">
                       <div className="sharedTrip-header">
                         <div className="sharedTrip-details">
-
-                        <Typography.Title
-                          style={{ 
-                            fontSize: "17px", 
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            width: '98%',
-                          }}
-                          heading={6}
-                          className="my-0"
-                        >
-                          <div>
-                            {item.location}
-                          </div>
-                        </Typography.Title>
-                        <Typography.Text type="secondary" className="my-0 ">
-                          <i className="bi bi-airplane me-1"></i> Departing on{" "}
-                          {formatDateToLocal(item.departure_date)}
-                        </Typography.Text>
+                          <Typography.Title
+                            style={{
+                              fontSize: "17px",
+                              display: "flex",
+                              justifyContent: "space-between",
+                              width: "98%",
+                            }}
+                            heading={6}
+                            className="my-0"
+                          >
+                            <div>{item.location}</div>
+                          </Typography.Title>
+                          <Typography.Text type="secondary" className="my-0 ">
+                            <i className="bi bi-airplane me-1"></i> Departing on{" "}
+                            {formatDateToLocal(item.departure_date)}
+                          </Typography.Text>
                         </div>
                       </div>
 
                       <div className="shared-trip-content mt-3">
                         <Typography.Text className="">
-                          Shared by <Typography.Text bold>{item.name}</Typography.Text>
+                          Shared by{" "}
+                          <Typography.Text bold>{item.name}</Typography.Text>
                         </Typography.Text>
-                          <br />
+                        <br />
                         <Typography.Text type="secondary" className="mt-1">
-                          On{" "}
-                          {formatDateToLocal(item.$createdAt)} at{" "}
+                          On {formatDateToLocal(item.$createdAt)} at{" "}
                           {new Date(item.$createdAt).toLocaleTimeString()}
                         </Typography.Text>
                       </div>
@@ -175,55 +196,73 @@ const ListTrip = () => {
                       <div className="contact-menu">
                         <button
                           disabled={item.status === "active" ? false : true}
-                          onClick={() => {}}
+                          onClick={() => setVisible(!visible)}
                           className="btn btn-dark shadow-sm contact-sharer-btn"
                         >
-                          <i className="bi bi-chat-left-dots me-1"></i> Message {" "} {(item.name).split(" ")[0]}
+                          <i className="bi bi-chat-left-dots me-1"></i> Message{" "}
+                          {item.name.split(" ")[0]}
                         </button>
                       </div>
                     </div>
                   </div>
                   <div className="sharedTrip-actions">
-                    <div 
-                    style={{display: 'flex', flexDirection: 'row', gap: '0 0.5em'}}
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "0 0.5em",
+                      }}
                     >
                       {item.status === "active" ? (
-                          <Tag
-                            color="green"
-                            icon={<IconCheckCircleFill />}
-                          >
-                            Active
-                          </Tag>
-                        ) : item.status === "ended" ? (
-                          <Tag
-                            color="red"
-                            icon={<IconClockCircle />}
-                          >
-                            Expired
-                          </Tag>
-                        ) : (
-                          <Tag
-                            color="red"
-                            icon={<IconCloseCircle />}
-                          >
-                            Cancelled
-                          </Tag>
+                        <Tag color="green" icon={<IconCheckCircleFill />}>
+                          Active
+                        </Tag>
+                      ) : item.status === "ended" ? (
+                        <Tag color="red" icon={<IconClockCircle />}>
+                          Expired
+                        </Tag>
+                      ) : (
+                        <Tag color="red" icon={<IconCloseCircle />}>
+                          Cancelled
+                        </Tag>
                       )}
 
-                      {
-                        (item.author_id === localStorage.getItem("userId")) && (
-                          <DropdownActions
-                            actions={actions}
-                            type="sharedTrips"
-                            payload={{ ...item, id: item.$id }}
-                          />
-                        )
-                      }
+                      {item.author_id === localStorage.getItem("userId") && (
+                        <DropdownActions
+                          actions={actions}
+                          type="sharedTrips"
+                          payload={{ ...item, id: item.$id }}
+                        />
+                      )}
                     </div>
 
                     <div className="mt-1">
-                        <Tag>{item.total_proposals + " "} proposals </Tag>
+                      <Tag>{item.total_proposals + " "} proposals </Tag>
                     </div>
+
+                    <Modal
+                      title="Add User"
+                      visible={visible}
+                      onOk={handleSendProposal(item.author_id)}
+                      onCancel={() => setVisible(false)}
+                    >
+                      <TextArea
+                        placeholder="Please enter your share trip proposal. It will sent directly to sharer email. Include meaningful message."
+                        style={{ minHeight: 100, width: "100%" }}
+                      />
+                      <Button
+                        style={{
+                          background: "black",
+                          color: "white",
+                          marginTop: 20,
+                          textAlign: "center",
+                          height: "40px",
+                        }}
+                        loading={proposalLoading}
+                      >
+                        <i className="bi bi-send"></i> Send Proposal
+                      </Button>
+                    </Modal>
                   </div>
                 </div>
               </>
