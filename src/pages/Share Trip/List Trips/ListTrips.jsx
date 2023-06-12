@@ -151,7 +151,7 @@ const ListTrip = () => {
                         </Typography.Text>
                     </div>
 
-                    <div className="proposals mt-3">
+                    <div className="proposals mt-3 text-muted">
                         There are 
                         <Typography.Text type="success" bold>
                             {" " + item.total_proposals + " "}
