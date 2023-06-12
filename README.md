@@ -55,6 +55,8 @@ If you want to configure your own appwrite server , follow these steps. If you w
 | places  | places  |
 |  reviews |  reviews |
 |  favourites |  favourites |
+|  sharedTrips |  sharedTrips |
+
 
 #### Attributes and Indexes of ```places``` collection
 ![attributes](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/648310128e00f797e03b/view?project=64777ba0910c827a975b&mode=admin)
