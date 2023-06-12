@@ -104,13 +104,13 @@ const ReviewTab = ({ state }) => {
         );
 
         if (reviews.length > 0) {
-          const finalData = await userDataExtractor(reviews)
-          
-          if (finalData.success === false){
-            Message.error(finalData.message)
+          const finalData = await userDataExtractor(reviews);
+
+          if (finalData.success === false) {
+            Message.error(finalData.message);
           }
 
-          console.log("reviews vitrakoL ", finalData)
+          console.log("reviews vitrakoL ", finalData);
           setReviews(finalData.data);
           calculateInsights(finalData.data);
           setLoading(false);
@@ -120,7 +120,7 @@ const ReviewTab = ({ state }) => {
         setReviews([]);
         calculateInsights([]);
         setLoading(false);
-        return
+        return;
       } catch (error) {
         setLoading(false);
         console.log(error);
@@ -146,6 +146,10 @@ const ReviewTab = ({ state }) => {
         content: error.message,
       });
     }
+  });
+
+  document.addEventListener("newReviewAdded", async () => {
+    fetchPlaceReviews();
   });
 
   return (
@@ -178,7 +182,7 @@ const ReviewTab = ({ state }) => {
             loading={loading}
             text={{
               rows: 3,
-              width: ["80%", "60%", '90%'],
+              width: ["80%", "60%", "90%"],
               style: {
                 minWidth: 250,
                 width: "100%",

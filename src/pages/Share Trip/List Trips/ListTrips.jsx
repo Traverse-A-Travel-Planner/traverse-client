@@ -5,7 +5,6 @@ import "./ListTrip.css";
 
 // importing appwrite function and constants
 import { Databases } from "appwrite";
-import appwriteClient from "../../../Services/appwriteClient";
 import { databaseId } from "../../../Services/config";
 
 // importing arco-design components
@@ -31,9 +30,14 @@ import {
   IconCloseCircle,
 } from "@arco-design/web-react/icon";
 import { formatDateToLocal } from "../../../Services/helper";
+import { Account, Functions } from "appwrite";
+import appwriteClient from "../../../Services/appwriteClient";
 
 const Option = Select.Option;
 const options = ["Recent", "Ratings", "Oldest"];
+
+const account = new Account(appwriteClient);
+const functions = new Functions(appwriteClient);
 
 const actions = {
   delete: "Are you sure you want to remove this review ?",
@@ -88,24 +92,45 @@ const ListTrip = () => {
     await fetchSharedTrips();
   });
 
-  const handleSendProposal = async (sender) => {
+  const handleSendProposal = async (receiver, tripId) => {
     try {
-      if (!proposalMessage.length){
-        Message.error("Message field must be there")
-        return
+      if (!proposalMessage.length) {
+        Message.error("Please add a proposal.");
+        return;
       }
 
       setProposalLoading(true);
-      
-      const timer = setTimeout(() => {
-        console.log(sender);
-        setProposalLoading(false);
-        setVisible(false);
-        return
-      }, 3000)
-      
-      return () => clearTimeout(timer)
 
+      const currentUserDetails = await account.get();
+
+      const payload = {
+        action: "shareTripMail",
+        data: {
+          sender: currentUserDetails.email,
+          tripId,
+          message: proposalMessage,
+          receiver,
+        },
+      };
+
+      let executionResponse = await functions.createExecution(
+        "mailer",
+        JSON.stringify(payload)
+      );
+      setProposalLoading(false);
+
+      executionResponse = JSON.parse(executionResponse.response);
+
+      if (!executionResponse || !executionResponse.success) {
+        return {
+          success: false,
+          message: "Internal server error occured while sending proposal.",
+        };
+      }
+
+      Message.success("Proposal sent.");
+      fetchSharedTrips();
+      setVisible(false);
     } catch (error) {
       setProposalLoading(false);
       console.log(error);
@@ -205,30 +230,27 @@ const ListTrip = () => {
                         </div>
                       </div>
 
-                      {
-                        (item.author_id !== localStorage.getItem("userId")) && (
+                      {item.author_id !== localStorage.getItem("userId") && (
                         <div className="contact-menu">
                           <button
                             disabled={item.status === "active" ? false : true}
                             onClick={() => setVisible(!visible)}
                             className="btn btn-dark shadow-sm contact-sharer-btn"
                           >
-                            <i className="bi bi-chat-left-dots me-1"></i> Message{" "}
-                            {item.name.split(" ")[0]}
+                            <i className="bi bi-chat-left-dots me-1"></i>{" "}
+                            Message {item.name.split(" ")[0]}
                           </button>
-                        </div>  
-                        )
-                      }
-                      
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div className="sharedTrip-actions">
-                    <div 
-                    style={{
-                      display: 'flex', 
-                      flexDirection: 'row', 
-                      gap: '0 0.5em'
-                    }}
+                    <div
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "0 0.5em",
+                      }}
                     >
                       {item.status === "active" ? (
                         <Tag color="green" icon={<IconCheckCircleFill />}>
@@ -279,7 +301,9 @@ const ListTrip = () => {
                               height: "40px",
                             }}
                             loading={proposalLoading}
-                            onClick={() => handleSendProposal(item.author_id)}
+                            onClick={() =>
+                              handleSendProposal(item.email, item.$id)
+                            }
                           >
                             <i className="bi bi-send"></i> Send Proposal
                           </Button>
@@ -292,7 +316,6 @@ const ListTrip = () => {
                         placeholder="Please enter your share trip proposal. It will sent directly to sharer email. Include meaningful message."
                         style={{ minHeight: 100, width: "100%" }}
                       />
-                      
                     </Modal>
                   </div>
                 </div>

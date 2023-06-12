@@ -12,7 +12,7 @@
                 "node_modules",
                 ".npm"
             ],
-            "execute": [],
+            "execute": ["any"],
             "events": [
                 "databases.traverse.collections.reviews.documents.*.create"
             ],
@@ -44,7 +44,7 @@
                 "node_modules",
                 ".npm"
             ],
-            "execute": [],
+            "execute": ["any"],
             "events": [],
             "schedule": "",
             "timeout": 15
@@ -59,7 +59,7 @@
                 "node_modules",
                 ".npm"
             ],
-            "execute": [],
+            "execute": ["any"],
             "events": [],
             "schedule": "",
             "timeout": 15

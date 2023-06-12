@@ -69,10 +69,10 @@ module.exports = async function (req, res) {
           });
         }
 
-        const newNumberOfProposals = response.totap_proposals + 1;
+        const newNumberOfProposals = response.total_proposals + 1;
 
         await database.updateDocument("traverse", "sharedTrips", tripId, {
-          totap_proposals: newNumberOfProposals,
+          total_proposals: newNumberOfProposals,
         });
 
         const placeName = response.location;
