@@ -16,11 +16,6 @@ const ProfileMenuCard = () => {
                   Change Password
                 </Link>
               </li>
-              <li className="items change-avatar-btn">
-                <Link style={{ textDecoration: "none", color: "black" }} to="/dashboard">
-                  Change Avatar
-                </Link>
-              </li>
             </ul>
           </div>
         </>

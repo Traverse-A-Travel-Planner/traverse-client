@@ -172,20 +172,27 @@ const ListTrip = () => {
                         </div>
                       </div>
 
-                      <div className="contact-menu">
-                        <button
-                          disabled={item.status === "active" ? false : true}
-                          onClick={() => {}}
-                          className="btn btn-dark shadow-sm contact-sharer-btn"
-                        >
-                          <i className="bi bi-chat-left-dots me-1"></i> Message {" "} {(item.name).split(" ")[0]}
-                        </button>
-                      </div>
+                      {(item.author_id !== localStorage.getItem("userId")) && (
+                          <div className="contact-menu">
+                            <button
+                              disabled={item.status === "active" ? false : true}
+                              onClick={() => {}}
+                              className="btn btn-dark shadow-sm contact-sharer-btn"
+                            >
+                              <i className="bi bi-chat-left-dots me-1"></i> Message {" "} {(item.name).split(" ")[0]}
+                            </button>
+                          </div>
+                        )}
+                      
                     </div>
                   </div>
                   <div className="sharedTrip-actions">
                     <div 
-                    style={{display: 'flex', flexDirection: 'row', gap: '0 0.5em'}}
+                    style={{
+                      display: 'flex', 
+                      flexDirection: 'row', 
+                      gap: '0 0.5em'
+                    }}
                     >
                       {item.status === "active" ? (
                           <Tag

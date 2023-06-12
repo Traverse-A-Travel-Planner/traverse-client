@@ -1,8 +1,7 @@
 .sharedTrip-wrapper{
-    max-height: 65vh;
+    max-height: calc(85vh - 80px);
     overflow: auto;
     position: relative;
-    margin-top: 17px;
     padding: 0 2em;
     display: flex;
     flex-direction: row;
