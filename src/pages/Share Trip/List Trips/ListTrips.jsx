@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 // importing style
 import "./ListTrip.css";
@@ -27,6 +26,7 @@ import {
   IconClockCircle,
   IconCloseCircle,
 } from "@arco-design/web-react/icon";
+import { formatDateToLocal } from "../../../Services/helper";
 
 const Option = Select.Option;
 const options = ["Recent", "Ratings", "Oldest"];
@@ -136,24 +136,21 @@ const ListTrip = () => {
                     <div className="right">
                       <div className="sharedTrip-header">
                         <div className="sharedTrip-details">
-                          <Typography.Title heading={6} className="my-0 ">
-                            {item.name}
-                          </Typography.Title>
-                          <Typography.Text type="secondary" className="mt-1">
-                            Shared on{" "}
-                            {new Date(item.$createdAt).toLocaleDateString()} at{" "}
-                            {new Date(item.$createdAt).toLocaleTimeString()}
-                          </Typography.Text>
-                        </div>
-                      </div>
 
-                      <div className="shared-trip-content mt-3">
                         <Typography.Title
-                          style={{ fontSize: "17px", color: "#892BE1" }}
+                          style={{ 
+                            fontSize: "17px", 
+                            display: 'flex',
+                            justifyContent: 'space-between',
+                            width: '98%',
+                          }}
                           heading={6}
                           className="my-0"
                         >
-                          {item.location}{" "}
+                          <div>
+                            {item.location}
+                          </div>
+                          <div>
                           {item.status === "active" ? (
                             <Tag
                               className="ms-2"
@@ -179,10 +176,24 @@ const ListTrip = () => {
                               Cancelled
                             </Tag>
                           )}
+                          </div>
                         </Typography.Title>
                         <Typography.Text type="secondary" className="my-0 ">
-                          <i className="bi bi-airplane me-1"></i> Departure:{" "}
-                          {item.departure_date}
+                          <i className="bi bi-airplane me-1"></i> Departing on{" "}
+                          {formatDateToLocal(item.departure_date)}
+                        </Typography.Text>
+                        </div>
+                      </div>
+
+                      <div className="shared-trip-content mt-3">
+                        <Typography.Text className="">
+                          Shared by <Typography.Text bold>{item.name}</Typography.Text>
+                        </Typography.Text>
+                          <br />
+                        <Typography.Text type="secondary" className="mt-1">
+                          On{" "}
+                          {formatDateToLocal(item.$createdAt)} at{" "}
+                          {new Date(item.$createdAt).toLocaleTimeString()}
                         </Typography.Text>
                       </div>
 
@@ -191,7 +202,7 @@ const ListTrip = () => {
                         <Typography.Text type="success" bold>
                           {" " + item.total_proposals + " "}
                         </Typography.Text>
-                        proposals for this shared trip
+                        people interested onto sharing this trip
                       </div>
 
                       <div className="description mt-3">
@@ -206,7 +217,7 @@ const ListTrip = () => {
                           onClick={() => {}}
                           className="btn btn-dark shadow-sm contact-sharer-btn"
                         >
-                          <i className="bi bi-chat-left-dots me-1"></i> Contact
+                          <i className="bi bi-chat-left-dots me-1"></i> Message {" "} {(item.name).split(" ")[0]}
                         </button>
                       </div>
                     </div>

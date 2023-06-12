@@ -55,7 +55,6 @@ async function userDataExtractor(data) {
 
         for (let j = 0; j < arrayOfUsers.length; j++) {
           let item = arrayOfUsers[j];
-          console.log(item.$id, currentReview.author_id);
           if (item.$id === currentReview.author_id) {
             finalData.push({ ...currentReview, name: item.name });
           }
