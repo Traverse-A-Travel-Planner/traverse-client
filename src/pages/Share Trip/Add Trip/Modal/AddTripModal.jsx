@@ -16,7 +16,7 @@ import { databaseId } from "../../../../Services/config";
 const FormItem = Form.Item;
 const TextArea = Input.TextArea;
 
-function AddTripModal() {
+const AddTripModal = () => {
   const db = new Databases(appwriteClient);
 
   const [visible, setVisible] = useState(false);
@@ -156,6 +156,6 @@ function AddTripModal() {
       </Modal>
     </>
   );
-}
+};
 
 export default AddTripModal;
