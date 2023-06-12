@@ -4,6 +4,7 @@ import DeleteModal from "../Modals/DeleteModal";
 
 // importing styles
 import "./DropdownActions.css";
+import EditModal from "../Modals/EditModal";
 
 const DropdownActions = ({ actions, type, payload }) => {
   const dropList = (
@@ -11,6 +12,12 @@ const DropdownActions = ({ actions, type, payload }) => {
       <Menu.Item key="Delete">
         <DeleteModal content={actions.delete} type={type} payload={payload} />
       </Menu.Item>
+
+      {type === "sharedTrips" && (
+        <Menu.Item key="Cancel Trip">
+          <EditModal content={actions.cancel} type={type} payload={payload} />
+        </Menu.Item>
+      )}
     </Menu>
   );
 

@@ -38,14 +38,17 @@ module.exports = async function (req, res) {
 
     const { userId } = payload;
 
-    const userDetails = await users.list([ sdk.Query.equal("$id", [userId]) ])
+    const userDetails = await users.list([sdk.Query.equal("$id", userId)]);
 
     res.json({
       success: true,
-      userDetails,
+      userDetails: {
+        total: userDetails.total,
+        users: userDetails.users.reverse(),
+      },
     });
   } catch (error) {
-    console.log(error)
+    console.log(error);
     res.json({
       success: false,
       error: error.message,
