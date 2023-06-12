@@ -16,8 +16,8 @@ const ResultCard = ({ item, handleAddFavourites, searchResultLoading }) => {
 
   return (
     <>
-    <div className="place-item" onClick={() => handlePageRouting(item)}>
-      <div className="image">
+    <div className="place-item">
+      <div className="image" onClick={() => handlePageRouting(item)}>
         <img src={item.image[0]} alt="img" />
       </div>
       <div className="title">{item.title}</div>

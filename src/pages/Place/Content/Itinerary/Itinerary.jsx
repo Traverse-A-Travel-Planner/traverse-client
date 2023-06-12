@@ -41,7 +41,7 @@ function Itinerary({ state }) {
 
       const prompt = `Plan a itinerary for ${title}, ${location} in the month of ${
         months[new Date().getMonth()]
-      } in short. Each itinerary must be strictly in this format example: 'June 1 - Do this' [No extra info just plain itinerary max 6. seperate day and task by hyphen. One task per day.]`;
+      } in short. Each itinerary must be strictly in this format example: 'June 1 - Do this' [No extra info just plain itinerary max 6. separate day and task by hyphen. One task with short description per day]`;
 
       let response = await functions.createExecution(
         "openAI",

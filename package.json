@@ -12,7 +12,6 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "appwrite": "^11.0.0",
-    "axios": "^1.4.0",
     "bootstrap": "^5.2.3",
     "dayjs": "^1.11.8",
     "mapbox-gl": "^2.9.2",

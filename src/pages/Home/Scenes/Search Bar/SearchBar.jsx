@@ -7,7 +7,7 @@ mapboxgl.accessToken =
 
 function setupMap(center, data) {
   const map = new mapboxgl.Map({
-    container: "map", // container ID
+    container: "home-map", // container ID
     style: "mapbox://styles/mapbox/streets-v12",
     center: center,
     zoom: 7,
