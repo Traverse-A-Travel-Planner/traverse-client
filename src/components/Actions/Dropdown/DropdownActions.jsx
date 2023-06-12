@@ -28,7 +28,7 @@ const DropdownActions = ({ actions, type, payload }) => {
       trigger="click"
       position="br"
     >
-      <Button type="secondary">
+      <Button type="secondary" style={{padding: '0 10px', height: 25}}>
         <i className="bi bi-three-dots-vertical"></i>
       </Button>
     </DropdownComponent>

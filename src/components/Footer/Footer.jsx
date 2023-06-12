@@ -1,6 +1,7 @@
 import React from "react";
 import "./Footer.css";
 import paymentMethod from "./paymentMethod.svg"
+import { Divider, Typography } from "@arco-design/web-react";
 
 const url = "";
 
@@ -10,49 +11,37 @@ const Footer = () => {
       <div className="footer-inside">
         <div className="footer-center">
           <div className="footer-center-wrapper">
-            <div>
-              <span>Policy</span>
-              <ul>
-                <li>Home</li>
-                <li>Blog</li>
-                <li>Pricing</li>
-                <li>About</li>
-                <li>Faq</li>
-                <li>Contact</li>
-              </ul>
+            <div className="newsletter">
+              <Typography.Text className="mt-0">Newsletter</Typography.Text>
+                <Typography.Text 
+                style={{fontSize: 14}}
+                type="secondary">
+                  Join our newsletter for more awesome places to visit on your next trip
+                </Typography.Text>
+                <div className="input-wrapper">
+                    <input type="text" placeholder="Email" />
+                    <button type="submit"><i className="bi bi-send"></i></button>
+                </div>
             </div>
+
             <div>
-              <span>Policy</span>
-              <ul>
-                <li>Return Policy</li>
-                <li>Terms Of use</li>
-                <li>Security</li>
-                <li>Privacy</li>
-                <li>Sitemap</li>
-                <li>Faq</li>
-              </ul>
+              <span>Home</span>
+                <ul>
+                    <li><a href="/">Tarverse</a></li>
+                    <li><a href="/favourites">Favourites</a></li>
+                    <li><a href="/shareTrip">Share Trip</a></li>
+                    <li><a href="#featured-container">Featured</a></li>
+                    <li><a href="/shareTrip">Share Trip</a></li>
+                </ul>
             </div>
+
             <div>
-              <span>Policy</span>
-              <ul>
-                <li>Return Policy</li>
-                <li>Terms Of use</li>
-                <li>Security</li>
-                <li>Privacy</li>
-                <li>Sitemap</li>
-                <li>Faq</li>
-              </ul>
-            </div>
-            <div>
-              <span>Help</span>
-              <ul>
-                <li>Return Policy</li>
-                <li>Terms Of use</li>
-                <li>Security</li>
-                <li>Privacy</li>
-                <li>Sitemap</li>
-                <li>Faq</li>
-              </ul>
+              <span>Profile</span>
+                <ul>
+                    <li><a href="/dashboard">Dashbaord</a></li>
+                    <li><a href="/changePassword">Change Password</a></li>
+                    <li><a href="/reviews">My Reviews</a></li>
+                </ul>
             </div>
           </div>
         </div>
@@ -60,13 +49,10 @@ const Footer = () => {
         <div className="footer-right">
           <span>About us</span>
           <p className="footer-company-about">
-            Traverse is a platform where you can plan for your next tour with
-            ease. We provide a platform where you can select places for your
-            tour, hire guide in that places, compare prices of hotels,
-            accommodation and do many more. Our AI recommends you the best
-            places on the basis of your activities. We also help you to predict
-            the weather conditons for your next trip through our AI models that
-            is trained with huge data sets.
+          Welcome to Traverse! We're here to make travel easy and enjoyable. 
+          Find the best deals, book accommodations, discover hidden gems, and create personalized itineraries. 
+          Let us be your trusted travel companion.
+          Join Traverse for stress-free and unforgettable travel experiences.
           </p>
           <div className="footer-icons">
             <a href={url} data-toggle="tooltip" title="Facebook">
@@ -84,7 +70,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <hr />
+      <Divider />
       <div className="footer-bottom">
         <div>
           <button data-toggle="tooltip" title="Location">
@@ -98,18 +84,18 @@ const Footer = () => {
           <button data-toggle="tooltip" title="Contact">
             <i className="bi bi-telephone"></i>
           </button>
-          <p>+977 9125485884</p>
+          <p>+977 9827314543</p>
         </div>
         <div>
           <button data-toggle="tooltip" title="E-mail">
             <i className="bi bi-envelope"></i>
           </button>
           <p>
-            <a href="mailto:support@company.com">contact@traverse.com.np</a>
+            <a href="mailto:contact@traverse.com.np">contact@traverse.com.np</a>
           </p>
         </div>
         <div>
-          <p className="footer-company-name">Traverse &copy; 2022</p>
+          <p className="footer-company-name">Traverse &copy; 2023</p>
         </div>
         <div className="payment-method">
           <img src={paymentMethod} alt="payment method" />

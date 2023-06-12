@@ -178,7 +178,7 @@ const ReviewTab = ({ state }) => {
             loading={loading}
             text={{
               rows: 3,
-              width: "100%",
+              width: ["80%", "60%", '90%'],
               style: {
                 minWidth: 250,
                 width: "100%",

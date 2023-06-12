@@ -146,33 +146,6 @@ const ListTrip = () => {
                           <div>
                             {item.location}
                           </div>
-                          <div>
-                          {item.status === "active" ? (
-                            <Tag
-                              className="ms-2"
-                              color="green"
-                              icon={<IconCheckCircleFill />}
-                            >
-                              Active
-                            </Tag>
-                          ) : item.status === "ended" ? (
-                            <Tag
-                              className="ms-2"
-                              color="red"
-                              icon={<IconClockCircle />}
-                            >
-                              Expired
-                            </Tag>
-                          ) : (
-                            <Tag
-                              className="ms-2"
-                              color="red"
-                              icon={<IconCloseCircle />}
-                            >
-                              Cancelled
-                            </Tag>
-                          )}
-                          </div>
                         </Typography.Title>
                         <Typography.Text type="secondary" className="my-0 ">
                           <i className="bi bi-airplane me-1"></i> Departing on{" "}
@@ -193,16 +166,8 @@ const ListTrip = () => {
                         </Typography.Text>
                       </div>
 
-                    <div className="proposals mt-3 text-muted">
-                        There are 
-                        <Typography.Text type="success" bold>
-                          {" " + item.total_proposals + " "}
-                        </Typography.Text>
-                        people interested on this trip
-                      </div>
-
                       <div className="description mt-3">
-                        <div className="text">
+                        <div className="text mt-1">
                           <Typography.Text>{item.message}</Typography.Text>
                         </div>
                       </div>
@@ -219,15 +184,46 @@ const ListTrip = () => {
                     </div>
                   </div>
                   <div className="sharedTrip-actions">
-                    {item.author_id === localStorage.getItem("userId") ? (
-                      <DropdownActions
-                        actions={actions}
-                        type="sharedTrips"
-                        payload={{ ...item, id: item.$id }}
-                      />
-                    ) : (
-                      <></>
-                    )}
+                    <div 
+                    style={{display: 'flex', flexDirection: 'row', gap: '0 0.5em'}}
+                    >
+                      {item.status === "active" ? (
+                          <Tag
+                            color="green"
+                            icon={<IconCheckCircleFill />}
+                          >
+                            Active
+                          </Tag>
+                        ) : item.status === "ended" ? (
+                          <Tag
+                            color="red"
+                            icon={<IconClockCircle />}
+                          >
+                            Expired
+                          </Tag>
+                        ) : (
+                          <Tag
+                            color="red"
+                            icon={<IconCloseCircle />}
+                          >
+                            Cancelled
+                          </Tag>
+                      )}
+
+                      {
+                        (item.author_id === localStorage.getItem("userId")) && (
+                          <DropdownActions
+                            actions={actions}
+                            type="sharedTrips"
+                            payload={{ ...item, id: item.$id }}
+                          />
+                        )
+                      }
+                    </div>
+
+                    <div className="mt-1">
+                        <Tag>{item.total_proposals + " "} proposals </Tag>
+                    </div>
                   </div>
                 </div>
               </>
