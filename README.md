@@ -58,7 +58,7 @@ Go to the project directory
   cd traverse-client
 ```
 
-If you want to configure your own server for `traverse` follow these steps. To use our own server configurtion [skip](https://github.com/Traverse-A-Travel-Planner/traverse-client/edit/main/README.md#run-the-client-application) this section.
+If you want to configure your own server for `traverse` follow these steps. To use our own server configurtion [skip](https://github.com/Traverse-A-Travel-Planner/traverse-client#run-the-client-application) this section.
 
 ## Configure Your Own Appwrite Server
 
