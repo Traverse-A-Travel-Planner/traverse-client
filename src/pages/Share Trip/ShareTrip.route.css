@@ -45,7 +45,7 @@
     flex: 1;
     min-width: 300px;
     max-width: 400px;
-    height: 70vh;
+    height: max-content;
     border: 1px solid #dddd;
     border-radius: 5px;
     background-color: white;

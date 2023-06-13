@@ -1,15 +1,19 @@
-// importing styles
-import "./TripsInsight.css";
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
-import { Doughnut } from "react-chartjs-2";
-import { Message } from "@arco-design/web-react";
+import { useEffect, useState } from "react";
+
+// importing appwrite's functions and constants
 import { Databases } from "appwrite";
 import appwriteClient from "../../../Services/appwriteClient";
-import userDataExtractor from "../../../Services/UserDataExtractor";
 import { databaseId } from "../../../Services/config";
 
-import { Typography } from "@arco-design/web-react";
-import { useEffect, useState } from "react";
+// importing custom functions
+import userDataExtractor from "../../../Services/UserDataExtractor";
+
+// chartJS components
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { Doughnut } from "react-chartjs-2";
+
+// arco-design components
+import { Typography, Message } from "@arco-design/web-react";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
@@ -32,9 +36,11 @@ const TripsInsight = () => {
   useEffect(() => {
     fetchSharedTrips();
   }, []);
+
   document.addEventListener("sharedTripCancelled", async () => {
     await fetchSharedTrips();
   });
+
   async function fetchSharedTrips() {
     try {
       const { documents: sharedTripsList } = await db.listDocuments(
@@ -86,12 +92,14 @@ const TripsInsight = () => {
   }
 
   return (
-    <div style={{ padding: "20px" }}>
-      <Typography.Title>Insights</Typography.Title>
-      <Typography.Text style={{ marginBottom: "10px" }}>
-        General overview of shared trips.
+    <div style={{ padding: "0px 25px 35px 25px" }}>
+      <Typography.Title heading={4} className="mb-0">Insights</Typography.Title>
+      <Typography.Text type="secondary" style={{ marginTop: "10px" }}>
+        General overview of shared trips
       </Typography.Text>
-      <Doughnut data={data} />;
+      <div style={{ marginTop: "25px" }}>
+        <Doughnut data={data} />
+      </div>
     </div>
   );
 };

@@ -13,6 +13,7 @@
     "@testing-library/user-event": "^13.5.0",
     "appwrite": "^11.0.0",
     "bootstrap": "^5.2.3",
+    "chart.js": "^4.3.0",
     "chartjs": "^0.3.24",
     "dayjs": "^1.11.8",
     "mapbox-gl": "^2.9.2",
