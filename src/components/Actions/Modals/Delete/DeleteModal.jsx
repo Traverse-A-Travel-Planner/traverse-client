@@ -32,6 +32,9 @@ function handleAction(content, type, payload) {
         } else if (type === "reviews") {
           collectionId = "reviews";
           event = new CustomEvent("reviewDeleted", {});
+        } else if (type === "sharedTrips") {
+          collectionId = "sharedTrips"
+          event = new CustomEvent("sharedTripDeleted", {})
         }
 
         await db.deleteDocument(databaseId, collectionId, payload.id);

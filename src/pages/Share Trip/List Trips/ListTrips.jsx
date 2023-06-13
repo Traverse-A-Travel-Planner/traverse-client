@@ -32,9 +32,10 @@ import {
 import { formatDateToLocal } from "../../../Services/helper";
 import { Account, Functions } from "appwrite";
 import appwriteClient from "../../../Services/appwriteClient";
+import filterShareTrips from "../../../components/Filters/filterShareTrips";
 
 const Option = Select.Option;
-const options = ["Recent", "Ratings", "Oldest"];
+const options = ["Active", "Proposal"];
 
 const account = new Account(appwriteClient);
 const functions = new Functions(appwriteClient);
@@ -49,6 +50,7 @@ const TextArea = Input.TextArea;
 
 const ListTrip = () => {
   const [sharedTrips, setSharedTrips] = useState([]);
+  const [allData, setAllData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [visible, setVisible] = useState(false);
 
@@ -81,6 +83,7 @@ const ListTrip = () => {
       }
 
       setSharedTrips(newData.data);
+      setAllData(newData.data);
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -138,7 +141,14 @@ const ListTrip = () => {
     }
   };
 
-  const handleFilterClick = async (value) => {};
+  const handleFilterClick = async (value) => {
+    const newData = filterShareTrips(allData, value);
+    setSharedTrips(newData);
+  };
+
+  document.addEventListener("sharedTripDeleted", async () => {
+    await fetchSharedTrips();
+  });
 
   return (
     <div className="sharedTrip-wrapper">
