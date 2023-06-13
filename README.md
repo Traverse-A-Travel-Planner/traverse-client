@@ -7,17 +7,26 @@
 
 # 🏄🏼‍♀️ Plan your next trip with us  👇
 
-![ss](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/648315553b0f625ac6ea/view?project=64777ba0910c827a975b&mode=admin)
+![ss](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/64886964db762814b8d9/view?project=64777ba0910c827a975b&mode=admin)
 
-![ss](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/648318cb74cb4a2bed6e/view?project=64777ba0910c827a975b&mode=admin)
+![ss](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/6488699cb9e902af6cad/view?project=64777ba0910c827a975b&mode=admin)
 
-![ss](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/6483183c92a49a43d1c1/view?project=64777ba0910c827a975b&mode=admin)
+![ss](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/648869cc5a0b0b57e246/view?project=64777ba0910c827a975b&mode=admin)
 
-![ss](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/6483186a8586fdf637a5/view?project=64777ba0910c827a975b&mode=admin)
+![ss](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/64886a04054692f07894/view?project=64777ba0910c827a975b&mode=admin)
 
-![ss](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/648318838742fc9536d6/view?project=64777ba0910c827a975b&mode=admin)
+![ss](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/64886a7c0ea18f04e99d/view?project=64777ba0910c827a975b&mode=admin)
 
-![ss](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/648318a55801f3fbace7/view?project=64777ba0910c827a975b&mode=admin)
+![ss](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/64886aa8409162ea0291/view?project=64777ba0910c827a975b&mode=admin)
+
+![ss](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/64886ad8bf660e660bd3/view?project=64777ba0910c827a975b&mode=admin)
+
+![ss](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/64886b2581b1198c144a/view?project=64777ba0910c827a975b&mode=admin)
+
+![ss](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/64886b5040e932234687/view?project=64777ba0910c827a975b&mode=admin)
+
+![ss](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/64886b79b65f3ebb54fe/view?project=64777ba0910c827a975b&mode=admin)
+
 
 
 
@@ -27,7 +36,7 @@
 
 **Server**: Appwrite
 
-**Other**: OpenAI
+**Other**: OpenAI, Chart.Js
 
 ## Appwrite Services Used
 
@@ -67,7 +76,7 @@ If you want to configure your own appwrite server , follow these steps. If you w
 
 ![attributes](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/6483148c5055db459c70/view?project=64777ba0910c827a975b&mode=admin)
 
-![Index](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/648761cecc1217b2cef3/view?project=64777ba0910c827a975b&mode=admin)
+![Index](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/64886c5de46ffa5adef4/view?project=64777ba0910c827a975b&mode=admin)
 
 #### Attributes and Indexes of ```favourites``` collection
 
@@ -113,9 +122,10 @@ Start the server
 ## Local URL
 - Navigate to [http://localhost:3000](http://localhost:3000)
 
-# Developers
+# Authors
 - [Yaman Sarabariya](https://github.com/yaman1337)
 - [Bibek Shah](https://github.com/bibekshhh)
+- [Sandip Khadka](https://www.instagram.com/sandip61_)
 
 
 # License
