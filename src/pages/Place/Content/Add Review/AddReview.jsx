@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Rate, Space, Input, Button, Message } from "@arco-design/web-react";
+import { Rate, Space, Input, Button, Message, Typography } from "@arco-design/web-react";
 import { Databases, ID, Query } from "appwrite";
 import appwriteClient from "../../../../Services/appwriteClient";
 import { databaseId } from "../../../../Services/config";
@@ -48,7 +48,6 @@ const AddReview = ({ state }) => {
       setLoading(false);
     } catch (error) {
       setLoading(false);
-      console.log(error);
       Message.error(error.message);
     }
   };
@@ -59,13 +58,24 @@ const AddReview = ({ state }) => {
   }
 
   return (
-    <Space direction="vertical">
-      <div className="rating" style={{ display: "flex", alignItems: "center" }}>
-        {" "}
-        <span style={{ marginRight: 10, fontSize: "1.2rem" }}>
-          Rating:
-        </span>{" "}
+    <Space direction="vertical" size="large">
+      <div 
+      style={{ 
+        display: "flex", 
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: "flex-start" 
+      }}>
+        <Typography.Text 
+        style={{ 
+          marginRight: 10, 
+          fontSize: "15px" 
+        }}>
+          Rating
+        </Typography.Text>
         <Rate
+          className="rating add-place-review-rating" 
+          style={{fontSize: '25px'}}
           defaultValue={1}
           count={5}
           value={rating}
@@ -73,10 +83,26 @@ const AddReview = ({ state }) => {
         />{" "}
       </div>
 
-      <div className="review">
-        <span style={{ marginRight: 10, fontSize: "1.2rem" }}>Feedback:</span>
+      <div 
+      className="review"
+      style={{ 
+        display: "flex", 
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: "flex-start" 
+      }}
+      >
+        <Typography.Text 
+        style={{ 
+          marginRight: 10, 
+          fontSize: "15px" 
+        }}>
+          Feedback
+        </Typography.Text>
+
         <TextArea
-          style={{ minHeight: "200px", width: "300px" }}
+          autoSize={{ minRows: 2, maxRows: 6 }}
+          style={{ minHeight: "100px", width: "400px", marginTop: 10 }}
           placeholder="Your feedback about this place."
           onChange={(e) => setReviewDescription(e)}
           value={review_description}
