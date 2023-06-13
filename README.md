@@ -125,7 +125,7 @@ Start the server
 # Authors
 - [Yaman Sarabariya](https://github.com/yaman1337)
 - [Bibek Shah](https://github.com/bibekshhh)
-- [Sandip Khadka](https://www.facebook.com/sandip.khadka.75685962)
+- [Sandip Khadka](https://www.instagram.com/sandip61_)
 
 
 # License
