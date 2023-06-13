@@ -5,7 +5,7 @@ import "./GeneralDescription.css";
 
 // arco-design components
 import { Rate, Tag, Typography, Message } from "@arco-design/web-react";
-import { IconCheckCircleFill } from "@arco-design/web-react/icon";
+import { IconCheckCircleFill, IconClockCircle, IconCloseCircle } from "@arco-design/web-react/icon";
 
 // importing components
 import { capitalizeFirstCharacter } from "../../../../Services/helper";
@@ -40,9 +40,15 @@ const GeneralDescription = ({ state }) => {
             </Typography.Title>
           </div>
           <div className="badge-container">
-            <Tag bordered icon={<IconCheckCircleFill />} color="green">
-              {capitalizeFirstCharacter(data.verification_status)}
-            </Tag>
+          {
+            data.verification_status === "verified" ? (
+                <Tag className="ms-2" icon={<IconCheckCircleFill />} color="green">Verified</Tag>
+            ) : data.verification_status === "pending" ? (
+                <Tag className="ms-2" icon={<IconClockCircle />} color="arcoblue">Pending</Tag>
+            ) : (
+                <Tag className="ms-2" icon={<IconCloseCircle />} color="red">Rejected</Tag>
+            )
+          }
           </div>
         </div>
         <div className="keyword mt-2">
