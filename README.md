@@ -76,7 +76,7 @@ If you want to configure your own appwrite server , follow these steps. If you w
 
 ![attributes](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/6483148c5055db459c70/view?project=64777ba0910c827a975b&mode=admin)
 
-![Index](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/648761cecc1217b2cef3/view?project=64777ba0910c827a975b&mode=admin)
+![Index](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/64886c5de46ffa5adef4/view?project=64777ba0910c827a975b&mode=admin)
 
 #### Attributes and Indexes of ```favourites``` collection
 
