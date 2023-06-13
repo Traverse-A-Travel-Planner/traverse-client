@@ -43,6 +43,7 @@ module.exports = async function (req, res) {
   }
 
   let data = req.variables["APPWRITE_FUNCTION_EVENT_DATA"];
+  const trigger = req.variables.APPWRITE_FUNCTION_EVENT;
 
   data = JSON.parse(data);
 
@@ -62,6 +63,37 @@ module.exports = async function (req, res) {
 
   if (!average_rating) {
     average_rating = 0;
+  }
+
+  let actions = {
+    create: "databases.traverse.collections.reviews.documents.*.create",
+    delete: `databases.traverse.collections.reviews.documents.${data.$id}.delete`,
+  };
+
+  console.log(trigger, actions.delete);
+  console.log(trigger === actions.delete);
+
+  if (trigger === actions.delete) {
+    if (total_reviews === 0) {
+      total_reviews = 0;
+    } else {
+      total_reviews -= 1;
+    }
+
+    if (total_reviews === 0) {
+      average_rating = 0;
+    }
+
+    delete documents.$id;
+
+    await database.updateDocument(databaseId, collectionId, $id, {
+      total_reviews,
+      average_rating,
+    });
+
+    return res.json({
+      message: "Function triggered successfully.",
+    });
   }
 
   if (total_reviews === 0) {
