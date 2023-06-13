@@ -1,4 +1,10 @@
 import React, { useState } from "react";
+
+// importing appwrite functions and constants
+import appwriteClient from "../../../../Services/appwriteClient";
+import { Functions } from "appwrite";
+
+// arco-design components
 import {
   Timeline,
   Button,
@@ -6,10 +12,6 @@ import {
   Typography,
   Message
 } from "@arco-design/web-react";
-
-// importing appwrite functions and constants
-import appwriteClient from "../../../../Services/appwriteClient";
-import { Functions } from "appwrite";
 
 const TimelineItem = Timeline.Item;
 const functions = new Functions(appwriteClient);

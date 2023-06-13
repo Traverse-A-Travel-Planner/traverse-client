@@ -1,19 +1,18 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-// arco-design components
-import { Notification, Spin, Typography } from "@arco-design/web-react";
+// login assets
+import LoginArt from "./login-art.svg";
+import "./login.route.css";
 
 // importing appwrite functions and constants
 import { Account } from "appwrite";
 import appwriteClient from "../../Services/appwriteClient";
 
-// login assets
-import LoginArt from "./login-art.svg";
+// arco-design components
+import { Notification, Spin, Typography } from "@arco-design/web-react";
 
-import "./login.route.css";
-
-// importing components
+// importing custom components
 import Header from ".././../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 

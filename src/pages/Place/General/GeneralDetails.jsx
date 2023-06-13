@@ -1,11 +1,12 @@
+// importing styles
+import "./GeneralDetails.css"
+
+// arco-design components
 import { Skeleton, Typography } from '@arco-design/web-react';
 import Paragraph from '@arco-design/web-react/es/Typography/paragraph';
 import Title from '@arco-design/web-react/es/Typography/title';
 
-// importing styles
-import "./GeneralDetails.css"
-
-// importing components
+// importing custom components
 import ImageCarousel from './Carousel/Carousel';
 import GeneralDescription from './Description/GeneralDescription';
 

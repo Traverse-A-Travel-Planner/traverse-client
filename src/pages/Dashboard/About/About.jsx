@@ -1,6 +1,7 @@
 import React from "react";
 import "./About.css";
 
+// importing custom components
 import Sidebar from "../../../components/Sidebar/Sidebar";
 import ProfileMenuCard from "../components/Profile Menu Card/ProfileMenuCard";
 

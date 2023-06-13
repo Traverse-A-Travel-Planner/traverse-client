@@ -1,18 +1,18 @@
 import { useCallback, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
-// importing arco design components
-import { Message } from "@arco-design/web-react";
+// importing styles
+import "./Place.route.css"
 
 // importing appwrite libs and configs
 import { Databases, Query } from "appwrite";
 import appwriteClient from "../../Services/appwriteClient";
 import { databaseId } from "../../Services/config";
 
-// importing styles
-import "./Place.route.css"
+// importing arco design components
+import { Message } from "@arco-design/web-react";
 
-// importing components
+// importing custom components
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import GeneralDetails from "./General/GeneralDetails";

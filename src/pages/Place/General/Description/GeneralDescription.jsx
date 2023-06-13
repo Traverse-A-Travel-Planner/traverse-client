@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 
+// importing styles
+import "./GeneralDescription.css";
+
 // arco-design components
 import { Rate, Tag, Typography, Message } from "@arco-design/web-react";
 import { IconCheckCircleFill } from "@arco-design/web-react/icon";
-
-// importing styles
-import "./GeneralDescription.css";
 
 // importing components
 import { capitalizeFirstCharacter } from "../../../../Services/helper";

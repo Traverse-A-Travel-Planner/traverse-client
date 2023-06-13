@@ -110,7 +110,6 @@ const ReviewTab = ({ state }) => {
             Message.error(finalData.message);
           }
 
-          console.log("reviews vitrakoL ", finalData);
           setReviews(finalData.data);
           calculateInsights(finalData.data);
           setLoading(false);
@@ -123,8 +122,7 @@ const ReviewTab = ({ state }) => {
         return;
       } catch (error) {
         setLoading(false);
-        console.log(error);
-        Message.error("Something went wrong");
+        return Message.error("Something went wrong");
       }
     })();
   }, [state]);

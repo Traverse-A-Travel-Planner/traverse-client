@@ -3,10 +3,9 @@ import { Tabs } from '@arco-design/web-react';
 // importing styles
 import "./Contributions.css"
 
-// importing components
+// importing custom components
 import Header from "../../../components/Header/Header"
 import Sidebar from "../../../components/Sidebar/Sidebar"
-
 import ListPlaces from './Places List/PlacesList';
 import ContributePlaces from './Add Places/ContributePlaces';
 

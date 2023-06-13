@@ -1,4 +1,11 @@
 import React, { useState } from "react";
+
+// importing appwrite functions and constants
+import appwriteClient from "../../../../Services/appwriteClient";
+import { Databases, ID } from "appwrite";
+import { databaseId } from "../../../../Services/config";
+
+// arco-design components
 import {
   Modal,
   Button,
@@ -7,11 +14,9 @@ import {
   Input,
   DatePicker,
 } from "@arco-design/web-react";
-import dayjs from "dayjs";
 
-import appwriteClient from "../../../../Services/appwriteClient";
-import { Databases, ID } from "appwrite";
-import { databaseId } from "../../../../Services/config";
+// importing dayjs function from package
+import dayjs from "dayjs";
 
 const FormItem = Form.Item;
 const TextArea = Input.TextArea;
@@ -78,14 +83,14 @@ const AddTripModal = () => {
                 form.clearFields();
               }}
             >
-              Return
+              Cancel
             </Button>
             <Button
               loading={loading}
               onClick={() => validateForm()}
               style={{ background: "black", color: "white" }}
             >
-              <i className="bi bi-plus-circle me-1"></i> Submit
+              Share <i className="bi bi-arrow-right-circle ms-1"></i>
             </Button>
           </>
         }

@@ -1,4 +1,15 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+// importing styles
+import "./PlacesList.css";
+
+// importing appwrite libs and constants
+import { Databases, Query, Account } from "appwrite";
+import appwriteClient from "../../../../Services/appwriteClient";
+import { databaseId } from "../../../../Services/config";
+
+// arco-design components and icons
 import {
   Typography,
   Image,
@@ -6,22 +17,12 @@ import {
   Rate,
   Spin,
   Tag,
+  Select,
+  Message
 } from "@arco-design/web-react";
-
-import { Select, Message } from "@arco-design/web-react";
-import { useNavigate } from "react-router-dom";
-
 import { IconCheckCircleFill, IconClockCircle, IconCloseCircle } from "@arco-design/web-react/icon";
 
-// importing appwrite libs and constants
-import { Databases, Query, Account } from "appwrite";
-import appwriteClient from "../../../../Services/appwriteClient";
-import { databaseId } from "../../../../Services/config";
-
-// importing styles
-import "./PlacesList.css";
-
-// importing components
+// importing custom components
 import UserAvatar from "../../../../components/Avatar/Avatar";
 import DropdownActions from "../../../../components/Actions/Dropdown/DropdownActions";
 

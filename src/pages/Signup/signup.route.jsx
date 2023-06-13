@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
+// signup assets
+import SignupArt from "./signup-art.svg";
+import "./signup.route.css";
+
 // importing appwrite functions and constants
 import { Account } from "appwrite";
 import appwriteClient from "../../Services/appwriteClient";
 
 // arco-design components
 import { Notification, Spin, Typography } from "@arco-design/web-react";
-
-// signup assets
-import SignupArt from "./signup-art.svg";
-import "./signup.route.css";
 
 // importing components
 import Footer from "../../components/Footer/Footer";
