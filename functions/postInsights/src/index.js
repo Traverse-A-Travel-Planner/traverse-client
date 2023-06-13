@@ -64,8 +64,13 @@ module.exports = async function (req, res) {
     average_rating = 0;
   }
 
+  if (total_reviews === 0) {
+    average_rating = rating;
+  } else {
+    average_rating = Math.floor((average_rating + rating) / 2);
+  }
+
   total_reviews += 1;
-  average_rating = Math.floor((average_rating + rating) / total_reviews);
 
   delete documents.$id;
 
