@@ -9,3 +9,8 @@
 .place-content .arco-carousel-indicator-wrapper-bottom{
     border-radius: 10px !important;
 }
+
+.add-place-review-rating > .arco-rate-inner{
+    margin-top: 10px;
+    font-size: 25px !important;
+}

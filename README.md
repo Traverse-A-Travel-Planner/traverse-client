@@ -55,6 +55,8 @@ If you want to configure your own appwrite server , follow these steps. If you w
 | places  | places  |
 |  reviews |  reviews |
 |  favourites |  favourites |
+|  sharedTrips |  sharedTrips |
+
 
 #### Attributes and Indexes of ```places``` collection
 ![attributes](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/648310128e00f797e03b/view?project=64777ba0910c827a975b&mode=admin)
@@ -65,13 +67,17 @@ If you want to configure your own appwrite server , follow these steps. If you w
 
 ![attributes](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/6483148c5055db459c70/view?project=64777ba0910c827a975b&mode=admin)
 
-![Index](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/648314bc30380a0721e0/view?project=64777ba0910c827a975b&mode=admin)
+![Index](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/648761cecc1217b2cef3/view?project=64777ba0910c827a975b&mode=admin)
 
 #### Attributes and Indexes of ```favourites``` collection
 
 ![attributes](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/6483139df2f63c36c5e9/view?project=64777ba0910c827a975b&mode=admin)
 
 ![Index](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/648314195d1edf276470/view?project=64777ba0910c827a975b&mode=admin)
+
+#### Attributes and Indexes of ```sharedTrips``` collection
+
+![attributes](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/648762493d58fcd78718/view?project=64777ba0910c827a975b&mode=admin)
 
 -   Create bucket with name and id `traverse`
 
