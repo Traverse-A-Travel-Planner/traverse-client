@@ -1,4 +1,14 @@
 import React, { useState, useEffect } from "react";
+
+// importing styles
+import "./Home.route.css";
+
+// importing appwrite functions, and constants
+import { Databases, Query, ID } from "appwrite";
+import appwriteClient from "../../Services/appwriteClient";
+import { databaseId } from "../../Services/config";
+
+// arco-design components
 import { ResizeBox, Notification, Message } from "@arco-design/web-react";
 
 // importing components
@@ -8,24 +18,14 @@ import MapBox from "./Scenes/MapBox/MapBox";
 import SearchBar from "./Scenes/Search Bar/SearchBar";
 import SearchResult from "./Scenes/Recommendations/SearchResult";
 
-// importing appwrite functions, libs, and constants
-import { Databases, Query, ID } from "appwrite";
-import appwriteClient from "../../Services/appwriteClient";
-import { databaseId } from "../../Services/config";
-
-// importing styles
-import "./Home.route.css";
-
 const MemoizedSearchBar = React.memo(SearchBar);
 
 // re-renering mapbox component when pane resized
 const MapBoxComponent = ({ paneResized, data }) => {
   return (
-    <>
-      <div className="mapBox">
-        <MapBox paneResized={paneResized} rawData={data} />
-      </div>
-    </>
+    <div className="mapBox">
+      <MapBox paneResized={paneResized} rawData={data} />
+    </div>
   );
 };
 

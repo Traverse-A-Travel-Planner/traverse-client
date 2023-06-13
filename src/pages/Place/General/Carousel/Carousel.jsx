@@ -1,7 +1,8 @@
-import { Carousel, Image } from '@arco-design/web-react';
-
 // import styles
 import "./Carousel.css"
+
+// aarco-design components
+import { Carousel, Image } from '@arco-design/web-react';
 
 function ImgComponent(props) {
   const { src, style, className } = props;

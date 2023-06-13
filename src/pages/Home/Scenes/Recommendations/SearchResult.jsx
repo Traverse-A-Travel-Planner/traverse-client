@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 //importing styles
 import "./searchResults.css";
+
+// arco-design components
 import { Skeleton, Spin } from "@arco-design/web-react";
-import { useNavigate } from "react-router-dom";
 import { capitalizeFirstCharacter } from "../../../../Services/helper";
 
 const ResultCard = ({ item, handleAddFavourites, searchResultLoading }) => {

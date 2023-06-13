@@ -15,8 +15,10 @@ import { Doughnut } from "react-chartjs-2";
 // arco-design components
 import { Typography, Message } from "@arco-design/web-react";
 
+// create an instance of ChartJS
 ChartJS.register(ArcElement, Tooltip, Legend);
 
+// creating a new db instance
 const db = new Databases(appwriteClient);
 
 const TripsInsight = () => {
@@ -31,7 +33,6 @@ const TripsInsight = () => {
       },
     ],
   });
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     fetchSharedTrips();
@@ -51,7 +52,6 @@ const TripsInsight = () => {
       const newData = await userDataExtractor(sharedTripsList);
       if (newData.success === false) {
         Message.error(newData.message);
-        setLoading(false);
         return;
       }
 
@@ -84,9 +84,7 @@ const TripsInsight = () => {
         ],
       });
 
-      setLoading(false);
     } catch (error) {
-      setLoading(false);
       Message.error("Failed to fetch shared trips");
     }
   }

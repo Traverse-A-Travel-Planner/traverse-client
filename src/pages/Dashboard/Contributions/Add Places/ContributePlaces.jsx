@@ -1,10 +1,4 @@
 import React, { useRef, useState } from "react";
-import {
-  Form,
-  Steps,
-  Notification
-} from '@arco-design/web-react';
-
 import { useNavigate } from "react-router-dom";
 
 // importing styles
@@ -14,6 +8,13 @@ import "./ContributePlaces.css";
 import { Storage, ID, Databases } from "appwrite";
 import appwriteClient from "../../../../Services/appwriteClient";
 import { databaseId, bucketId } from "../../../../Services/config";
+
+// arco-design components
+import {
+  Form,
+  Steps,
+  Notification
+} from '@arco-design/web-react';
 
 // import components
 import RenderContent from './renderSteps';

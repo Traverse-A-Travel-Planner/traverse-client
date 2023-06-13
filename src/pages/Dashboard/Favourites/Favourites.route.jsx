@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../../../components/Sidebar/Sidebar";
+import { useNavigate } from "react-router-dom";
+
+// importing styles
 import "./Favourites.route.css";
 import "../css/dashboardGeneric.css";
-import Header from "../../../components/Header/Header";
 
+// importing appwrite libs and configs
 import appwriteClient from "../../../Services/appwriteClient";
 import { databaseId } from "../../../Services/config";
-
 import { Databases, Query } from "appwrite";
-import { Notification, Spin, Typography } from "@arco-design/web-react";
+
+// importing custom components
+import Sidebar from "../../../components/Sidebar/Sidebar";
+import Header from "../../../components/Header/Header";
 import { capitalizeFirstCharacter } from "../../../Services/helper";
-import { useNavigate } from "react-router-dom";
+
+// arco-design components
+import { Notification, Spin, Typography } from "@arco-design/web-react";
 
 const Favourites = ({ data }) => {
   const [favourites, setFavourites] = useState([]);

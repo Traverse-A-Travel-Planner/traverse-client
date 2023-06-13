@@ -47,9 +47,7 @@ const PlaceMap = ({ state }) => {
   }, [state]);
 
   return (
-    <>
-      <div id="map-place" style={{ height: "55vh", width: "100%" }} />
-    </>
+    <div id="map-place" style={{ height: "55vh", width: "100%" }} />
   );
 };
 

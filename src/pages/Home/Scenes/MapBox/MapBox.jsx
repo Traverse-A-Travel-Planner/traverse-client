@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo } from "react";
 import "./MapBox.css";
+
+// importing mapbox functions and styling
 import mapboxgl from "mapbox-gl";
 import 'mapbox-gl/dist/mapbox-gl.css';
 import { capitalizeFirstCharacter } from "../../../../Services/helper";

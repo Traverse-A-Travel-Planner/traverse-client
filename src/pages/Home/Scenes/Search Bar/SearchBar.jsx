@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import mapboxgl from "mapbox-gl";
 import "./SearchBar.css";
+
+import mapboxgl from "mapbox-gl";
 
 mapboxgl.accessToken =
   "pk.eyJ1IjoieWFtYW4xMzM3IiwiYSI6ImNrd3V4cWRrejFjcnIydXFxcHNjcG9hbHMifQ.0MvUydr2xdlAEM2eVWqEkw";

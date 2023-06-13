@@ -1,6 +1,7 @@
 import { Button } from "@arco-design/web-react";
 import { IconLeft, IconRight } from "@arco-design/web-react/icon";
 
+// importing custom components
 import GeneralDetails from "./General/generalDetails";
 import LocationDetails from "./Location/LocationDetails";
 import PlaceDescription from "./Description/PlaceDescription";

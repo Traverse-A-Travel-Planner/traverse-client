@@ -1,11 +1,16 @@
 import React, { useState } from "react";
+
+// arco-design components
 import { Rate, Space, Input, Button, Message, Typography } from "@arco-design/web-react";
+
+// importing appwrite libs and configs
 import { Databases, ID, Query } from "appwrite";
 import appwriteClient from "../../../../Services/appwriteClient";
 import { databaseId } from "../../../../Services/config";
 
 const TextArea = Input.TextArea;
 
+// creating a new db instance
 const db = new Databases(appwriteClient);
 
 const AddReview = ({ state }) => {

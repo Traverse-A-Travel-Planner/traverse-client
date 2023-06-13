@@ -1,3 +1,16 @@
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
+// importing stlyes
+import "./ListReviews.css";
+import "../css/dashboardGeneric.css";
+
+// importing appwrite functions and constants
+import { Databases, Query } from "appwrite";
+import appwriteClient from "../../../Services/appwriteClient";
+import { databaseId } from "../../../Services/config";
+
+// importing arco-design components
 import {
   Typography,
   Rate,
@@ -7,18 +20,6 @@ import {
   Spin,
 } from "@arco-design/web-react";
 import { Select, Message } from "@arco-design/web-react";
-
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-
-// importing styles
-import "./ListReviews.css";
-import "../css/dashboardGeneric.css";
-
-// importing appwrite contants and libs
-import { Databases, Query } from "appwrite";
-import appwriteClient from "../../../Services/appwriteClient";
-import { databaseId } from "../../../Services/config";
 
 // importing components
 import Header from "../../../components/Header/Header";

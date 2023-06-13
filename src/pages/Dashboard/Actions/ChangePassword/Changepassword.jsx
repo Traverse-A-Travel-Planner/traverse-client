@@ -1,13 +1,20 @@
 import React, { useState } from "react";
+
+// importing styles
 import "./Changepassword.css";
 import "../../css/dashboardGeneric.css";
-import Sidebar from "../../../../components/Sidebar/Sidebar";
-import Header from "../../../../components/Header/Header";
+
+// importing appwrite libs and configs
+import { Account } from "appwrite";
+import appwriteClient from "../../../../Services/appwriteClient";
+
+// arco-design components
 import ProfileMenuCard from "../../components/Profile Menu Card/ProfileMenuCard";
 import { Notification } from "@arco-design/web-react";
 
-import { Account } from "appwrite";
-import appwriteClient from "../../../../Services/appwriteClient";
+// importing custom components
+import Sidebar from "../../../../components/Sidebar/Sidebar";
+import Header from "../../../../components/Header/Header";
 
 const Changepassword = ({ data }) => {
   const [currentPassword, setCurrentPassword] = useState("");
