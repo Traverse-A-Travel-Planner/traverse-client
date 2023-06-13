@@ -143,6 +143,7 @@ const ListTrip = () => {
 
   const handleFilterClick = async (value) => {
     const newData = filterShareTrips(allData, value);
+    Message.success("Filtered by " + value + " .");
     setSharedTrips(newData);
   };
 
