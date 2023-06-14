@@ -27,7 +27,7 @@ const ContributePlaces = ({ data }) => {
   const navigate = useNavigate();
   const formRef = useRef();
 
-  const [loadingSave, setLoadingSave] = useState(true)
+  const [loadingSave, setLoadingSave] = useState(false)
   const [imageFiles, setImageFiles] = useState([]);
   const [title, setTitle] = useState("");
   const [location_description, setLocationDescription] = useState("");
@@ -45,6 +45,7 @@ const ContributePlaces = ({ data }) => {
 
   const handleAddPlace = async () => {
     try {
+      setLoadingSave(true)
       if (!author_id) {
         setLoadingSave(false)
         Notification.error({
@@ -110,6 +111,7 @@ const ContributePlaces = ({ data }) => {
       setLoadingSave(false)
       navigate("/");
     } catch (error) {
+      setLoadingSave(false)
       Notification.error({
         title: "Error",
         content: error.message,
