@@ -10,18 +10,14 @@ const PageNotFound = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        const timer = setTimeout(() => {
-            navigate("/")
-        }, 3000)
-
-        return () => {
-            clearTimeout(timer)
-        }
-    }, [navigate])
-
-    useEffect(() => {
         if (window.localStorage.getItem("cookieFallback")){
-            return
+            const timer = setTimeout(() => {
+                navigate("/")
+            }, 3000)
+    
+            return () => {
+                clearTimeout(timer)
+            }
         } else {
             navigate("/login")
         }

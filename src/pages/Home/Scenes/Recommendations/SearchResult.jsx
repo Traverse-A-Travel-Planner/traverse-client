@@ -4,6 +4,12 @@ import { useNavigate } from "react-router-dom";
 //importing styles
 import "./searchResults.css";
 
+// importing keyoword's svgs
+import historic from "./assets/historic.png"
+import religious from "./assets/religious.png"
+import nature from "./assets/nature.png"
+import park from "./assets/park.png"
+
 // arco-design components
 import { Skeleton, Spin } from "@arco-design/web-react";
 import { capitalizeFirstCharacter } from "../../../../Services/helper";
@@ -16,6 +22,37 @@ const ResultCard = ({ item, handleAddFavourites, searchResultLoading }) => {
     navigate(`place?id=${item.$id}`)
   }
 
+  const KeywordTextGenerator = ({keyword}) => {
+    const keywordText = capitalizeFirstCharacter(keyword)
+    let imgUrl;
+    
+    switch (keyword) {
+      case "historic": 
+        imgUrl = historic
+        break
+      case "religious":
+        imgUrl = religious
+        break
+      case "nature":
+        imgUrl = nature
+        break
+      case "park":
+        imgUrl = park
+        break
+      default:
+        break
+    }
+    
+    return(
+      <>
+      {(keyword !== "others" && (
+        <img src={imgUrl} style={{marginRight: 3, width: 15}} alt={keyword} />
+      ))}
+      {" " + keywordText}
+      </>
+    )
+  }
+
   return (
     <>
     <div className="place-item">
@@ -26,7 +63,9 @@ const ResultCard = ({ item, handleAddFavourites, searchResultLoading }) => {
       <div className="description text-muted">
         {item.location_description}
       </div>
-      <div className="keyword">{capitalizeFirstCharacter(item.keyword)}</div>
+      <div className="keyword">
+        <KeywordTextGenerator keyword={item.keyword} />
+      </div>
       <div
         className="favourites"
         onClick={async () => {
