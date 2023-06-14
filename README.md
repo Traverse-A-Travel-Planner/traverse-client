@@ -9,6 +9,8 @@
 
 ![ss](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/64886964db762814b8d9/view?project=64777ba0910c827a975b&mode=admin)
 
+![ss](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/64886b79b65f3ebb54fe/view?project=64777ba0910c827a975b&mode=admin)
+
 ![ss](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/6488699cb9e902af6cad/view?project=64777ba0910c827a975b&mode=admin)
 
 ![ss](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/648869cc5a0b0b57e246/view?project=64777ba0910c827a975b&mode=admin)
@@ -25,7 +27,7 @@
 
 ![ss](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/6488df718818c566d87f/view?project=64777ba0910c827a975b&mode=admin)
 
-![ss](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/64886b79b65f3ebb54fe/view?project=64777ba0910c827a975b&mode=admin)
+![ss](https://github.com/Traverse-A-Travel-Planner/traverse-client/assets/63846784/e72e28d0-cca2-471e-9217-e9eecb846092)
 
 ![ss](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/648a21e0462b9c9dfe74/view?project=64777ba0910c827a975b&mode=admin)
 
