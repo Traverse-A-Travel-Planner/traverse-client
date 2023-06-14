@@ -108,7 +108,7 @@ const ContributePlaces = ({ data }) => {
       });
 
       setLoadingSave(false)
-      navigate("/contribute");
+      navigate("/");
     } catch (error) {
       Notification.error({
         title: "Error",
