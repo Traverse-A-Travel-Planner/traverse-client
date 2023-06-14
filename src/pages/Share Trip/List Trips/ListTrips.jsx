@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import "./ListTrip.css";
 
 // importing appwrite function and constants
+import { Account, Functions } from "appwrite";
+import appwriteClient from "../../../Services/appwriteClient";
 import { Databases } from "appwrite";
 import { databaseId } from "../../../Services/config";
 
@@ -15,7 +17,6 @@ import {
   Tag,
   Typography,
   Modal,
-  Form,
   Input,
   Button,
 } from "@arco-design/web-react";
@@ -29,9 +30,8 @@ import {
   IconClockCircle,
   IconCloseCircle,
 } from "@arco-design/web-react/icon";
+
 import { formatDateToLocal } from "../../../Services/helper";
-import { Account, Functions } from "appwrite";
-import appwriteClient from "../../../Services/appwriteClient";
 import filterShareTrips from "../../../components/Filters/filterShareTrips";
 
 const Option = Select.Option;
@@ -45,7 +45,6 @@ const actions = {
   cancel: "Do you want to cancel the trip ?",
 };
 
-const FormItem = Form.Item;
 const TextArea = Input.TextArea;
 
 const ListTrip = () => {
