@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 // reset assets
 import "./ResetPassword.route.css";
-import forgetPasswordArt from "./forgetPassword.svg"
+import forgetPasswordArt from "./forgetPassword.svg";
 
 // importing appwrite functions and constants
 import { Account } from "appwrite";
@@ -24,29 +24,53 @@ const ResetPassword = () => {
 
   const [loading, setLoading] = useState(false);
 
+  const urlParams = new URLSearchParams(window.location.search);
+
   //   create appwrite Account Instance
   const account = new Account(appwriteClient);
 
   const loginHandle = async (e) => {
-    e.preventDefault();
+    try {
+      e.preventDefault();
 
-    setLoading(true);
+      setLoading(true);
 
-    if (!password || !confirmPassword) {
-      setLoading(false);
+      if (!password || !confirmPassword) {
+        setLoading(false);
 
-      return Notification.warning({
-        title: "Empty",
-        content: "All fields are required.",
+        return Notification.warning({
+          title: "Empty",
+          content: "All fields are required.",
+        });
+      }
+
+      if (password !== confirmPassword) {
+        setLoading(false);
+
+        return Notification.warning({
+          title: "Password Incorrect",
+          content: "Both passwords must match",
+        });
+      }
+
+      await account.updateRecovery(
+        urlParams.get("userId"),
+        urlParams.get("secret"),
+        password,
+        confirmPassword
+      );
+      Notification.success({
+        title: "Success",
+        content: "Password successfully reset.",
       });
-    }
-
-    if (password !== confirmPassword) {
       setLoading(false);
-
-      return Notification.warning({
-        title: "Password Incorrect",
-        content: "Both passwords must match",
+      navigate("/login");
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+      Notification.error({
+        title: "Error",
+        content: error.message,
       });
     }
   };
@@ -60,21 +84,15 @@ const ResetPassword = () => {
         </div>
         <div className="reset-form-container">
           <div className="reset-form">
-            <Typography.Text 
+            <Typography.Text
               type="primary"
               className="my-3"
-              style={{fontSize: 22}}
+              style={{ fontSize: 22 }}
               bold
-              >
-                Reset Password
+            >
+              Reset Password
             </Typography.Text>
-            <input
-              type="text"
-              value={"bibekshhh"}
-              disabled
-              placeholder={"userID"}
-            />
-
+      
             <input
               type="password"
               value={password}
@@ -105,11 +123,16 @@ const ResetPassword = () => {
                 Reset
               </button>
             </Spin>
-
           </div>
           <div className="login-div">
             <p>
-              <Link style={{ textDecoration: "none", color: "black" }} to="/login">Login </Link> on your account
+              <Link
+                style={{ textDecoration: "none", color: "black" }}
+                to="/login"
+              >
+                Login{" "}
+              </Link>{" "}
+              on your account
             </p>
           </div>
         </div>
