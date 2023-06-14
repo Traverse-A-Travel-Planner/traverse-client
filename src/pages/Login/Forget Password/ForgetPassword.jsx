@@ -89,6 +89,7 @@ function ForgetPassword() {
           >
             <Input 
                 width={450}
+                type='email'
                 value={email}
                 onChange={e => setEmail(e)}
                 height={40} 

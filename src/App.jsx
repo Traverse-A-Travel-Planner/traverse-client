@@ -27,6 +27,7 @@ import ListReviews from "./pages/Dashboard/Reviews/ListReviews";
 import Contributions from "./pages/Dashboard/Contributions/Contributions";
 import PlaceSpecificPage from "./pages/Place/Place.route";
 import ShareTrip from "./pages/Share Trip/ShareTrip.route";
+import ResetPassword from "./pages/Reset Password/ResetPassword.route";
 
 const App = () => {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -89,6 +90,7 @@ const App = () => {
             <Routes>
               <Route path="/login" element={<Login logStatus={{ loggedIn, setLoggedIn }} />} />
               <Route path="/signup" element={<Signup />} />
+              <Route path="/resetPassword" element={<ResetPassword />} />
 
               {/* 👇️ only match this when no other routes match */}
               <Route path="/*" element={<PageNotFound />} />
