@@ -150,6 +150,8 @@ const ListTrip = () => {
     await fetchSharedTrips();
   });
 
+  console.log(sharedTrips)
+
   return (
     <div className="sharedTrip-wrapper">
       <div className="header-block">
