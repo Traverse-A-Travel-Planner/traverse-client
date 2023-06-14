@@ -30,8 +30,7 @@ const Footer = () => {
                     <li><a href="/">Tarverse</a></li>
                     <li><a href="/favourites">Favourites</a></li>
                     <li><a href="/shareTrip">Share Trip</a></li>
-                    <li><a href="#featured-container">Featured</a></li>
-                    <li><a href="/shareTrip">Share Trip</a></li>
+                    <li><a href="/contribute">Contribute</a></li>
                 </ul>
             </div>
 

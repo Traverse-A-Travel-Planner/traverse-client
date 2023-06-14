@@ -53,7 +53,6 @@ const Header = () => {
               Favourites
             </Link>
           </li>
-          <li className="header-items">Featured</li>
           <li className="header-items"> 
             <Link style={{ textDecoration: "none", color: "black" }} to="/contribute">
               Contribute
