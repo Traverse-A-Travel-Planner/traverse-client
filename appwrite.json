@@ -14,7 +14,8 @@
             ],
             "execute": ["any"],
             "events": [
-                "databases.traverse.collections.reviews.documents.*.create"
+                "databases.traverse.collections.reviews.documents.*.create",
+                "databases.traverse.collections.reviews.documents.*.delete"
             ],
             "schedule": "",
             "timeout": 15

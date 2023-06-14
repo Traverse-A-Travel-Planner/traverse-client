@@ -23,7 +23,7 @@
 
 ![ss](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/64886b2581b1198c144a/view?project=64777ba0910c827a975b&mode=admin)
 
-![ss](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/64886b5040e932234687/view?project=64777ba0910c827a975b&mode=admin)
+![ss](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/6488df718818c566d87f/view?project=64777ba0910c827a975b&mode=admin)
 
 ![ss](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/64886b79b65f3ebb54fe/view?project=64777ba0910c827a975b&mode=admin)
 
@@ -47,17 +47,32 @@
 
 # Run Locally
 
-```
-PS: Running in own appwrite server can be a hectic task for now. We will soon create an automation script that will do all the tasks for setting up own server. As of now, it is preferred to use our own appwrite server configurations. 
+Clone the project
+```bash
+ git clone https://github.com/Traverse-A-Travel-Planner/traverse-client
 ```
 
-If you want to configure your own appwrite server , follow these steps. If you want to use our server but run client locally, just clone the repo and follow steps given below server configurations.
+Go to the project directory
 
-## Configure Appwrite Server
+```bash
+  cd traverse-client
+```
+
+If you want to configure your own server for `traverse` follow these steps. To use our own server configurtion [skip](https://github.com/Traverse-A-Travel-Planner/traverse-client#run-the-client-application) this section.
+
+## Configure Your Own Appwrite Server
 
 - Create appwrite account.
-- Create database named traverse with custom databaseId traverse.
-- Create the following collections:
+- Get your API keys from dashboard.
+- Now, open folder `auto-setup`.
+- Create a `.env` file in this folder. See `.env.example` for reference.
+- Put the Appwrite api key, endpoint and project id in `.env` file.
+- Now, open terminal in root of `traverse-client` project.
+- Run: `npm run setup-server`. This will setup all the resources for `traverse` in your freshly made project.
+- Login to Appwrite with appwrite-cli.
+- Run: `appwrite deploy function --all` . This will deploy the serverless functions in the appwrite cloud.
+
+### An overview to our database architecture: 
 
 | Collection Name  | Collection Id  |
 | :------------: | :------------: |
@@ -88,18 +103,11 @@ If you want to configure your own appwrite server , follow these steps. If you w
 
 ![attributes](https://cloud.appwrite.io/v1/storage/buckets/traverse/files/648762493d58fcd78718/view?project=64777ba0910c827a975b&mode=admin)
 
--   Create bucket with name and id `traverse`
+- Above steps were for configuring `traverse` in your own server. 
 
-Clone the project
-```bash
- git clone https://github.com/Traverse-A-Travel-Planner/traverse-client
-```
+## Run the client application
 
-Go to the project directory
-
-```bash
-  cd traverse-client
-```
+- Put the necessary configurations like project id and server endpoint in `src/Services/config.js` if you are using your own server. If you are using our server configuration, leave it as it is. 
 
 Install dependencies
 
@@ -112,12 +120,6 @@ Start the server
 ```bash
   npm  start
 ```
-
-- Put the necessary configurations like project id and server endpoint in `src/Services/config.js`
-
-## Deploy the cloud functions
-
-- If you are running  your own server, deploy the cloud functions that are inside `functions` folder and setup necessary configurations like `.env` , `roles`, etc.
 
 ## Local URL
 - Navigate to [http://localhost:3000](http://localhost:3000)
