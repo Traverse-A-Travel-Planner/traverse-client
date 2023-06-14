@@ -56,6 +56,8 @@ const ListTrip = () => {
 
   const [proposalMessage, setProposalMessge] = useState("");
   const [proposalLoading, setProposalLoading] = useState(false);
+  const [receiver, setReceiver] = useState("")
+  const [tripId, setTripId] = useState("")
 
   useEffect(() => {
     fetchSharedTrips();
@@ -95,7 +97,7 @@ const ListTrip = () => {
     await fetchSharedTrips();
   });
 
-  const handleSendProposal = async (receiver, tripId) => {
+  const handleSendProposal = async () => {
     try {
       if (!proposalMessage.length) {
         Message.error("Please add a proposal.");
@@ -150,6 +152,8 @@ const ListTrip = () => {
   document.addEventListener("sharedTripDeleted", async () => {
     await fetchSharedTrips();
   });
+
+  console.log({ sharedTrips })
 
   return (
     <div className="sharedTrip-wrapper">
@@ -245,7 +249,10 @@ const ListTrip = () => {
                         <div className="contact-menu">
                           <button
                             disabled={item.status === "active" ? false : true}
-                            onClick={() => setVisible(!visible)}
+                            onClick={() => {
+                              setReceiver(item.email)
+                              setTripId(item.$id)
+                              setVisible(!visible)}}
                             className="btn btn-dark shadow-sm contact-sharer-btn"
                           >
                             <i className="bi bi-chat-left-dots me-1"></i>{" "}
@@ -313,7 +320,7 @@ const ListTrip = () => {
                             }}
                             loading={proposalLoading}
                             onClick={() =>
-                              handleSendProposal(item.email, item.$id)
+                              handleSendProposal()
                             }
                           >
                             <i className="bi bi-send"></i> Send Proposal
