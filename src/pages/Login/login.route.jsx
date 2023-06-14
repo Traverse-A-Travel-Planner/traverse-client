@@ -15,6 +15,7 @@ import { Notification, Spin, Typography } from "@arco-design/web-react";
 // importing custom components
 import Header from ".././../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import ForgetPassword from "./Forget Password/ForgetPassword";
 
 const Login = ({ logStatus }) => {
   const navigate = useNavigate();
@@ -114,7 +115,7 @@ const Login = ({ logStatus }) => {
               <hr className="or-hr" data-content="OR" />
             </div>
 
-            <button className="forgot-password">Forgot password?</button>
+            <ForgetPassword />
           </div>
           <div className="signup-div">
             <p>
