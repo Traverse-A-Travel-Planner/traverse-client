@@ -22,7 +22,7 @@ const AddReview = ({ state }) => {
     try {
       if (!rating || !review_description) {
         resetForm();
-        return Message.error("All fields are required.");
+        return Message.error("All the fields are required.");
       }
       setLoading(true);
 

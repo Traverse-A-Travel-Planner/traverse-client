@@ -44,11 +44,11 @@ function ForgetPassword() {
 
       await account.createRecovery(email, url);
 
-      Message.success("Reset password mail sent.")
+      Message.success("Check you mail for password reset link.")
 
       setLoading(false);
       setVisible(false);
-
+      
     } catch (error) {
       setLoading(false);
       Message.error(error.message);

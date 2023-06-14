@@ -49,10 +49,10 @@ const Footer = () => {
         <div className="footer-right">
           <span>About us</span>
           <p className="footer-company-about">
-          Welcome to Traverse! We're here to make travel easy and enjoyable. 
-          Find the best deals, book accommodations, discover hidden gems, and create personalized itineraries. 
-          Let us be your trusted travel companion.
-          Join Traverse for stress-free and unforgettable travel experiences.
+          Welcome to Traverse! 
+          We are dedicated to providing seamless and delightful travel experiences. 
+          Discover hidden gems and embark on stress-free exploration with our trusted travel companion. 
+          Join us today and unlock the secrets to unforgettable and hassle-free journeys.
           </p>
           <div className="footer-icons">
             <a href={url} data-toggle="tooltip" title="Facebook">

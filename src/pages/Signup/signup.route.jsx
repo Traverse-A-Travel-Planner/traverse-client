@@ -10,7 +10,7 @@ import { Account } from "appwrite";
 import appwriteClient from "../../Services/appwriteClient";
 
 // arco-design components
-import { Notification, Spin, Typography } from "@arco-design/web-react";
+import { Message, Notification, Spin, Typography } from "@arco-design/web-react";
 
 // importing components
 import Footer from "../../components/Footer/Footer";
@@ -36,10 +36,7 @@ const Signup = () => {
     if (!email || !password || !username || !name) {
       setLoading(false);
 
-      return Notification.error({
-        title: "Error",
-        content: "All fields are required.",
-      });
+      return Message.error("All the fields are required.");
     }
 
     try {
@@ -48,7 +45,7 @@ const Signup = () => {
       setLoading(false);
       Notification.success({
         title: "Success",
-        content: "Sign up successful.",
+        content: "Signed up successfully!!",
       });
 
       navigate("/login");

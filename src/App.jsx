@@ -63,11 +63,11 @@ const App = () => {
   return (
     <div className="App">
       <div className="app-wrapper">
+      <ConfigProvider locale={enUS}>
         {loggedIn === true ? (
           <BrowserRouter>
             <Outlet />
               <div className="main">
-              <ConfigProvider locale={enUS}>
                 <Routes>
                   <Route path="/" element={<Home />} />
                   <Route path="/dashboard" element={<Dashboard data={user_details} />} />
@@ -82,7 +82,6 @@ const App = () => {
                   {/* 👇️ only match this when no other routes match */}
                   <Route path="*" element={<PageNotFound />} />
                 </Routes>
-              </ConfigProvider>
               </div>
           </BrowserRouter>
         ) : (
@@ -97,6 +96,7 @@ const App = () => {
             </Routes>
           </BrowserRouter>
         )}
+      </ConfigProvider>
       </div>
     </div>
   );

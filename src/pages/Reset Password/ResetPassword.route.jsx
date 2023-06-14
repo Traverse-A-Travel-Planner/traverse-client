@@ -10,7 +10,7 @@ import { Account } from "appwrite";
 import appwriteClient from "../../Services/appwriteClient";
 
 // arco-design components
-import { Notification, Spin, Typography } from "@arco-design/web-react";
+import { Message, Notification, Spin, Typography } from "@arco-design/web-react";
 
 // importing custom components
 import Header from "../../components/Header/Header";
@@ -38,10 +38,7 @@ const ResetPassword = () => {
       if (!password || !confirmPassword) {
         setLoading(false);
 
-        return Notification.warning({
-          title: "Empty",
-          content: "All fields are required.",
-        });
+        return Message.warning("All fields are required.");
       }
 
       if (password !== confirmPassword) {
@@ -61,15 +58,14 @@ const ResetPassword = () => {
       );
       Notification.success({
         title: "Success",
-        content: "Password successfully reset.",
+        content: "Password reset successfully.",
       });
       setLoading(false);
       navigate("/login");
     } catch (error) {
       setLoading(false);
-      console.log(error);
       Notification.error({
-        title: "Error",
+        title: "Something went wrong",
         content: error.message,
       });
     }
