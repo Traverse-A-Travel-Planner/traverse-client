@@ -42,11 +42,11 @@ const GeneralDescription = ({ state }) => {
           <div className="badge-container">
           {
             data.verification_status === "verified" ? (
-                <Tag className="ms-2" icon={<IconCheckCircleFill />} color="green">Verified</Tag>
+                <Tag className="ms-2" bordered icon={<IconCheckCircleFill />} color="green">Verified</Tag>
             ) : data.verification_status === "pending" ? (
-                <Tag className="ms-2" icon={<IconClockCircle />} color="arcoblue">Pending</Tag>
+                <Tag className="ms-2" bordered icon={<IconClockCircle />} color="arcoblue">Pending</Tag>
             ) : (
-                <Tag className="ms-2" icon={<IconCloseCircle />} color="red">Rejected</Tag>
+                <Tag className="ms-2" bordered icon={<IconCloseCircle />} color="red">Rejected</Tag>
             )
           }
           </div>

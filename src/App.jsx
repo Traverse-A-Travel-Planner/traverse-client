@@ -21,7 +21,7 @@ import Login from "./pages/Login/login.route.jsx";
 import Signup from "./pages/Signup/signup.route.jsx";
 import Dashboard from "./pages/Dashboard/About/Dashboard.route.jsx";
 import Favourites from "./pages/Dashboard/Favourites/Favourites.route.jsx";
-import PageNotFound from "./pages/pageNotFound.jsx";
+import PageNotFound from "./pages/PageNotFound/pageNotFound.jsx";
 import Changepassword from "./pages/Dashboard/Actions/ChangePassword/Changepassword.jsx";
 import ListReviews from "./pages/Dashboard/Reviews/ListReviews";
 import Contributions from "./pages/Dashboard/Contributions/Contributions";
